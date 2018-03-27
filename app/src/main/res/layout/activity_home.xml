@@ -75,7 +75,8 @@
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="355dp" />
+        tools:layout_editor_absoluteY="355dp"
+        android:onClick="signin"/>
         </LinearLayout>
     </ScrollView>
     </LinearLayout>

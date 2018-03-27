@@ -6,5 +6,9 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="welcome_nitc">Welcome NITC</string>
+    <string name="hello">Hello</string>
+    <string name="welcome_admin">Welcome Admin</string>
+    <string name="welcome_teacher">Welcome Teacher</string>
+    <string name="welcome_student">Welcome Student</string>
 
 </resources>

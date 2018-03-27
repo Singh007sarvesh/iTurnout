@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Student" />
+        <activity android:name=".Admin" />
+        <activity android:name=".Teacher"></activity>
     </application>
 
 </manifest>
