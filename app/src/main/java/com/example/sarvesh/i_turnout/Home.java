@@ -1,30 +1,24 @@
 package com.example.sarvesh.i_turnout;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
-public class Home extends AppCompatActivity {
-    TextView tv;
-    Button b;
+public class Home extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        tv= (TextView) findViewById(R.id.textview);
-        tv.setSelected(true);
 
     }
-    /*public void teacher(View v)
-    {
-        Intent in=new Intent(Home.this, Student.class);
-        startActivity(in);
-    }*/
     public void signin(View v)
     {
         Intent in;

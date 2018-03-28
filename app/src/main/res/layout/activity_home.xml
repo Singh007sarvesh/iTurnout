@@ -1,83 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-    <LinearLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sarvesh.i_turnout.Home"
+    android:background="@drawable/home"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_weight="2">
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:background="@drawable/home"
-        >
-    <ScrollView
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.sarvesh.i_turnout.Home"
-        tools:layout_editor_absoluteY="81dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-   <TextView
-       android:id="@+id/textview"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:singleLine="true"
-       android:ellipsize="marquee"
-       android:marqueeRepeatLimit="marquee_forever"
-       android:scrollHorizontally="true"
-       android:text="@string/welcome_nitc"
-       android:layout_marginTop="20dp"
-       android:layout_marginBottom="20dp"
-       android:textStyle="bold"
-       android:padding="16dp"
-       android:textSize="40sp"
-       />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/user_name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="174dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"/>
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="266dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"/>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="355dp"
-        android:onClick="signin"/>
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="111dp"
+        android:src="@drawable/nitlogo"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="32dp"
+        android:contentDescription="@string/todo"
+        android:layout_marginTop="40dp"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user_name"
+            android:id="@+id/editText"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
 
+        <Button
+
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_gravity="center"
+            android:onClick="signin"
+            android:layout_marginTop="30dp"
+            style="@style/MyButton"
+            />
+
+    </LinearLayout>
+</LinearLayout>

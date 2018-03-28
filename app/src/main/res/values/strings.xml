@@ -1,14 +1,16 @@
 <resources>
     <string name="app_name">i-Turnout</string>
-    <string name="user_name">User Name</string>
-    <string name="name">Name</string>
-    <string name="button">Button</string>
-    <string name="login">Login</string>
-    <string name="password">Password</string>
-    <string name="welcome_nitc">Welcome NITC</string>
-    <string name="hello">Hello</string>
+
     <string name="welcome_admin">Welcome Admin</string>
     <string name="welcome_teacher">Welcome Teacher</string>
     <string name="welcome_student">Welcome Student</string>
+
+    <string name="iturnout">i-Turnout</string>
+    <string name="i_turnout">i-Turnout</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="todo">TODO</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 
 </resources>
