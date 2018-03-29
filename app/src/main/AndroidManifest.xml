@@ -24,7 +24,11 @@
         <activity android:name=".Student" />
         <activity android:name=".Admin" />
         <activity android:name=".Teacher" />
-        <activity android:name=".Home"></activity>
+        <activity android:name=".Home" />
+        <activity android:name=".StudentDetails" />
+        <activity android:name=".TeacherDetails" />
+        <activity android:name=".CourseDetails" />
+        <activity android:name=".StudentEnrollment"></activity>
     </application>
 
 </manifest>

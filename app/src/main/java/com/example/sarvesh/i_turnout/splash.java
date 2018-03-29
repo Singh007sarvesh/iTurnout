@@ -9,7 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 public class splash extends Activity {
 
-    private static int SPLASH_TIME_OUT=4000;
+    private static int SPLASH_TIME_OUT=2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
