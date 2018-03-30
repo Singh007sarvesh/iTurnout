@@ -21,13 +21,22 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:background="#DBDFDE"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="@string/hello_dear"
+            android:text="@string/welcome"
             android:textColor="#000000"
-            android:gravity="center"/>
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_margin="20dp"/>
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@string/sarvesh"
+            android:layout_margin="20sp"
+           />
     </LinearLayout>
 
     <LinearLayout

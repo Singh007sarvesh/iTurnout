@@ -28,7 +28,9 @@
         <activity android:name=".StudentDetails" />
         <activity android:name=".TeacherDetails" />
         <activity android:name=".CourseDetails" />
-        <activity android:name=".StudentEnrollment"></activity>
+        <activity android:name=".StudentEnrollment" />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".Query"></activity>
     </application>
 
 </manifest>

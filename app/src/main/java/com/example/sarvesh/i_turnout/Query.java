@@ -5,16 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class StudentEnrollment extends AppCompatActivity {
+public class Query extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_enrollment);
+        setContentView(R.layout.activity_query);
     }
     public void back(View v)
     {
-        Intent in=new Intent(StudentEnrollment.this,Admin.class);
+        Intent in=new Intent(Query.this,Student.class);
         startActivity(in);
     }
 }

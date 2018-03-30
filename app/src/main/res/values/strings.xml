@@ -12,17 +12,17 @@
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome1">Welcome</string>
     <string name="todo">TODO</string>
     <string name="upload_details_of_student">Upload details of Student</string>
     <string name="upload_details_of_teacher">Upload details of Teacher</string>
     <string name="upload_details_of_courses">Upload details of Courses</string>
     <string name="upload_details_of_enrollment">Upload details of Enrollment</string>
     <string name="delete_record">Delete Record</string>
-    <string name="sarvesh">Sarvesh</string>
+    <string name="sarvesh1">Sarvesh</string>
     <string name="upload_details">Upload Details</string>
     <string name="teacher">Teacher</string>
-    <string name="courses">Courses</string>
+    <string name="courses1">Courses</string>
     <string name="upload_details1">Upload Details</string>
     <string name="enrollment">Enrollment</string>
     <string name="upload_details2">Upload Details</string>
@@ -46,12 +46,45 @@
     <string name="date1">Date</string>
     <string name="submit">Submit</string>
     <string name="submit1">Submit</string>
-    <string name="enter_course_id">Enter Course Id</string>
-    <string name="enter_course_name">Enter Course Name</string>
     <string name="submit2">Submit</string>
-    <string name="enter_student_id">Enter Student Id</string>
+    <string name="enter_student_id3">Enter Student Id</string>
     <string name="enter_course_id1">Enter Course Id</string>
     <string name="submit6">submit</string>
+    <string name="welcome">Welcome</string>
+    <string name="sarvesh">Sarvesh</string>
+    <string name="fill_details_of_student">Fill Details of Student</string>
+    <string name="todo7">TODO</string>
+    <string name="back">back</string>
+    <string name="back1">back</string>
+    <string name="back2">back</string>
+    <string name="back3">back</string>
+    <string name="fill_details_of_teachers">Fill Details of Teachers</string>
+
+    <string name="enter_course_name">Enter Course Name</string>
+    <string name="fill_details_of_course">Fill Details of Course</string>
+    <string name="enter_course_id3">Enter Course Id</string>
+    <string name="enter_student_id">Enter Student id</string>
+    <string name="fill_details_of_enrollment">Fill Details of Enrollment</string>
+
+    <string name="get">Get</string>
+    <string name="notification">Notification</string>
+    <string name="check">Check</string>
+    <string name="attendance">Attendance</string>
+    <string name="make">Make</string>
+    <string name="query">Query</string>
+    <string name="view">View</string>
+    <string name="courses">Courses</string>
+    <string name="change5">Change</string>
+    <string name="password5">Password</string>
+    <string name="change">Change</string>
+    <string name="change_password">Change Password</string>
+    <string name="enter_old_password">Old Password</string>
+    <string name="enter_new_password">New Password</string>
+    <string name="enter_confirm_password">Confirm Password</string>
+    <string name="query1">Query</string>
+    <string name="query2">Query</string>
+    <string name="enter_id3">Enter Id</string>
+    <string name="content">Content</string>
 
 
 </resources>

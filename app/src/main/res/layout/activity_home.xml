@@ -34,8 +34,8 @@
             android:hint="@string/user_name"
             android:id="@+id/editText"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
         <EditText
             android:layout_width="match_parent"
@@ -43,19 +43,21 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
 
         <Button
 
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/login"
             android:layout_gravity="center"
             android:onClick="signin"
             android:layout_marginTop="30dp"
             style="@style/MyButton"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
 
     </LinearLayout>
