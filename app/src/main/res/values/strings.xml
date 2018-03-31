@@ -85,6 +85,8 @@
     <string name="query2">Query</string>
     <string name="enter_id3">Enter Id</string>
     <string name="content">Content</string>
-
-
+    <string name="courseid">CourseId</string>
+    <string name="coursename">CourseName</string>
+    <string name="responed">Responed</string>
+    <string name="txt">txt</string>
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.sarvesh.i_turnout.Home"
-    android:background="@drawable/home"
+    android:background="#DEE4E7"
     android:orientation="vertical"
     >
     <LinearLayout
@@ -58,6 +58,7 @@
             style="@style/MyButton"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:textColor="#DEE4E7"
             />
 
     </LinearLayout>

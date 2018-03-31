@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
-        android:background="#E5E9E8">
+        android:background="@color/colorPrimaryDark">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -19,7 +19,7 @@
             android:textStyle="bold"
             android:textSize="30sp"
             android:gravity="center"
-            android:textColor="#000000"/>
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
     <ScrollView
@@ -75,17 +75,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/submit"
-
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintTop_toBottomOf="@+id/editText5"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.088"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="@string/back"
-
+            android:textColor="#ffffff"
+            android:background="@color/colorPrimaryDark"
             android:layout_marginTop="25dp"
             android:contentDescription="@string/todo"
-            android:onClick="back"/>
+            android:onClick="back"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
 
 </LinearLayout>
     </ScrollView>
