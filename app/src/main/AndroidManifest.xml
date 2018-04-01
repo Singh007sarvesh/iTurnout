@@ -31,7 +31,11 @@
         <activity android:name=".StudentEnrollment" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".Query" />
-        <activity android:name=".AssignedCourses"></activity>
+        <activity android:name=".AssignedCourses" />
+        <activity android:name=".CheckAttendance" />
+        <activity android:name=".TViewCourses" />
+        <activity android:name=".TCheckAttendance" />
+        <activity android:name=".ViewEnrollStudent"></activity>
     </application>
 
 </manifest>

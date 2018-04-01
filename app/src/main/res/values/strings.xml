@@ -63,7 +63,7 @@
     <string name="enter_course_name">Enter Course Name</string>
     <string name="fill_details_of_course">Fill Details of Course</string>
     <string name="enter_course_id3">Enter Course Id</string>
-    <string name="enter_student_id">Enter Student id</string>
+    <string name="enter_student_id1">Enter Student id</string>
     <string name="fill_details_of_enrollment">Fill Details of Enrollment</string>
 
     <string name="get">Get</string>
@@ -72,7 +72,7 @@
     <string name="attendance">Attendance</string>
     <string name="make">Make</string>
     <string name="query">Query</string>
-    <string name="view">View</string>
+    <string name="view1">View</string>
     <string name="courses">Courses</string>
     <string name="change5">Change</string>
     <string name="password5">Password</string>
@@ -89,4 +89,12 @@
     <string name="coursename">CourseName</string>
     <string name="responed">Responed</string>
     <string name="txt">txt</string>
+    <string name="text">text</string>
+    <string name="check_attendance">Check Attendance</string>
+    <string name="enter_course_id">Enter Course Id</string>
+    <string name="enter_student_id">Enter Student Id</string>
+    <string name="makeattendance">Make Attendance</string>
+    <string name="view">View</string>
+    <string name="enroll_student">Enroll Student</string>
+
 </resources>

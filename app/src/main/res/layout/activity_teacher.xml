@@ -96,7 +96,7 @@
 
                     </android.support.v7.widget.CardView>
                     <android.support.v7.widget.CardView
-                        android:id="@+id/viewcourse"
+                        android:id="@+id/checkatten"
                         android:layout_width="110dp"
                         android:layout_height="120dp"
                         android:layout_margin="10dp">
@@ -201,7 +201,8 @@
                                 android:layout_height="50dp"
                                 android:background="@drawable/cerclebackgroundpurple"
                                 android:src="@drawable/ic_note_add_black_24dp"
-                                android:padding="3dp" android:contentDescription="@string/todo"
+                                android:padding="3dp"
+                                android:contentDescription="@string/todo"
                                 android:layout_marginTop="10dp"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -237,8 +238,49 @@
                     android:layout_height="wrap_content">
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/viewenrollstudent"
+                        android:layout_width="110dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="10dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:background="@drawable/cerclebackgroundpurple"
+                                android:src="@drawable/ic_lock_open_black_24dp"
+                                android:padding="3dp"
+                                android:contentDescription="@string/todo"
+                                android:layout_marginTop="10dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/view"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary"
+                                android:layout_margin="5dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/enroll_student"
+                                android:padding="1dp"
+                                android:textColor="#000000"/>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                    <android.support.v7.widget.CardView
                         android:id="@+id/tchange"
-                        android:layout_width="150dp"
+                        android:layout_width="110dp"
                         android:layout_height="120dp"
                         android:layout_margin="10dp">
                         <LinearLayout
@@ -271,7 +313,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="@string/password"
-                                android:padding="0dp"
+                                android:padding="1dp"
                                 android:textColor="#000000"/>
 
                         </LinearLayout>
