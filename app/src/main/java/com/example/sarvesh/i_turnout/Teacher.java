@@ -21,7 +21,6 @@ public class Teacher extends AppCompatActivity implements View.OnClickListener {
         tcheckattendance = (CardView) findViewById(R.id.checkatten);
         viewenrollstudent = (CardView) findViewById(R.id.viewenrollstudent);
 
-
         tviewcourses.setOnClickListener(this);
         respondQuery.setOnClickListener(this);
         tchangepassword.setOnClickListener(this);

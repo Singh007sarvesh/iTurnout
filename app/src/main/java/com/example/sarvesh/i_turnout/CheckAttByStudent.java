@@ -16,27 +16,27 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewEnrollStudent extends Activity implements OnItemClickListener {
+public class CheckAttByStudent extends Activity implements OnItemClickListener {
 
-    String[] studentid;
+    String[] subjectname;
 
 
-    List<ViewEnrollRowItem> rowItems;
+    List<CheckAttByStudentRowItem> rowItems;
     ListView mylistview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_enroll_student);
+        setContentView(R.layout.activity_check_att_by_student);
 
-        rowItems = new ArrayList<ViewEnrollRowItem>();
+        rowItems = new ArrayList<CheckAttByStudentRowItem>();
 
-        for (int i = 0; i < 15; i++) {
-            rowItems.add(new ViewEnrollRowItem("Operating System"));
+        for (int i = 0; i < 20; i++) {
+            rowItems.add(new CheckAttByStudentRowItem("Software Engineering"));
         }
 
-        mylistview = (ListView) findViewById(R.id.list4);
-        ViewEnrollCustomAdapter adapter = new ViewEnrollCustomAdapter(this, rowItems);
+        mylistview = (ListView) findViewById(R.id.list6);
+       CheckAttStudentCustomAdapter adapter = new CheckAttStudentCustomAdapter(this, rowItems);
         mylistview.setAdapter(adapter);
 
         mylistview.setOnItemClickListener(this);
@@ -47,8 +47,8 @@ public class ViewEnrollStudent extends Activity implements OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
 
-        String studentid = rowItems.get(position).getStudentId();
-        Toast.makeText(getApplicationContext(), "" + studentid,
+        String subjectname = rowItems.get(position).getSSubjectname();
+        Toast.makeText(getApplicationContext(), "" + subjectname,
                 Toast.LENGTH_SHORT).show();
     }
 

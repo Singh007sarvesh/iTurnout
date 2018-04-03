@@ -35,7 +35,8 @@
         <activity android:name=".CheckAttendance" />
         <activity android:name=".TViewCourses" />
         <activity android:name=".TCheckAttendance" />
-        <activity android:name=".ViewEnrollStudent"></activity>
+        <activity android:name=".ViewEnrollStudent" />
+        <activity android:name=".CheckAttByStudent"></activity>
     </application>
 
 </manifest>

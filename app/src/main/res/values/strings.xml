@@ -96,5 +96,8 @@
     <string name="makeattendance">Make Attendance</string>
     <string name="view">View</string>
     <string name="enroll_student">Enroll Student</string>
+    <string name="todo9">TODO</string>
+    <string name="make1">Make</string>
+    <string name="attendance1">Attendance</string>
 
 </resources>

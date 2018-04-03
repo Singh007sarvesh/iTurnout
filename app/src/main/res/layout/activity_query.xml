@@ -36,7 +36,8 @@
                android:layout_marginRight="10dp"
                android:layout_marginLeft="10dp"
                android:hint="@string/enter_id"
-               android:layout_marginTop="10dp"/>
+               android:layout_marginTop="10dp"
+               android:id="@+id/enterid"/>
 
 
             <EditText
@@ -48,10 +49,19 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="@string/content"
+                android:id="@+id/Qcontent"
                 />
-
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_attach_file_black_24dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp"
+                android:id="@+id/attach"/>
             <Button
-                android:id="@+id/button"
+                android:id="@+id/Qbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

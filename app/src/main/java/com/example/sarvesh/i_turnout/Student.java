@@ -40,10 +40,11 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
                 startActivity(in);
                 break;*/
             case R.id.viewcourses:
-                in=new Intent(Student.this,AssignedCourses.class);
+                in=new Intent(Student.this,CheckAttByStudent.class);
                 startActivity(in);
                 break;
-           case R.id.checkattendance : in=new Intent(Student.this,CheckAttendance.class);
+           case R.id.checkattendance :
+               in=new Intent(Student.this,CheckAttendance.class);
                 startActivity(in);
                 break;
             case R.id.change:

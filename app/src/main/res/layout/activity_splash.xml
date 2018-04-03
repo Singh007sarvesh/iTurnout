@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home"
+    android:background="#E5E9E8"
     tools:context="com.example.sarvesh.i_turnout.splash"
     tools:layout_editor_absoluteY="25dp"
     android:layout_gravity="center">

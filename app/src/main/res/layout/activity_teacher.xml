@@ -209,7 +209,7 @@
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
                                 android:layout_marginTop="5dp"
-                                android:text="@string/view"
+                                android:text="@string/make"
                                 android:textColor="#000000"/>
                             <View
                                 android:layout_width="match_parent"
@@ -220,7 +220,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="@string/courses"
+                                android:text="@string/attendance"
                                 android:padding="1dp"
                                 android:textColor="#000000"
                                 />
