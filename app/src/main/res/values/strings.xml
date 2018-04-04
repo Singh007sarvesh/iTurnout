@@ -99,5 +99,6 @@
     <string name="todo9">TODO</string>
     <string name="make1">Make</string>
     <string name="attendance1">Attendance</string>
+    <string name="enter_teacher_id">Enter Teacher id</string>
 
 </resources>

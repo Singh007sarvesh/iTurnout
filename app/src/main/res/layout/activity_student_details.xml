@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/studentdid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -39,7 +39,7 @@
         android:layout_marginRight="10dp"/>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/studentdname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -48,18 +48,10 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"/>
 
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:hint="@string/date"
-        android:inputType="date"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"/>
+
 
     <EditText
-        android:id="@+id/editText10"
+        android:id="@+id/studentdpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        android:layout_marginTop="25dp"
@@ -70,7 +62,7 @@
         android:layout_marginLeft="10dp"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/StudentDSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

@@ -31,16 +31,17 @@
             android:orientation="vertical"
             android:layout_marginTop="70dp">
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/cid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/enter_course_id1"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:inputType="" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/cname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -48,10 +49,19 @@
                 android:inputType="textPersonName"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"/>
+            <EditText
+                android:id="@+id/ctid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="Enter Teacher Id"
+                android:inputType="textPersonName"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
 
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/csubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

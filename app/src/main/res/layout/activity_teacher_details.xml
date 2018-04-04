@@ -30,16 +30,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/tid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/enter_id"
+
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:inputType="" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/tname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -48,18 +50,10 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"/>
 
-            <DatePicker
-                android:id="@+id/editText5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="10dp"
-                android:datePickerMode="spinner"
-                android:layout_marginLeft="10dp"
-                android:calendarViewShown="false" tools:targetApi="lollipop"/>
+
 
             <EditText
-                android:id="@+id/editText10"
+                android:id="@+id/tpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -70,7 +64,7 @@
                 android:layout_marginLeft="10dp"/>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/tsubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
