@@ -31,7 +31,7 @@ public class CheckAttByStudent extends Activity implements OnItemClickListener {
 
         rowItems = new ArrayList<CheckAttByStudentRowItem>();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 15; i++) {
             rowItems.add(new CheckAttByStudentRowItem("Software Engineering"));
         }
 

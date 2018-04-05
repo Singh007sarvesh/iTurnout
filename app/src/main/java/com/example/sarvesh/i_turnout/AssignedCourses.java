@@ -5,6 +5,7 @@ package com.example.sarvesh.i_turnout;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
@@ -47,9 +48,11 @@ public class AssignedCourses extends Activity implements OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
 
-        String subjectname = rowItems.get(position).getSubjectname();
+       /* String subjectname = rowItems.get(position).getSubjectname();
         Toast.makeText(getApplicationContext(), "" + subjectname,
-                Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();*/
+      Intent in=new Intent(AssignedCourses.this,MakeAttByTeacher.class);
+       startActivity(in);
     }
 
 }

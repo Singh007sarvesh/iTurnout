@@ -5,13 +5,12 @@ package com.example.sarvesh.i_turnout;
  */
 
 import android.app.Activity;
-import android.content.res.TypedArray;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +46,11 @@ public class CheckAttendance extends Activity implements OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
 
-        String subjectcheck = rowItem.get(position).getSubject();
+       /* String subjectcheck = rowItem.get(position).getSubject();
         Toast.makeText(getApplicationContext(), "" + subjectcheck,
-                Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();*/
+       Intent in = new Intent(CheckAttendance.this,AttendanceInPerticuSubject.class);
+        startActivity(in);
     }
 
 }
