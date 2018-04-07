@@ -36,7 +36,7 @@ public class TViewNotification extends Activity implements OnItemClickListener {
             rowItems.add(new TViewNotificationItem("m150056ca",R.drawable.ic_notifications_active_black_24dp));
         }
 
-        mylistview =(ListView)findViewById(R.id.viewnotification);
+        mylistview = (ListView) findViewById(R.id.viewnotification);
         TViewNotificationCusAdapter adapter = new TViewNotificationCusAdapter(this, rowItems);
         mylistview.setAdapter(adapter);
 

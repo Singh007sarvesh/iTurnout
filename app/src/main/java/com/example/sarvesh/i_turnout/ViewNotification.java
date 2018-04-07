@@ -30,7 +30,7 @@ public class ViewNotification extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_notification);
 
-        rowItems = new ArrayList< ViewNotificationItem >();
+        rowItems = new ArrayList<ViewNotificationItem>();
        // rowItems.add(new ViewNotificationItem("Kunj Nivas Flat-2, Indira Nagar, Lucknow", R.drawable.ic_notifications_active_black_24dp));
         for (int i = 0; i < 15; i++) {
            rowItems.add(new ViewNotificationItem("m150054ca",R.drawable.ic_notifications_active_black_24dp));

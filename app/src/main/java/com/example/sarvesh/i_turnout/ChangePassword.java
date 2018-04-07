@@ -33,10 +33,10 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
-        editTextold = (EditText)findViewById(R.id.changepassword);
-        editTextnew = (EditText)findViewById(R.id.changepasswordnew);
-        editTextconfirm = (EditText)findViewById(R.id.changepasswordconfirm);
-        changesubmit = (Button)findViewById(R.id.changepasswordsubmit);
+        editTextold = findViewById(R.id.changepassword);
+        editTextnew = findViewById(R.id.changepasswordnew);
+        editTextconfirm = findViewById(R.id.changepasswordconfirm);
+        changesubmit = findViewById(R.id.changepasswordsubmit);
 
         progressDialog = new ProgressDialog(this);
 
