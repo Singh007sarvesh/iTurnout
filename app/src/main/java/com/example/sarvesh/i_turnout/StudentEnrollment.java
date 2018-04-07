@@ -63,6 +63,8 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                            Intent in=new Intent(getApplicationContext(),Admin.class);
+                            startActivity(in);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -95,7 +97,9 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
     public void back(View v)
     {
         Intent in=new Intent(StudentEnrollment.this,Admin.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(in);
+        finish();
     }
 
 }

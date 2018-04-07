@@ -53,7 +53,7 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
 
 
 
-        progressDialog.setMessage("Registering user...");
+        progressDialog.setMessage("Changing...");
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
@@ -65,6 +65,8 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(),ChangePassword.class);
+                            startActivity(i);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -98,7 +100,9 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
     public void back(View v)
     {
         Intent in=new Intent(ChangePassword.this,Admin.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(in);
+        finish();
     }
 
 }

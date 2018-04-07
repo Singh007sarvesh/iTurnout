@@ -66,6 +66,8 @@ public class TeacherDetails extends AppCompatActivity implements View.OnClickLis
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(),Admin.class);
+                            startActivity(i);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -99,6 +101,8 @@ public class TeacherDetails extends AppCompatActivity implements View.OnClickLis
     public void back(View v)
     {
         Intent in=new Intent(TeacherDetails.this,Admin.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(in);
+        finish();
     }
 }

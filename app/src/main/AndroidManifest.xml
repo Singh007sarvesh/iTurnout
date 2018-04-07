@@ -40,7 +40,8 @@
         <activity android:name=".CheckAttByStudent" />
         <activity android:name=".AttendanceInPerticuSubject" />
         <activity android:name=".CheckEnrollStudentInParticulerSubject" />
-        <activity android:name=".MakeAttByTeacher"></activity>
+        <activity android:name=".MakeAttByTeacher" />
+        <activity android:name=".ViewNotification"></activity>
     </application>
 
 </manifest>

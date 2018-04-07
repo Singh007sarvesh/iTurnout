@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="2dp" >
+
+    <ImageView
+        android:id="@+id/seticon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="desc"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/cerclebackgroundpurple"/>
+    <TextView
+        android:id="@+id/notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="txt"
+        android:layout_marginTop="1dp"
+        android:paddingBottom="10dp"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/seticon"
+        android:layout_marginLeft="30dp"/>
+
+
+
+</RelativeLayout>

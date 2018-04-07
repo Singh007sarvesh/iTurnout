@@ -61,9 +61,12 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(String response) {
                         progressDialog.hide();
+                      //  Toast.makeText(getApplicationContext(), "in response",Toast.LENGTH_LONG).show();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(),Admin.class);
+                            startActivity(i);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -98,5 +101,7 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
     {
         Intent in=new Intent(CourseDetails.this,Admin.class);
         startActivity(in);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        finish();
     }
 }
