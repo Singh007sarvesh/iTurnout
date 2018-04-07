@@ -14,13 +14,14 @@ public class Teacher extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
-
+        tgetnotification=(CardView)findViewById(R.id.tgetnotification);
         tviewcourses = (CardView) findViewById(R.id.viewcourses);
         respondQuery =(CardView) findViewById(R.id.responedquery);
         tchangepassword = (CardView) findViewById(R.id.tchange);
         tcheckattendance = (CardView) findViewById(R.id.checkatten);
         viewenrollstudent = (CardView) findViewById(R.id.viewenrollstudent);
 
+        tgetnotification.setOnClickListener(this);
         tviewcourses.setOnClickListener(this);
         respondQuery.setOnClickListener(this);
         tchangepassword.setOnClickListener(this);
@@ -33,6 +34,9 @@ public class Teacher extends AppCompatActivity implements View.OnClickListener {
            case R.id.responedquery: in = new Intent(Teacher.this, Query.class);
                startActivity(in);
                break;
+            case R.id.tgetnotification: in = new Intent(Teacher.this, TViewNotification.class);
+                startActivity(in);
+                break;
             case R.id.viewcourses : in=new Intent(Teacher.this,AssignedCourses.class);
                 startActivity(in);
                 break;

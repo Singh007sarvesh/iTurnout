@@ -41,7 +41,10 @@
         <activity android:name=".AttendanceInPerticuSubject" />
         <activity android:name=".CheckEnrollStudentInParticulerSubject" />
         <activity android:name=".MakeAttByTeacher" />
-        <activity android:name=".ViewNotification"></activity>
+        <activity android:name=".ViewNotification" />
+        <activity android:name=".DispNotification" />
+        <activity android:name=".TViewNotification" />
+        <activity android:name=".TDispNotification"></activity>
     </application>
 
 </manifest>

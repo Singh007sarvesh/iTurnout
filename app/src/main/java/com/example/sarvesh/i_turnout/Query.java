@@ -91,4 +91,11 @@ public class Query extends Activity {
         intent.putExtra("return-data", true);
         startActivityForResult(Intent.createChooser(intent, "Complete action using"), PICK_FROM_GALLERY);
     }
+    public void back(View v)
+    {
+        Intent in=new Intent(Query.this,Student.class);
+        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(in);
+        finish();
+    }
 }

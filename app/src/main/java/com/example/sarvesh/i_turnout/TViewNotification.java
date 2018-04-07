@@ -17,12 +17,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewNotification extends Activity implements OnItemClickListener {
+public class TViewNotification extends Activity implements OnItemClickListener {
 
     String[] name;
     TypedArray seticon;
 
-    List<ViewNotificationItem> rowItems;
+    List<TViewNotificationItem> rowItems;
     ListView mylistview;
 
     @Override
@@ -30,14 +30,14 @@ public class ViewNotification extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_notification);
 
-        rowItems = new ArrayList< ViewNotificationItem >();
-       // rowItems.add(new ViewNotificationItem("Kunj Nivas Flat-2, Indira Nagar, Lucknow", R.drawable.ic_notifications_active_black_24dp));
+        rowItems = new ArrayList< TViewNotificationItem >();
+        // rowItems.add(new ViewNotificationItem("Kunj Nivas Flat-2, Indira Nagar, Lucknow", R.drawable.ic_notifications_active_black_24dp));
         for (int i = 0; i < 15; i++) {
-           rowItems.add(new ViewNotificationItem("m150054ca",R.drawable.ic_notifications_active_black_24dp));
-       }
+            rowItems.add(new TViewNotificationItem("m150056ca",R.drawable.ic_notifications_active_black_24dp));
+        }
 
-        mylistview = (ListView) findViewById(R.id.viewnotification);
-        ViewNotificationCustomAdapter adapter = new ViewNotificationCustomAdapter(this, rowItems);
+        mylistview =(ListView)findViewById(R.id.viewnotification);
+        TViewNotificationCusAdapter adapter = new TViewNotificationCusAdapter(this, rowItems);
         mylistview.setAdapter(adapter);
 
         mylistview.setOnItemClickListener(this);
@@ -51,8 +51,9 @@ public class ViewNotification extends Activity implements OnItemClickListener {
        /* String subjectname = rowItems.get(position).getSubjectname();
         Toast.makeText(getApplicationContext(), "" + subjectname,
                 Toast.LENGTH_SHORT).show();*/
-      Intent in=new Intent(ViewNotification.this,DispNotification.class);
+        Intent in=new Intent(TViewNotification.this,TDispNotification.class);
         startActivity(in);
+        finish();
     }
 
 }

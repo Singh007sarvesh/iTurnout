@@ -99,7 +99,7 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
     }
     public void back(View v)
     {
-        Intent in=new Intent(ChangePassword.this,Admin.class);
+        Intent in=new Intent(ChangePassword.this,Teacher.class);
         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(in);
         finish();

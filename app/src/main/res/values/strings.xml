@@ -101,5 +101,7 @@
     <string name="attendance1">Attendance</string>
     <string name="enter_teacher_id">Enter Teacher id</string>
     <string name="title_activity_make_att_by_teacher">MakeAttByTeacher</string>
+    <string name="reply">Reply</string>
+    <string name="hello">hello</string>
 
 </resources>

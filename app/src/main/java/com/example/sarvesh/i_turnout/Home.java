@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Home extends Activity {
 
@@ -21,27 +22,34 @@ public class Home extends Activity {
     }
     public void signin(View v)
     {
-        Intent in;
+        //Intent in;
         EditText e=(EditText) findViewById(R.id.editText);
         String s=e.getText().toString();
         if(s.length()<1)
         {
-            in = new Intent(Home.this, Home.class);
+            Toast.makeText(getApplicationContext(),"Plz fill proper id....",Toast.LENGTH_LONG).show();
         }
         else if(s.charAt(0)=='a'){
-            in = new Intent(Home.this, Admin.class);
+            Intent in = new Intent(Home.this, Admin.class);
+            startActivity(in);
+            finish();
         }
-        else if (s.charAt(0)=='t'){
-            in = new Intent(Home.this, Teacher.class);
+        else if (s.charAt(0)=='t' && (s.length()>1 && s.length()<10)){
+          Intent  in = new Intent(Home.this, Teacher.class);
+            startActivity(in);
+            finish();
         }
-        else if(s.charAt(0)=='B' || s.charAt(0)=='b' || s.charAt(0)=='M' || s.charAt(0)=='m'){
-            in = new Intent(Home.this, Student.class);
+        else if((s.charAt(0)=='B' || s.charAt(0)=='b' || s.charAt(0)=='M' || s.charAt(0)=='m') && (s.length()>1 && s.length()<10) ){
+          Intent  in = new Intent(Home.this, Student.class);
+            startActivity(in);
+            finish();
         }
         else
         {
-            in = new Intent(Home.this, Home.class);
+
+            Toast.makeText(getApplicationContext(),"Plz fill proper id...",Toast.LENGTH_LONG).show();
         }
-        startActivity(in);
+
     }
 
 }
