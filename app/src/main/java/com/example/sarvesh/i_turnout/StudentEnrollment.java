@@ -50,42 +50,55 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
         final String sid = editTextsid.getText().toString().trim();
 
 
-
-        progressDialog.setMessage("Registering user...");
-        progressDialog.show();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                defConstant.URL_ENROLL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.hide();
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_LONG).show();
-                            Intent in=new Intent(getApplicationContext(),Admin.class);
-                            startActivity(in);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressDialog.hide();
-                        Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("cid",cid);
-                params.put("sid",sid);
-                return params;
+        if(sid.length()==9 && sid.matches("[a-zA-Z0-9]+") && (sid.charAt(0)=='m' || sid.charAt(0)=='M' || sid.charAt(0)=='b' || sid.charAt(0)=='B'))
+        {
+            if(cid.length()>5  && cid.matches("[a-zA-Z0-9]+"));
+            else
+            {
+                Toast.makeText(getApplicationContext(),"Plz fill course id in a proper way",Toast.LENGTH_LONG).show();
+                return;
             }
-        };
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+            progressDialog.setMessage("Enrolling user...");
+            progressDialog.show();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                    defConstant.URL_ENROLL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            progressDialog.hide();
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                                Intent in = new Intent(getApplicationContext(), Admin.class);
+                                startActivity(in);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.hide();
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("cid", cid);
+                    params.put("sid", sid);
+                    return params;
+                }
+            };
+            RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Plz fill Student id in a proper way", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
     @Override

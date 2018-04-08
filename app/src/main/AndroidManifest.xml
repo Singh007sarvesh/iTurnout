@@ -44,7 +44,8 @@
         <activity android:name=".ViewNotification" />
         <activity android:name=".DispNotification" />
         <activity android:name=".TViewNotification" />
-        <activity android:name=".TDispNotification"></activity>
+        <activity android:name=".TDispNotification" />
+        <activity android:name=".DeleteUser"></activity>
     </application>
 
 </manifest>

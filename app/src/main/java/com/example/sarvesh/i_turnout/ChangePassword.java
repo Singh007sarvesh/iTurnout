@@ -51,44 +51,49 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
         final String changenew = editTextnew.getText().toString().trim();
         final String changeconfirm = editTextconfirm.getText().toString().trim();
 
+        if (changeold.length()>4 && changenew.length()>4 && changeconfirm.length()>4) {
+            progressDialog.setMessage("Changing...");
+            progressDialog.show();
 
-
-        progressDialog.setMessage("Changing...");
-        progressDialog.show();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                defConstant.URL_CHANGE,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.hide();
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(getApplicationContext(),ChangePassword.class);
-                            startActivity(i);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                    defConstant.URL_CHANGE,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            progressDialog.hide();
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(getApplicationContext(), ChangePassword.class);
+                                startActivity(i);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressDialog.hide();
-                        Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("changeold",changeold);
-                params.put("changenew",changenew);
-                params.put("changeconfirm",changeconfirm);
-                return params;
-            }
-        };
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.hide();
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("changeold", changeold);
+                    params.put("changenew", changenew);
+                    params.put("changeconfirm", changeconfirm);
+                    return params;
+                }
+            };
+            RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "plz fill  in a proper way", Toast.LENGTH_LONG).show();
+            return;
+        }
     }
 
     @Override

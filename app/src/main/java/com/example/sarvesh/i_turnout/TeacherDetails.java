@@ -46,15 +46,28 @@ public class TeacherDetails extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    public void registerUser(){
+    public void registerUser() {
 
 
         final String tid = editTexttid.getText().toString().trim();
         final String tname = editTexttname.getText().toString().trim();
-
         final String password = editTexttpassword.getText().toString().trim();
-
-        progressDialog.setMessage("Registering user...");
+        if (tid.length() == 9 && (tid.charAt(0) == 't' || tid.charAt(0)=='T') && tid.matches("[a-zA-Z0-9]+"))
+        {
+            if(tname.matches("[a-zA-Z ]+")  && tname.length()>3)
+            {
+                if(password.length()<5)
+                {
+                    Toast.makeText(getApplicationContext(), "Plz fill password in a proper way", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "Plz fill name in a proper way", Toast.LENGTH_LONG).show();
+                return;
+            }
+            progressDialog.setMessage("Registering user...");
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
@@ -65,8 +78,8 @@ public class TeacherDetails extends AppCompatActivity implements View.OnClickLis
                         progressDialog.hide();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(getApplicationContext(),Admin.class);
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(), Admin.class);
                             startActivity(i);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -77,19 +90,25 @@ public class TeacherDetails extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.hide();
-                        Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
-                }){
+                }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("tid",tid);
-                params.put("tname",tname);
-                params.put("password",password);
+                params.put("tid", tid);
+                params.put("tname", tname);
+                params.put("password", password);
                 return params;
             }
         };
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+    }
+    else
+        {
+            Toast.makeText(getApplicationContext(), "Please fill id in a proper way", Toast.LENGTH_LONG).show();
+            return;
+        }
     }
 
     @Override
