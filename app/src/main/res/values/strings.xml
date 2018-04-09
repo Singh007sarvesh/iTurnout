@@ -103,5 +103,10 @@
     <string name="title_activity_make_att_by_teacher">MakeAttByTeacher</string>
     <string name="reply">Reply</string>
     <string name="hello">hello</string>
+    <string name="dialog_msg">Do you really want to delete the records?</string>
+    <string name="deleting_msg">Deleting...</string>
+    <string name="dialog_title">Delete</string>
+    <string name="bconfirm">Confirm</string>
+    <string name="bback">Back</string>
 
 </resources>

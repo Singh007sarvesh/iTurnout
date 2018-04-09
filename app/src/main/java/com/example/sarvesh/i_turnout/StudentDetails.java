@@ -44,7 +44,6 @@ public class StudentDetails extends AppCompatActivity implements View.OnClickLis
 
         dsubmit.setOnClickListener(this);
 
-
     }
 
     public void registerUser(){

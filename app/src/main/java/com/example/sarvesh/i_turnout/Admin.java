@@ -37,19 +37,24 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.u_student: in = new Intent(Admin.this, StudentDetails.class);
                 startActivity(in);
+                finish();
                 break;
             case R.id.u_teacher : in=new Intent(Admin.this,TeacherDetails.class);
                 startActivity(in);
+                finish();
                 break;
             case R.id.u_course : in=new Intent(Admin.this,CourseDetails.class);
                 startActivity(in);
+                finish();
                 break;
             case R.id.u_enroll : in=new Intent(Admin.this,StudentEnrollment.class);
                 startActivity(in);
+                finish();
                 break;
-            //case R.id.del : in =new Intent(Admin.this,DeleteRecord.class);
-            //    startActivity(in);
-             //   break;
+            case R.id.del : in =new Intent(Admin.this,DeleteUser.class);
+                startActivity(in);
+                finish();
+               break;
         }
 
     }
