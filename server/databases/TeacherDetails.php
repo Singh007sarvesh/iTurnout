@@ -13,20 +13,27 @@
     			$tname = $_POST['tname'];
     			$rdate = date("Y/m/d");
     			$passwd=$_POST['password'];
-    			$res1 = "INSERT INTO teacher(teacherid, teachername, date,password) VALUES('$tid','$tname', '$rdate','$passwd')";
-    			$sql=mysqli_query($con,$res1);
-    			if($sql)
+    			$check="select teacherid from teacher where teacherid='$tid'";
+    			$res2=mysqli_query($con,$check);
+    			$num=$res2->num_rows;
+    			if($num<1)
     			{
-    			    	
-    				
-    				$response['message'] = "Successfully Registered!";
-    			}
-    			else
-    			{
-    				
-    				$response['message'] = "Error occured..!..Failed";
-    			}
-		    }
+    			    $res1 = "INSERT INTO teacher(teacherid, teachername, date,password) VALUES('$tid','$tname', '$rdate','$passwd')";
+    			    $sql=mysqli_query($con,$res1);
+    			    if($sql)
+    			    {
+    				    $response['message'] = "Successfully Registered!";
+    			    }
+    			    else
+    			    {
+    				    $response['message'] = "Error occured..!..Failed";
+    			    }
+		        }
+		        else
+		        {
+		            $response['message'] = "User already exist";
+		        }
+			}
     		else
     		{
     			

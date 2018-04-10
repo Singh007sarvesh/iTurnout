@@ -12,15 +12,25 @@
     			$cid = $_POST['cid'];
     			$cname = $_POST['cname'];
     			$ctid=$_POST['ctid'];
-    			$res1 = "INSERT INTO course(courseid, coursename,ctid) VALUES('$cid','$cname','$ctid')";
-    			$sql=mysqli_query($con,$res1);
-    			if($sql)
+    			$check="select courseid from course where courseid='$cid' ";
+    			$res2=mysqli_query($con,$check);
+    			$num=$res2->num_rows;
+    			if($num<1)
     			{
-    				$response['message'] = "Successfully Registered!";
+        			$res1 = "INSERT INTO course(courseid, coursename,ctid) VALUES('$cid','$cname','$ctid')";
+        			$sql=mysqli_query($con,$res1);
+        			if($sql)
+        			{
+        				$response['message'] = "Successfully Registered!";
+        			}
+        			else
+        			{
+        				$response['message'] = "Error occured..!..Failed";
+        			}
     			}
     			else
     			{
-    				$response['message'] = "Error occured..!..Failed";
+    			    $response['message'] = "Subject already exist";
     			}
 		    }
     		else
