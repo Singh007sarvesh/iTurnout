@@ -20,4 +20,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Theme">themestyle</style>
+
+    <style name="ThemeOverlay">themeoverlaystyle</style>
+
 </resources>

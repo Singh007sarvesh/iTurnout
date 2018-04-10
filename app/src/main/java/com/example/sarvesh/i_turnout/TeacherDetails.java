@@ -58,7 +58,7 @@ public class TeacherDetails extends AppCompatActivity implements View.OnClickLis
             {
                 if(password.length()<5)
                 {
-                    Toast.makeText(getApplicationContext(), "Plz fill password in a proper way", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Password length should be greater then 4", Toast.LENGTH_LONG).show();
                     return;
                 }
             }

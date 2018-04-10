@@ -1,15 +1,33 @@
 package com.example.sarvesh.i_turnout;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Home extends Activity {
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Home extends Activity implements View.OnClickListener{
+
+    private EditText editTextUserid, editTextPassword;
+    private Button signinButton;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,18 +36,31 @@ public class Home extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //USER LOGIN
+        if(SharedPrefManager.getInstance(this).isLoggedin())
+        {
+            finish();
+            startActivity(new Intent(this , Student.class));
+            return;
+        }
 
+        editTextUserid = (EditText)findViewById(R.id.userid);
+        editTextPassword = (EditText)findViewById(R.id.password);
+        signinButton = (Button) findViewById(R.id.userLoginButton);
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        signinButton.setOnClickListener(this);
     }
-    public void signin(View v)
+    public void signin()
     {
         //Intent in;
-        EditText e=(EditText) findViewById(R.id.editText);
+       /* EditText e=(EditText) findViewById(R.id.editText);
         String s=e.getText().toString();
         if(s.length()<1)
         {
             Toast.makeText(getApplicationContext(),"Plz fill proper id....",Toast.LENGTH_LONG).show();
-        }
-        else if(s.charAt(0)=='a'){
+        }*/
+       /* else if(s.charAt(0)=='a'){
             Intent in = new Intent(Home.this, Admin.class);
             startActivity(in);
             finish();
@@ -48,8 +79,96 @@ public class Home extends Activity {
         {
 
             Toast.makeText(getApplicationContext(),"Plz fill proper id...",Toast.LENGTH_LONG).show();
-        }
+        }*/
 
+        final String userid = editTextUserid.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
+        progressDialog.show();
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                defConstant.URL_USERLOGIN,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        progressDialog.dismiss();
+                        try{
+                            JSONObject obj = new JSONObject(response);
+                            if(!obj.getBoolean("error")){
+                                SharedPrefManager.getInstance(getApplicationContext())
+                                        .userLogin(
+                                                obj.getString("userid"),
+                                                obj.getString("name")
+                                        );
+                                if((userid.charAt(0)=='a' ||  userid.charAt(0)=='A'))
+                                {
+                                    Intent in=new Intent(Home.this,Admin.class);
+                                    in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(in);
+                                    finish();
+                                }
+                                else if((userid.charAt(0)=='t' ||  userid.charAt(0)=='T'))
+                                {
+                                    Intent in=new Intent(Home.this,Teacher.class);
+                                    in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(in);
+                                    finish();
+                                }
+                                else
+                                {
+                                    Intent in=new Intent(Home.this,Student.class);
+                                    in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(in);
+                                    finish();
+                                }
+                            }else{
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        obj.getString("message"),
+                                        Toast.LENGTH_LONG
+                                ).show();
+                            }
+
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        progressDialog.dismiss();
+                        Toast.makeText(
+                                getApplicationContext(),
+                                error.getMessage(),
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map <String, String> params = new HashMap<>();
+                params.put("userid",userid);
+                params.put("password",password);
+                return params;
+            }
+
+        };
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+
+    }
+    @Override
+    public void onClick(View view){
+        if(view == signinButton){
+            signin();
+        }
     }
 
 }
