@@ -108,5 +108,7 @@
     <string name="dialog_title">Delete</string>
     <string name="bconfirm">Confirm</string>
     <string name="bback">Back</string>
+    <string name="logout1">Logout</string>
+    <string name="logout">Logout</string>
 
 </resources>

@@ -28,6 +28,7 @@ public class Home extends Activity implements View.OnClickListener{
     private EditText editTextUserid, editTextPassword;
     private Button signinButton;
     private ProgressDialog progressDialog;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +37,39 @@ public class Home extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //USER LOGIN
-        if(SharedPrefManager.getInstance(this).isLoggedin())
-        {
+
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
+        if (sharedPrefManager.isLoggedIn()) {
+            String last_login = userDetails.get(SharedPrefManager.KEY_Login);
+            //finish();
+            if(last_login.equals("student"))
+                startActivity(new Intent(this, Student.class));
+            else if(last_login.equals("teacher"))
+                startActivity(new Intent(this, Teacher.class));
+            else if(last_login.equals("admin"))
+                startActivity(new Intent(this, Admin.class));
             finish();
-            startActivity(new Intent(this , Student.class));
-            return;
         }
 
-        editTextUserid = (EditText)findViewById(R.id.userid);
-        editTextPassword = (EditText)findViewById(R.id.password);
+
+
+        //  EditText e= findViewById(R.id.userid);
+       //
+        //USER LOGIN
+
+
+
+
+        editTextUserid = findViewById(R.id.userid);
+        editTextPassword = findViewById(R.id.password);
         signinButton = (Button) findViewById(R.id.userLoginButton);
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
+        String s = editTextUserid.getText().toString();
+
+
+
         signinButton.setOnClickListener(this);
     }
     public void signin()
@@ -97,13 +118,12 @@ public class Home extends Activity implements View.OnClickListener{
                         try{
                             JSONObject obj = new JSONObject(response);
                             if(!obj.getBoolean("error")){
-                                SharedPrefManager.getInstance(getApplicationContext())
-                                        .userLogin(
-                                                obj.getString("userid"),
-                                                obj.getString("name")
-                                        );
+
+                                String id = obj.getString("userid");
+                                String name = obj.getString("name");
                                 if((userid.charAt(0)=='a' ||  userid.charAt(0)=='A'))
                                 {
+                                    sharedPrefManager.createLoginSession(name,id,"admin");
                                     Intent in=new Intent(Home.this,Admin.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(in);
@@ -111,6 +131,7 @@ public class Home extends Activity implements View.OnClickListener{
                                 }
                                 else if((userid.charAt(0)=='t' ||  userid.charAt(0)=='T'))
                                 {
+                                    sharedPrefManager.createLoginSession(name,id,"teacher");
                                     Intent in=new Intent(Home.this,Teacher.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(in);
@@ -118,6 +139,7 @@ public class Home extends Activity implements View.OnClickListener{
                                 }
                                 else
                                 {
+                                    sharedPrefManager.createLoginSession(name,id,"student");
                                     Intent in=new Intent(Home.this,Student.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(in);

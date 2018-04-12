@@ -14,11 +14,18 @@ public class CheckAttByStudentRowItem {
 
     }
 
-    public String getSSubjectname() {
+    public String getSubjectname() {
+        return subjectname;
+    }
+
+    public void setSubjectname(String subjectname) {
+        this.subjectname = subjectname;
+    }
+    /* public String getSSubjectname() {
         return subjectname;
     }
 
     public void setSSubjectname(String subjectname) {
         this.subjectname = subjectname;
-    }
+    }*/
 }

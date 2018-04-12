@@ -8,6 +8,9 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class Student extends AppCompatActivity implements  View.OnClickListener {
     public TextView textCartItemCount;
@@ -15,18 +18,21 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
     public String mCartItemCount = "10";
     private TextView studentName;
     private Button logout;
+    SharedPrefManager sharedPrefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        HashMap<String,String> userdetails = sharedPrefManager.getUserDetails();
         //USER LOGIN
-        if(!SharedPrefManager.getInstance(this).isLoggedin())
-        {
-            finish();
-            startActivity(new Intent(this , Home.class));
-        }
+
+
+
         studentName = findViewById(R.id.studentName);
-        studentName.setText(SharedPrefManager.getInstance(this).getKeyName());
+        studentName.setText(userdetails.get(SharedPrefManager.KEY_NAME));
 
          getnotification=(CardView) findViewById(R.id.getnotification);
          makeQuery=(CardView)findViewById(R.id.makequery);
@@ -66,10 +72,11 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
                 break;
             case R.id.change:
                 in = new Intent(Student.this, ChangePassword.class);
+
                 startActivity(in);
                 break;
             case R.id.logout:
-                SharedPrefManager.getInstance(this).logout();
+                sharedPrefManager.logoutUser();
                 finish();
                 in = new Intent(Student.this, Home.class);
                 startActivity(in);

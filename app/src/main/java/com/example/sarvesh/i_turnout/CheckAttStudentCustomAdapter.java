@@ -15,7 +15,7 @@ public class CheckAttStudentCustomAdapter extends BaseAdapter{
     Context context;
     List<CheckAttByStudentRowItem> rowItems;
 
-    CheckAttStudentCustomAdapter(Context context, List<CheckAttByStudentRowItem> rowItems) {
+    CheckAttStudentCustomAdapter( Context context,List<CheckAttByStudentRowItem> rowItems) {
         this.context = context;
         this.rowItems = rowItems;
     }
@@ -60,7 +60,7 @@ public class CheckAttStudentCustomAdapter extends BaseAdapter{
             CheckAttByStudentRowItem row_pos = rowItems.get(position);
 
 
-            holder.subjectname.setText(row_pos.getSSubjectname());
+            holder.subjectname.setText(row_pos.getSubjectname());
 
 
             convertView.setTag(holder);

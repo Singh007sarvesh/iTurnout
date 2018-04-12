@@ -11,4 +11,5 @@ public class defConstant {
     public static final String URL_CHANGE=ROOT_URL+"ChangePassword.php";
     public static final String URL_DELETERECORDS=ROOT_URL+"DeleteRecords.php";
     public static final String URL_USERLOGIN=ROOT_URL+"userLogin.php";
+    public static final String URL_VIEWSUBJECTBYSTUDENT=ROOT_URL+"ViewSubjectByStudent.php";
 }

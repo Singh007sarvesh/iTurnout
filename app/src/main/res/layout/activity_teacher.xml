@@ -22,19 +22,36 @@
             android:orientation="horizontal"
             >
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="@string/welcome"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:layout_margin="20dp"/>
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                />
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="@string/sarvesh"
-                android:layout_margin="20sp"
+                android:id="@+id/teachernameforlogin"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:textColor="#ffffff"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="40dp"
+                />
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="logout"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/teacherlogout"
+                android:textColor="#ffffff"
+                android:layout_gravity="bottom"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginLeft="10dp"
                 />
         </LinearLayout>
         <ScrollView
