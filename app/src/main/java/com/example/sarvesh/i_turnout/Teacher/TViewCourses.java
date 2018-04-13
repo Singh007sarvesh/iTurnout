@@ -1,7 +1,9 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Teacher;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.sarvesh.i_turnout.R;
 
 public class TViewCourses extends AppCompatActivity {
 

@@ -1,4 +1,5 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Moderator;
+
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,6 +14,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.R;
+import com.example.sarvesh.i_turnout.RequestHandler;
+import com.example.sarvesh.i_turnout.defConstant;
 
 
 import org.json.JSONException;
@@ -21,62 +25,61 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CourseDetails extends AppCompatActivity implements View.OnClickListener{
+public class StudentDetails extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText editTextcid, editTextcname,editTextctid;
+    private EditText editTextdid, editTextdname, editTextdpassword;
 
-
-    private Button csubmit;
+    private Button dsubmit;
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_details);
-        editTextcid = (EditText)findViewById(R.id.cid);
-        editTextcname = (EditText)findViewById(R.id.cname);
-        editTextctid =(EditText) findViewById(R.id.ctid);
-        csubmit = (Button)findViewById(R.id.csubmit);
+        setContentView(R.layout.activity_student_details);
+        editTextdid = (EditText)findViewById(R.id.studentdid);
+        editTextdname = (EditText)findViewById(R.id.studentdname);
+
+        editTextdpassword = (EditText)findViewById(R.id.studentdpassword);
+
+        dsubmit = (Button)findViewById(R.id.StudentDSubmit);
 
         progressDialog = new ProgressDialog(this);
 
-        csubmit.setOnClickListener(this);
-
+        dsubmit.setOnClickListener(this);
 
     }
 
     public void registerUser(){
 
 
-        final String cid = editTextcid.getText().toString().trim();
-        final String cname = editTextcname.getText().toString().trim();
-        final String ctid = editTextctid.getText().toString().trim();
-        if(cid.length()>5 && cid.matches("[a-zA-Z0-9]+") )
+        final String did = editTextdid.getText().toString().trim();
+        final String dname = editTextdname.getText().toString().trim();
+
+        final String dpassword = editTextdpassword.getText().toString().trim();
+        if ((did.length() == 9 ) && (did.charAt(0) == 'M' || did.charAt(0) == 'm' || did.charAt(0)=='b' ||  did.charAt(0)=='B') && did.matches("[a-zA-Z0-9]+"))
         {
-            if(cname.length()>4 && cname.matches("[a-zA-Z ]+"))
+            if(dname.matches("[a-zA-Z ]+")  && dname.length()>4 )
             {
-                if(ctid.length()==9 && ctid.matches("[a-zA-Z0-9]+"));
-                else
+                if(dpassword.length()<5)
                 {
-                    Toast.makeText(getApplicationContext(), "Plz fill teacher id in a proper way", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Password length should be greater then 4", Toast.LENGTH_LONG).show();
                     return;
                 }
             }
             else
             {
-                Toast.makeText(getApplicationContext(), "Plz fill Course name in a proper way", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Plz fill user name in a proper way", Toast.LENGTH_LONG).show();
                 return;
             }
-            progressDialog.setMessage("Registering Courses...");
+            progressDialog.setMessage("Registering user...");
             progressDialog.show();
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                    defConstant.URL_COURSEDETAILS,
+                    defConstant.URL_STUDENTDETAILS,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             progressDialog.hide();
-                            //  Toast.makeText(getApplicationContext(), "in response",Toast.LENGTH_LONG).show();
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                 Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
@@ -97,9 +100,9 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("cid", cid);
-                    params.put("cname", cname);
-                    params.put("ctid", ctid);
+                    params.put("did", did);
+                    params.put("dname", dname);
+                    params.put("dpassword", dpassword);
                     return params;
                 }
             };
@@ -107,22 +110,24 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
         }
         else
         {
-            Toast.makeText(getApplicationContext(), "Plz Enter Course id in a proper way ", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Plz fill id in a proper way", Toast.LENGTH_LONG).show();
+
             return;
         }
     }
 
     @Override
     public void onClick(View view){
-        if(view == csubmit){
+        if(view == dsubmit){
             registerUser();
         }
     }
     public void back(View v)
     {
-        Intent in=new Intent(CourseDetails.this,Admin.class);
-        startActivity(in);
+        Intent in=new Intent(StudentDetails.this,Admin.class);
         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(in);
+
         finish();
     }
 }

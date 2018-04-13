@@ -40,7 +40,7 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     /* private view holder class */
-    private class ViewHolder {
+    public class ViewHolder {
 
         TextView subjectname;
 
@@ -57,7 +57,7 @@ public class CustomAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.list_item, null);
             holder = new ViewHolder();
 
-            holder.subjectname = (TextView) convertView
+            holder.subjectname = convertView
                     .findViewById(R.id.subjectname);
 
 
@@ -65,6 +65,7 @@ public class CustomAdapter extends BaseAdapter {
 
 
             holder.subjectname.setText(row_pos.getSubjectname());
+
 
 
             convertView.setTag(holder);

@@ -1,4 +1,4 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Teacher;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,17 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.sarvesh.i_turnout.CustomAdapter;
+import com.example.sarvesh.i_turnout.R;
+import com.example.sarvesh.i_turnout.RowItem;
 
 import java.util.List;
 
-public class TViewNotificationCusAdapter extends BaseAdapter {
+public class TviewAttendanceCustomAdapter extends BaseAdapter{
+
 
     Context context;
-    List<TViewNotificationItem> rowItems;
+    List<TViewAttendanceRowItem> rowItems;
 
-    TViewNotificationCusAdapter(Context context, List<TViewNotificationItem> rowItems) {
+    TviewAttendanceCustomAdapter(Context context, List<TViewAttendanceRowItem> rowItems) {
         this.context = context;
         this.rowItems = rowItems;
     }
@@ -39,38 +43,37 @@ public class TViewNotificationCusAdapter extends BaseAdapter {
     /* private view holder class */
     private class ViewHolder {
 
-        ImageView tseticon;
-        TextView tname;
+        TextView subjectname;
 
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        TViewNotificationCusAdapter.ViewHolder holder = null;
+        TviewAttendanceCustomAdapter.ViewHolder holder = null;
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.tviewnotificationlist, null);
-            holder = new ViewHolder();
+            convertView = mInflater.inflate(R.layout.tviewattendanceitemlist, null);
+            holder = new TviewAttendanceCustomAdapter.ViewHolder();
 
-            holder.tname = (TextView) convertView
-                    .findViewById(R.id.tnotification);
-            holder.tseticon=(ImageView) convertView.findViewById(R.id.tseticon);
+            holder.subjectname = convertView
+                    .findViewById(R.id.tviewattitemlist);
 
-            TViewNotificationItem row_pos = rowItems.get(position);
 
-            holder.tseticon.setImageResource(row_pos.getPicture());
-            holder.tname.setText(row_pos.getName());
+            TViewAttendanceRowItem row_pos = rowItems.get(position);
+
+
+            holder.subjectname.setText(row_pos.getSubjectname());
+
 
 
             convertView.setTag(holder);
         } else {
-            holder = (TViewNotificationCusAdapter.ViewHolder) convertView.getTag();
+            holder = (TviewAttendanceCustomAdapter.ViewHolder) convertView.getTag();
         }
 
         return convertView;
     }
-
 }

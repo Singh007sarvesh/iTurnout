@@ -23,19 +23,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".Student" />
-        <activity android:name=".Admin" />
-        <activity android:name=".Teacher" />
+        <activity android:name=".Moderator.Admin" />
+        <activity android:name=".Teacher.Teacher" />
         <activity android:name=".Home" />
-        <activity android:name=".StudentDetails" />
-        <activity android:name=".TeacherDetails" />
-        <activity android:name=".CourseDetails" />
+        <activity android:name=".Moderator.StudentDetails" />
+        <activity android:name=".Teacher.TeacherDetails" />
+        <activity android:name=".Moderator.CourseDetails" />
         <activity android:name=".StudentEnrollment" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".Query" />
         <activity android:name=".AssignedCourses" />
         <activity android:name=".CheckAttendance" />
-        <activity android:name=".TViewCourses" />
-        <activity android:name=".TCheckAttendance" />
+        <activity android:name=".Teacher.TViewCourses" />
+        <activity android:name=".Teacher.TCheckAttendance" />
         <activity android:name=".ViewEnrollStudent" />
         <activity android:name=".CheckAttByStudent" />
         <activity android:name=".AttendanceInPerticuSubject" />
@@ -43,9 +43,10 @@
         <activity android:name=".MakeAttByTeacher" />
         <activity android:name=".ViewNotification" />
         <activity android:name=".DispNotification" />
-        <activity android:name=".TViewNotification" />
-        <activity android:name=".TDispNotification" />
-        <activity android:name=".DeleteUser" />
+        <activity android:name=".Teacher.TViewNotification" />
+        <activity android:name=".Teacher.TDispNotification" />
+        <activity android:name=".Moderator.DeleteUser" />
+        <activity android:name=".Teacher.TViewAttendance"></activity>
     </application>
 
 </manifest>

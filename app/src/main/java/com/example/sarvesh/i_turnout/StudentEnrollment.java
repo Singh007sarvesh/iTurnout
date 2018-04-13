@@ -13,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.Moderator.Admin;
 
 
 import org.json.JSONException;
@@ -33,9 +34,9 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_enrollment);
-        editTextsid = (EditText)findViewById(R.id.studentenrollid);
-        editTextcid = (EditText)findViewById(R.id.courseenrollid);
-        esubmit = (Button)findViewById(R.id.studentenrollsubmit);
+        editTextsid = findViewById(R.id.studentenrollid);
+        editTextcid = findViewById(R.id.courseenrollid);
+        esubmit = findViewById(R.id.studentenrollsubmit);
 
         progressDialog = new ProgressDialog(this);
 
@@ -56,7 +57,7 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
             else
             {
                 Toast.makeText(getApplicationContext(),"Plz fill course id in a proper way",Toast.LENGTH_LONG).show();
-                return;
+
             }
             progressDialog.setMessage("Enrolling user...");
             progressDialog.show();
@@ -97,7 +98,7 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
         else
         {
             Toast.makeText(getApplicationContext(), "Plz fill Student id in a proper way", Toast.LENGTH_SHORT).show();
-            return;
+
         }
     }
 

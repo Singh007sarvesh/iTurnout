@@ -1,16 +1,13 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Teacher;
 
-/**
- * Created by sarvesh on 31/3/18.
- */
+public class TViewAttendanceRowItem {
 
-public class RowItem {
 
     private String subjectname;
     private String subjectid;
 
 
-    public RowItem(String subjectname,String subjectid) {
+    public TViewAttendanceRowItem (String subjectname,String subjectid) {
 
         this.subjectname= subjectname;
         this.subjectid= subjectid;
