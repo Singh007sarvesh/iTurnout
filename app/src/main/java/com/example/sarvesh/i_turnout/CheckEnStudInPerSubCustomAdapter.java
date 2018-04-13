@@ -1,9 +1,4 @@
 package com.example.sarvesh.i_turnout;
-
-/**
- * Created by sarvesh on 31/3/18.
- */
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,19 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import java.util.List;
-
-public class ViewEnrollCustomAdapter extends BaseAdapter {
-
+public class CheckEnStudInPerSubCustomAdapter extends BaseAdapter{
     Context context;
-    List<ViewEnrollRowItem> rowItems;
+    List<CheckEnStudInPerSubRowItem> rowItems;
 
-    ViewEnrollCustomAdapter(Context context, List<ViewEnrollRowItem> rowItems) {
+    CheckEnStudInPerSubCustomAdapter(Context context, List<CheckEnStudInPerSubRowItem> rowItems) {
         this.context = context;
         this.rowItems = rowItems;
     }
-
     @Override
     public int getCount() {
         return rowItems.size();
@@ -40,39 +31,38 @@ public class ViewEnrollCustomAdapter extends BaseAdapter {
     }
 
     /* private view holder class */
-    private class ViewHolder {
+    class ViewHolder {
 
-        TextView studentid;
+        TextView studentname;
 
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder = null;
+        CheckEnStudInPerSubCustomAdapter.ViewHolder holder = null;
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.viewlist, null);
-            holder = new ViewHolder();
+            convertView = mInflater.inflate(R.layout.checkenstudinpersublistitem, null);
+            holder = new CheckEnStudInPerSubCustomAdapter.ViewHolder();
 
-            holder.studentid = (TextView) convertView
-                    .findViewById(R.id.studentid);
-
-
-            ViewEnrollRowItem row_pos = rowItems.get(position);
+            holder.studentname = (TextView) convertView
+                    .findViewById(R.id.enrollmentinperticulersubject);
 
 
-            holder.studentid.setText(row_pos.getSubjectname());
+            CheckEnStudInPerSubRowItem row_pos = rowItems.get(position);
+
+
+            holder.studentname.setText(row_pos.getStudentname());
 
 
             convertView.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder= (CheckEnStudInPerSubCustomAdapter.ViewHolder) convertView.getTag();
         }
 
         return convertView;
     }
-
 }

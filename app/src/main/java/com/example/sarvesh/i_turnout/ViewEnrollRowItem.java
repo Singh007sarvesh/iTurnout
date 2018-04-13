@@ -5,18 +5,29 @@ package com.example.sarvesh.i_turnout;
  */
 
 public class ViewEnrollRowItem {
-    private String studentid;
+    private String subjectname;
+    private String subjectid;
 
-    public ViewEnrollRowItem(String studentid) {
+    public ViewEnrollRowItem(String subjectname,String subjectid) {
 
-        this.studentid= studentid;
+        this.subjectname= subjectname;
+        this.subjectid=subjectid;
 
     }
-    public String getStudentId() {
-        return studentid;
+
+    public String getSubjectname() {
+        return subjectname;
     }
 
-    public void setStudentId(String studentid) {
-        this.studentid = studentid;
+    public void setSubjectname(String subjectname) {
+        this.subjectname = subjectname;
+    }
+
+    public String getSubjectid() {
+        return subjectid;
+    }
+
+    public void setSubjectid(String subjectid) {
+        this.subjectid = subjectid;
     }
 }

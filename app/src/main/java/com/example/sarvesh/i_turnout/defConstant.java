@@ -12,4 +12,7 @@ public class defConstant {
     public static final String URL_DELETERECORDS=ROOT_URL+"DeleteRecords.php";
     public static final String URL_USERLOGIN=ROOT_URL+"userLogin.php";
     public static final String URL_VIEWSUBJECTBYSTUDENT=ROOT_URL+"ViewSubjectByStudent.php";
+    public static final String URl_CHECKATTBYSTUDENT=ROOT_URL+"CheckAttByStudent.php";
+    public static final String URl_VIEWENROLLSTUDENTBYTEACHER=ROOT_URL+"ViewEnrollStudentByTeacher.php";
+    public static final String URL_VESINPERBYTEACHER=ROOT_URL+"ViewEnrollStudentInperByTeacher.php";
 }

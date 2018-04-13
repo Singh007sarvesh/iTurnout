@@ -36,7 +36,7 @@ public class CheckAttStudentCustomAdapter extends BaseAdapter{
     }
 
     /* private view holder class */
-    private class ViewHolder {
+    static class ViewHolder {
 
         TextView subjectname;
 

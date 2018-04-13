@@ -5,15 +5,15 @@
     android:padding="2dp" >
 
     <TextView
-        android:id="@+id/studentid"
+        android:id="@+id/enrollmentinperticulersubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingBottom="10dp"
+
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"
-       />
-
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
 
 
 </RelativeLayout>
