@@ -53,8 +53,6 @@ public class Home extends Activity implements View.OnClickListener{
             finish();
         }
 
-
-
         //  EditText e= findViewById(R.id.userid);
        //
         //USER LOGIN
@@ -193,5 +191,7 @@ public class Home extends Activity implements View.OnClickListener{
             signin();
         }
     }
+
+
 
 }

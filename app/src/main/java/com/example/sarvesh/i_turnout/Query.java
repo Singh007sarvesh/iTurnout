@@ -6,13 +6,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-public class Query extends Activity {
+public class Query extends AppCompatActivity {
     EditText enterid;
     EditText Qcontent;
     ImageButton attach;
@@ -90,12 +91,5 @@ public class Query extends Activity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.putExtra("return-data", true);
         startActivityForResult(Intent.createChooser(intent, "Complete action using"), PICK_FROM_GALLERY);
-    }
-    public void back(View v)
-    {
-        Intent in=new Intent(Query.this,Student.class);
-        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(in);
-        finish();
     }
 }

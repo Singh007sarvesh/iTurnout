@@ -121,11 +121,5 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
             registerUser();
         }
     }
-    public void back(View v)
-    {
-        Intent in=new Intent(CourseDetails.this,Admin.class);
-        startActivity(in);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        finish();
-    }
+
 }

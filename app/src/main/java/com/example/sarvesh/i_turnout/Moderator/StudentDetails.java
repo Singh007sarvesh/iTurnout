@@ -122,12 +122,5 @@ public class StudentDetails extends AppCompatActivity implements View.OnClickLis
             registerUser();
         }
     }
-    public void back(View v)
-    {
-        Intent in=new Intent(StudentDetails.this,Admin.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(in);
 
-        finish();
-    }
 }

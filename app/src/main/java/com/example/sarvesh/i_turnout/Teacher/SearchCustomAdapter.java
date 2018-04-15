@@ -1,5 +1,4 @@
-package com.example.sarvesh.i_turnout;
-
+package com.example.sarvesh.i_turnout.Teacher;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,14 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.sarvesh.i_turnout.CheckAttByStudentRowItem;
+import com.example.sarvesh.i_turnout.CheckAttStudentCustomAdapter;
+import com.example.sarvesh.i_turnout.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
+public class SearchCustomAdapter extends BaseAdapter {
 
-public class CheckAttStudentCustomAdapter extends BaseAdapter{
     Context context;
-    List<CheckAttByStudentRowItem> rowItems;
+    List<SearchRowItem> rowItems;
 
-    CheckAttStudentCustomAdapter( Context context,List<CheckAttByStudentRowItem> rowItems) {
+    public SearchCustomAdapter(Context context, List<SearchRowItem> rowItems) {
         this.context = context;
         this.rowItems = rowItems;
     }
@@ -36,39 +41,38 @@ public class CheckAttStudentCustomAdapter extends BaseAdapter{
     }
 
     /* private view holder class */
-    public static class ViewHolder {
+    private static class ViewHolder {
 
-        TextView subjectname;
+        TextView studentname;
 
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        CheckAttStudentCustomAdapter.ViewHolder holder = null;
+        SearchCustomAdapter.ViewHolder holder = null;
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.checkattbystudentlistitem, null);
-            holder = new CheckAttStudentCustomAdapter.ViewHolder();
+            convertView = mInflater.inflate(R.layout.searchitemlist, null);
+            holder = new SearchCustomAdapter.ViewHolder();
 
-            holder.subjectname = (TextView) convertView
-                    .findViewById(R.id.checkattbystudent);
-
-
-            CheckAttByStudentRowItem row_pos = rowItems.get(position);
+            holder.studentname =  convertView
+                    .findViewById(R.id.msearchitemlist1);
 
 
-            holder.subjectname.setText(row_pos.getSubjectname());
+            SearchRowItem row_pos = rowItems.get(position);
+
+
+            holder.studentname.setText(row_pos.getStudentname());
 
 
             convertView.setTag(holder);
         } else {
-            holder = (CheckAttStudentCustomAdapter.ViewHolder) convertView.getTag();
+            holder = (SearchCustomAdapter.ViewHolder) convertView.getTag();
         }
 
         return convertView;
     }
-
 }

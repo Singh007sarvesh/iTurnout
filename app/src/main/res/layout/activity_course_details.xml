@@ -7,21 +7,7 @@
     tools:context="com.example.sarvesh.i_turnout.Moderator.StudentDetails"
     tools:layout_editor_absoluteY="25dp"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="vertical"
-        android:background="@color/colorPrimaryDark">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="@string/fill_details_of_course"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:textColor="#ffffff"/>
 
-    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -72,17 +58,6 @@
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimaryDark"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/back"
-                android:layout_marginTop="25dp"
-                android:contentDescription="@string/todo"
-                android:onClick="back"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="#ffffff"/>
 
         </LinearLayout>
     </ScrollView>

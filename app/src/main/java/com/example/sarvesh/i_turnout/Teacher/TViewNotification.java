@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -18,7 +19,7 @@ import com.example.sarvesh.i_turnout.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TViewNotification extends Activity implements OnItemClickListener {
+public class TViewNotification extends AppCompatActivity implements OnItemClickListener {
 
     String[] name;
     TypedArray seticon;

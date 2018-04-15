@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewNotification extends Activity implements OnItemClickListener {
+public class ViewNotification extends AppCompatActivity implements OnItemClickListener {
 
     String[] name;
     TypedArray seticon;

@@ -41,7 +41,7 @@ public class TviewAttendanceCustomAdapter extends BaseAdapter{
     }
 
     /* private view holder class */
-    private class ViewHolder {
+    public class ViewHolder {
 
         TextView subjectname;
 

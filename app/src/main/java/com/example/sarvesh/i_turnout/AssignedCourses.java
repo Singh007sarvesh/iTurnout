@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class AssignedCourses extends Activity implements OnItemClickListener {
 
-    private ProgressDialog progressDialog;
+
     SharedPrefManager sharedPrefManager;
     private static String userid="";
 
@@ -119,9 +119,9 @@ public class AssignedCourses extends Activity implements OnItemClickListener {
        /* String subjectname = rowItems.get(position).getSubjectname();
         Toast.makeText(getApplicationContext(), "" + subjectname,
                 Toast.LENGTH_SHORT).show();*/
-      Intent in=new Intent(AssignedCourses.this,MakeAttByTeacher.class);
-        in.putExtra("subjectid",rowItems.get(position).getSubjectid()) ;
-       startActivity(in);
+    //  Intent in=new Intent(AssignedCourses.this,MakeAttByTeacher.class);
+       // in.putExtra("subjectid",rowItems.get(position).getSubjectid()) ;
+     //  startActivity(in);
     }
 
 }

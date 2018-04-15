@@ -93,7 +93,7 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
         else
         {
             Toast.makeText(getApplicationContext(), "plz fill  in a proper way", Toast.LENGTH_LONG).show();
-            return;
+
         }
     }
 
@@ -103,12 +103,6 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
             registerUser();
         }
     }
-    public void back(View v)
-    {
-        Intent in=new Intent(ChangePassword.this,Teacher.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(in);
-        finish();
-    }
+
 
 }
