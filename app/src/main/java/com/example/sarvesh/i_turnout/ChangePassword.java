@@ -25,6 +25,8 @@ import java.util.Map;
 
 public class ChangePassword extends AppCompatActivity implements View.OnClickListener{
 
+    SharedPrefManager sharedPrefManager;
+    private static String userid="";
     private EditText editTextold, editTextnew,editTextconfirm;
 
     private Button changesubmit;
@@ -34,6 +36,9 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
+        userid = userDetails.get(SharedPrefManager.KEY_Id);
         editTextold = findViewById(R.id.changepassword);
         editTextnew = findViewById(R.id.changepasswordnew);
         editTextconfirm = findViewById(R.id.changepasswordconfirm);
@@ -52,7 +57,7 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
         final String changenew = editTextnew.getText().toString().trim();
         final String changeconfirm = editTextconfirm.getText().toString().trim();
 
-        if (changeold.length()>4 && changenew.length()>4 && changeconfirm.length()>4) {
+        if (changeold.length()>4 && changenew.length()>4 && changeconfirm.length()>4 ) {
             progressDialog.setMessage("Changing...");
             progressDialog.show();
 
@@ -82,6 +87,7 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
+                    params.put("userid", userid);
                     params.put("changeold", changeold);
                     params.put("changenew", changenew);
                     params.put("changeconfirm", changeconfirm);

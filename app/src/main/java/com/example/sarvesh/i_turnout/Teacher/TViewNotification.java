@@ -55,7 +55,7 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
                 Toast.LENGTH_SHORT).show();*/
         Intent in=new Intent(TViewNotification.this,TDispNotification.class);
         startActivity(in);
-        finish();
+
     }
 
 }

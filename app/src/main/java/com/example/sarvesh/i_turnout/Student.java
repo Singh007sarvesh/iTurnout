@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
     private CardView getnotification, makeQuery, viewcourse, checkattendance, changepassword;
     public String mCartItemCount = "10";
     private TextView studentName;
-    private Button logout;
+    private ImageButton logout;
     SharedPrefManager sharedPrefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

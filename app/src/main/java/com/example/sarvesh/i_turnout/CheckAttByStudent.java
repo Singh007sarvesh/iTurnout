@@ -9,6 +9,7 @@ import android.app.LauncherActivity;
 import android.app.ProgressDialog;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -32,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CheckAttByStudent extends Activity  {
+public class CheckAttByStudent extends AppCompatActivity {
 
    // private static final  String URL_DATA="https://i-turmout.000webhostapp.com/ViewSubjectByStudent.php";
 

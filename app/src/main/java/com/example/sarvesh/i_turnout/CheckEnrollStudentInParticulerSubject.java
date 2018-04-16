@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CheckEnrollStudentInParticulerSubject extends Activity {
+public class CheckEnrollStudentInParticulerSubject extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
     SharedPrefManager sharedPrefManager;
