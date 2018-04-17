@@ -1,18 +1,9 @@
 package com.example.sarvesh.i_turnout;
 
-/**
- * Created by sarvesh on 31/3/18.
- */
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,43 +22,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AssignedCourses extends AppCompatActivity implements OnItemClickListener {
+public class ViewStudentDetailsByTeacher extends AppCompatActivity {
 
-
-    SharedPrefManager sharedPrefManager;
-    private static String userid="";
-
-    List<RowItem> rowItems;
-    ListView mylistview;
-
+    private ProgressDialog progressDialog;
+    private static String courseId="";
+    List<ViewStudentDetailsRowItem> rowItem;
+    ListView myListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assigned_courses);
-        sharedPrefManager = new SharedPrefManager(getApplicationContext());
-        HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
-        userid = userDetails.get(SharedPrefManager.KEY_Id);
-        rowItems = new ArrayList<RowItem>();
+        setContentView(R.layout.activity_view_student_details_by_teacher);
+        Intent in=getIntent();
+        //Toast.makeText(getApplicationContext(),in.getStringExtra("subjectid"),Toast.LENGTH_LONG).show();
+        courseId=in.getStringExtra("courseId");
+        rowItem = new ArrayList<ViewStudentDetailsRowItem>();
 
-     /*   for (int i = 0; i < 5; i++) {
-            rowItems.add(new RowItem("Database Management System"));
-        }*/
-
-        mylistview = (ListView) findViewById(R.id.list);
-      //  CustomAdapter adapter = new CustomAdapter(this, rowItems);
-      //  mylistview.setAdapter(adapter);
+        myListView =  findViewById(R.id.studentdetailslist);
         loadListViewData();
-
-        mylistview.setOnItemClickListener(this);
-
     }
-    public  void loadListViewData()
+    public void loadListViewData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.show();
 
-        StringRequest request=new StringRequest(Request.Method.POST, defConstant.URL_ASSIGNEDCOURSE,
+        StringRequest request=new StringRequest(Request.Method.POST,
+                defConstant.URL_CHECKENROLLTEACHER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -77,17 +57,23 @@ public class AssignedCourses extends AppCompatActivity implements OnItemClickLis
                         try {
                             JSONObject jsonObject=new JSONObject(response.toString());
                             JSONArray array=jsonObject.getJSONArray("flag");
+                            //  JSONArray array1=jsonObject.getJSONArray("flagid");
+                            //JSONObject o1= array.getJSONObject(0);
+                            //Toast.makeText(getApplicationContext(),o1.getString("data1"),Toast.LENGTH_LONG).show();
                             for(int i=0;i<array.length();i++)
                             {
                                 JSONObject o= array.getJSONObject(i);
-                                RowItem item=new RowItem(
+                                //  Toast.makeText(getApplicationContext(),o.getString("data"),Toast.LENGTH_LONG).show();
+
+                               ViewStudentDetailsRowItem item=new ViewStudentDetailsRowItem(
                                         o.getString("data"),
                                         o.getString("data1")
                                 );
-                                rowItems.add(item);
+                                rowItem.add(item);
                             }
-                            CustomAdapter adapter=new CustomAdapter(getApplicationContext(),rowItems);
-                            mylistview.setAdapter(adapter);
+                            ViewStudentDetailsAdapter adapter=new ViewStudentDetailsAdapter(getApplicationContext(),rowItem);
+                            myListView.setAdapter(adapter);
+                            //Toast.makeText(getApplicationContext(),o1.getString("d"),Toast.LENGTH_LONG).show();
                         }
                         catch (JSONException e)
                         {
@@ -105,24 +91,13 @@ public class AssignedCourses extends AppCompatActivity implements OnItemClickLis
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("userid", userid);
+                params.put("courseid", courseId);
                 return params;
             }
 
         };
         RequestHandler.getInstance(this).addToRequestQueue(request);
 
-    }
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
-
-       /* String subjectname = rowItems.get(position).getSubjectname();
-        Toast.makeText(getApplicationContext(), "" + subjectname,
-                Toast.LENGTH_SHORT).show();*/
-     Intent in=new Intent(AssignedCourses.this,MakeAttendance.class);
-      // in.putExtra("subjectid",rowItems.get(position).getSubjectid()) ;
-      startActivity(in);
     }
 
 }

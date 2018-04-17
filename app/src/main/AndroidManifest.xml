@@ -26,87 +26,110 @@
         <activity android:name=".Moderator.Admin" />
         <activity android:name=".Teacher.Teacher" />
         <activity android:name=".Home" />
-        <activity android:name=".Moderator.StudentDetails"
-            android:theme="@style/customTheme"
+        <activity
+            android:name=".Moderator.StudentDetails"
             android:label="Student Details"
-            android:parentActivityName=".Moderator.Admin"/>
-        <activity android:name=".Teacher.TeacherDetails"
-            android:theme="@style/customTheme"
             android:parentActivityName=".Moderator.Admin"
-            android:label="Teacher Details"/>
-        <activity android:name=".Moderator.CourseDetails"
-            android:theme="@style/customTheme"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Teacher.TeacherDetails"
+            android:label="Teacher Details"
             android:parentActivityName=".Moderator.Admin"
-            android:label="Course Details"/>
-        <activity android:name=".StudentEnrollment"
-            android:theme="@style/customTheme"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Moderator.CourseDetails"
+            android:label="Course Details"
             android:parentActivityName=".Moderator.Admin"
-            android:label="Course Enrollment"/>
-        <activity android:name=".ChangePassword"
-            android:theme="@style/customTheme"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".StudentEnrollment"
+            android:label="Course Enrollment"
+            android:parentActivityName=".Moderator.Admin"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".ChangePassword"
             android:label="Change Password"
-            android:parentActivityName=".Student"/>
-        <activity android:name=".Query"
-            android:theme="@style/customTheme"
+            android:parentActivityName=".Student"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Query"
             android:label="Query"
-            android:parentActivityName=".ViewNotification"/>
-        <activity android:name=".AssignedCourses"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Teacher.Teacher"
-            android:label="Subject Details"/>
-        <activity android:name=".CheckAttendance"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Student"
-            android:label="Subject Details"/>
-        <activity android:name=".Teacher.TViewCourses"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Teacher.TViewAttendance"
-            />
-        <activity android:name=".Teacher.TCheckAttendance"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Teacher.Teacher"
-            />
-        <activity android:name=".ViewEnrollStudent"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Student"
-            android:label="Subject Details"/>
-        <activity android:name=".CheckAttByStudent"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Student"
-            android:label="Subject Details"/>
-        <activity android:name=".AttendanceInPerticuSubject"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".CheckAttendance"
-            android:label="Check Attendance Details"/>
-        <activity android:name=".CheckEnrollStudentInParticulerSubject"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Teacher.TViewAttendance"
-            android:label="Student Details"/>
-        <activity android:name=".ViewNotification"
-            android:theme="@style/customTheme"
-            android:label="Notification"
-            android:parentActivityName=".Student"/>
-        <activity android:name=".DispNotification"
-            android:theme="@style/customTheme"
             android:parentActivityName=".ViewNotification"
-            android:label="Notification"/>
-        <activity android:name=".Teacher.TViewNotification"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Teacher.Teacher"
-            android:label="Notification"/>
-        <activity android:name=".Teacher.TDispNotification"
-            android:theme="@style/customTheme"
-            android:label="Notification"
-           android:parentActivityName=".Teacher.TViewNotification"/>
-        <activity android:name=".Moderator.DeleteUser"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Moderator.Admin"
-            android:label="Delete Records"/>
-        <activity android:name=".Teacher.TViewAttendance"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".AssignedCourses"
             android:label="Subject Details"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Teacher.Teacher"/>
-
+            android:parentActivityName=".Teacher.Teacher"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".CheckAttendance"
+            android:label="Subject Details"
+            android:parentActivityName=".Student"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Teacher.TViewCourses"
+            android:parentActivityName=".Teacher.TViewAttendance"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Teacher.TCheckAttendance"
+            android:parentActivityName=".Teacher.Teacher"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".ViewEnrollStudent"
+            android:label="Subject Details"
+            android:parentActivityName=".Student"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".CheckAttByStudent"
+            android:label="Subject Details"
+            android:parentActivityName=".Student"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".AttendanceInPerticuSubject"
+            android:label="Check Attendance Details"
+            android:parentActivityName=".CheckAttendance"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".CheckEnrollStudentInParticulerSubject"
+            android:label="Student Details"
+            android:parentActivityName=".Teacher.TViewAttendance"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".ViewNotification"
+            android:label="Notification"
+            android:parentActivityName=".Student"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".DispNotification"
+            android:label="Notification"
+            android:parentActivityName=".ViewNotification"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Teacher.TViewNotification"
+            android:label="Notification"
+            android:parentActivityName=".Teacher.Teacher"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Teacher.TDispNotification"
+            android:label="Notification"
+            android:parentActivityName=".Teacher.TViewNotification"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Moderator.DeleteUser"
+            android:label="Delete Records"
+            android:parentActivityName=".Moderator.Admin"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".Teacher.TViewAttendance"
+            android:label="Subject Details"
+            android:parentActivityName=".Teacher.Teacher"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".ViewStudentDetailsByTeacher"
+            android:label="Student Details"
+            android:parentActivityName=".ViewStudentDetailsByTeacher"
+            android:theme="@style/customTheme" />
+        <activity android:name=".MakeAttendance"></activity>
     </application>
 
 </manifest>

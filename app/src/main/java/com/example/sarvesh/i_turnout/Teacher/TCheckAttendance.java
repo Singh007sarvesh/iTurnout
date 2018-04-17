@@ -15,9 +15,5 @@ public class TCheckAttendance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tcheck_attendance);
     }
-    public void back(View v)
-    {
-        Intent in=new Intent(TCheckAttendance.this,Teacher.class);
-        startActivity(in);
-    }
+
 }

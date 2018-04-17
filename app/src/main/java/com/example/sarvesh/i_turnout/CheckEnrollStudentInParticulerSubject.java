@@ -26,7 +26,6 @@ import java.util.Map;
 public class CheckEnrollStudentInParticulerSubject extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
-    SharedPrefManager sharedPrefManager;
     private static String courseid="";
     List<CheckEnStudInPerSubRowItem> rowItem;
     ListView mylistview;

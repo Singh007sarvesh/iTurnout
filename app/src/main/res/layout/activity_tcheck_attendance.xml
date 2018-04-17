@@ -48,18 +48,6 @@
                 app:layout_constraintVertical_bias="0.088"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/back"
-                android:textColor="#ffffff"
-                android:background="@color/colorPrimaryDark"
-                android:layout_marginTop="25dp"
-                android:contentDescription="@string/todo"
-                android:onClick="back"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
 
         </LinearLayout>
     </ScrollView>
