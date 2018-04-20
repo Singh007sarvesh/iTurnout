@@ -44,7 +44,7 @@
     <string name="enter_name1">Enter Name</string>
     <string name="password1">Password</string>
     <string name="date1">Date</string>
-    <string name="submit">Submit</string>
+    <string name="submit8">Submit</string>
     <string name="submit1">Submit</string>
     <string name="submit2">Submit</string>
     <string name="enter_student_id3">Enter Student Id</string>
@@ -110,5 +110,6 @@
     <string name="bback">Back</string>
     <string name="logout1">Logout</string>
     <string name="logout">Logout</string>
+    <string name="submit">Submit</string>
 
 </resources>

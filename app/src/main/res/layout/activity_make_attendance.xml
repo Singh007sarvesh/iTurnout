@@ -4,30 +4,32 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:paddingRight="10dp"
     tools:context=".MakeAttendance">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <ListView
-        android:id="@+id/mattendance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/make"
-        android:text="Submit"
-        android:layout_gravity="center"/>
-    </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/mattendance"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            android:id="@+id/make"
+            android:text="@string/submit"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:background="@drawable/mybutton"
+            android:layout_weight="1"
+            />
+        </LinearLayout>
 
 </LinearLayout>

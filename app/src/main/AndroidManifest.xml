@@ -129,7 +129,10 @@
             android:label="Student Details"
             android:parentActivityName=".ViewStudentDetailsByTeacher"
             android:theme="@style/customTheme" />
-        <activity android:name=".MakeAttendance"></activity>
+        <activity android:name=".MakeAttendance"
+            android:label="Make Attendance"
+            android:theme="@style/customTheme"
+            android:parentActivityName=".AssignedCourses"></activity>
     </application>
 
 </manifest>
