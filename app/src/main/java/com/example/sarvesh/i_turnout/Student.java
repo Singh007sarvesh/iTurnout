@@ -57,7 +57,7 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
     public void onClick(View v) {
         Intent in;
         switch (v.getId()) {
-            case R.id.makequery: in = new Intent(Student.this, Query.class);
+            case R.id.makequery: in = new Intent(Student.this, TeacherDetail.class);
                 startActivity(in);
                 break;
             case R.id.getnotification : in=new Intent(Student.this,ViewNotification.class);

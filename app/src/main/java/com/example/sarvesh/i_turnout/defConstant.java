@@ -17,4 +17,8 @@ public class defConstant {
     public static final String URL_VESINPERBYTEACHER=ROOT_URL+"ViewEnrollStudentInperByTeacher.php";
     public static final String URL_ASSIGNEDCOURSE=ROOT_URL+"AssignedCourse.php";
     public static final String URL_CHECKENROLLTEACHER=ROOT_URL+"CheckEnrollStudentByTeacher.php";
+    public static final String URL_TeacherDetail=ROOT_URL+"TeacherDetail.php";
+    public static final String URL_Query=ROOT_URL+"Query.php";
+    public static final String URL_DELETESTUDENT=ROOT_URL+"DeleteStudentRecords.php";
+    public static final String URL_DELETETEACHER=ROOT_URL+"DeleteTeacherRecords.php";
 }

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -54,7 +55,7 @@
         <activity
             android:name=".Query"
             android:label="Query"
-            android:parentActivityName=".ViewNotification"
+            android:parentActivityName=".TeacherDetail"
             android:theme="@style/customTheme" />
         <activity
             android:name=".AssignedCourses"
@@ -129,10 +130,18 @@
             android:label="Student Details"
             android:parentActivityName=".ViewStudentDetailsByTeacher"
             android:theme="@style/customTheme" />
-        <activity android:name=".MakeAttendance"
+        <activity
+            android:name=".MakeAttendance"
             android:label="Make Attendance"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".AssignedCourses"></activity>
+            android:parentActivityName=".AssignedCourses"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".TeacherDetail"
+            android:label="Teacher Details"
+            android:parentActivityName=".Teacher.Teacher"
+            android:theme="@style/customTheme" />
+        <activity android:name=".DeleteRecordofStudent" />
+        <activity android:name=".DeleteTeacherRecords"></activity>
     </application>
 
 </manifest>

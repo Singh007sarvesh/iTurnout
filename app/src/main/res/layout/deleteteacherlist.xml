@@ -13,14 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:id="@+id/rollno"
+        android:id="@+id/delteacher"
         android:textColor="@color/colorPrimaryDark"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:checked="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/check1"
+        android:id="@+id/check3"
         />
 </RelativeLayout>

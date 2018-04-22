@@ -54,8 +54,8 @@ public class StudentDetails extends AppCompatActivity implements View.OnClickLis
 
         final String did = editTextdid.getText().toString().trim();
         final String dname = editTextdname.getText().toString().trim();
-
         final String dpassword = editTextdpassword.getText().toString().trim();
+
         if ((did.length() == 9 ) && (did.charAt(0) == 'M' || did.charAt(0) == 'm' || did.charAt(0)=='b' ||  did.charAt(0)=='B') && did.matches("[a-zA-Z0-9]+"))
         {
             if(dname.matches("[a-zA-Z ]+")  && dname.length()>4 )
@@ -112,7 +112,6 @@ public class StudentDetails extends AppCompatActivity implements View.OnClickLis
         {
             Toast.makeText(getApplicationContext(), "Plz fill id in a proper way", Toast.LENGTH_LONG).show();
 
-            return;
         }
     }
 

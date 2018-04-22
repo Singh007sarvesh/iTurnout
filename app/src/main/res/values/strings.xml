@@ -111,5 +111,6 @@
     <string name="logout1">Logout</string>
     <string name="logout">Logout</string>
     <string name="submit">Submit</string>
+    <string name="search">Search..</string>
 
 </resources>

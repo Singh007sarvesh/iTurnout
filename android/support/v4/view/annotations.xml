@@ -1,0 +1,6 @@
+<root>
+    <item
+        name='android.support.v4.view.MenuItemCompat android.view.View getActionView(android.view.MenuItem)'>
+        <annotation name='android.support.annotation.NonNull' />
+    </item>
+</root>

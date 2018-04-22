@@ -4,7 +4,7 @@ import android.widget.CheckBox;
 
 public class AttendanceItemRow {
 
-    private String rollNumber;
+     String rollNumber;
 
 
     public AttendanceItemRow(String rollNumber) {

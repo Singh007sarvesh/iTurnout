@@ -1,95 +1,164 @@
 package com.example.sarvesh.i_turnout;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
-public class Query extends AppCompatActivity {
-    EditText enterid;
-    EditText Qcontent;
-    ImageButton attach;
-    Button Qbutton;
-    String id;
-    String message;
-    String attachmentFile;
-    Uri URI = null;
-    private static final int PICK_FROM_GALLERY = 101;
-    int columnIndex;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.Moderator.Admin;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Query extends AppCompatActivity implements View.OnClickListener{
+    private EditText qContent;
+    private final int IMG_REQUEST=1;
+    private Button qButton;
+    private ImageButton attach;
+    private Bitmap bitmap;
+    private TextView textView,textSize;
+    public static String teacherId="";
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
-        enterid = (EditText) findViewById(R.id.enterid);
-        Qcontent = (EditText) findViewById(R.id.Qcontent);
-        attach = (ImageButton) findViewById(R.id.attach);
-        Qbutton = (Button) findViewById(R.id.Qbutton);
-        //send button listener
-        Qbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendEmail();
-            }
-        });
-        //attachment button listener
-        attach.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFolder();
-            }
-        });
-    }
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == PICK_FROM_GALLERY && resultCode == RESULT_OK) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            attachmentFile = cursor.getString(columnIndex);
-            Log.e("Attachment Path:", attachmentFile);
-            URI = Uri.parse("file://" + attachmentFile);
-            cursor.close();
-        }
-    }
-    public void sendEmail()
-    {
-        try
-        {
-            id = enterid.getText().toString();
+        Intent in=getIntent();
+        teacherId=in.getStringExtra("teacherId");
+      //  Toast.makeText(getApplicationContext(),teacherId,Toast.LENGTH_LONG).show();
+        progressDialog = new ProgressDialog(this);
+        qContent =  findViewById(R.id.Qcontent);
+        attach =  findViewById(R.id.attach);
+        qButton =  findViewById(R.id.Qbutton);
+        textView=findViewById(R.id.disptext);
+        textSize=findViewById(R.id.dispsize);
+        attach.setOnClickListener(this);
+        qButton.setOnClickListener(this);
 
-            message = Qcontent.getText().toString();
-            final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-            emailIntent.setType("plain/text");
-            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] { id });
+    }
 
-            if (URI != null) {
-                emailIntent.putExtra(Intent.EXTRA_STREAM, URI);
-            }
-            emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
-            this.startActivity(Intent.createChooser(emailIntent,"Sending email..."));
-        }
-        catch (Throwable t)
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId())
         {
-            Toast.makeText(this, "Request failed try again: " + t.toString(),Toast.LENGTH_LONG).show();
+            case R.id.attach:
+                selectImage();
+                break;
+
+            case R.id.Qbutton:
+                uploadImage();
+                break;
         }
     }
-    public void openFolder()
+    private void selectImage()
     {
-        Intent intent = new Intent();
-        intent.setType("image/*");
+        Intent intent=new Intent();
+        intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.putExtra("return-data", true);
-        startActivityForResult(Intent.createChooser(intent, "Complete action using"), PICK_FROM_GALLERY);
+        startActivityForResult(intent,IMG_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==IMG_REQUEST && resultCode==RESULT_OK && data!=null)
+        {
+            Uri path=data.getData();
+            Cursor filePath=
+                    getContentResolver().query(path,null,null,null,null);
+            int nameIndex=filePath.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+            int sizeIndex=filePath.getColumnIndex(OpenableColumns.SIZE);
+            filePath.moveToFirst();
+            textView.setText(filePath.getString(nameIndex));
+            textSize.setText(Long.toString(filePath.getLong(sizeIndex)));
+            try
+            {
+
+
+                bitmap=MediaStore.Images.Media.getBitmap(getContentResolver(),path);
+
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void uploadImage()
+    {
+        progressDialog.setMessage("Wait...");
+        progressDialog.show();
+      //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
+        StringRequest stringRequest=new StringRequest(Request.Method.POST,
+                defConstant.URL_Query,
+
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.hide();
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            String Response=jsonObject.getString("message");
+                            Toast.makeText(Query.this,Response,Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(), TeacherDetail.class);
+                            startActivity(i);
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.hide();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+                params.put("content",qContent.getText().toString().trim());
+                //params.put("name",textView.getText().toString().trim());
+               //params.put("image",imageToString(bitmap));
+                return params;
+            }
+        };
+        MySingleton.getmInstance(Query.this).addToRequestQue(stringRequest);
+    }
+    private String imageToString(Bitmap bitmap)
+    {
+        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        byte[] imgBytes=byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imgBytes,Base64.DEFAULT);
     }
 }

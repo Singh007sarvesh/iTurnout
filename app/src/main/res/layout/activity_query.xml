@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sarvesh.i_turnout.Moderator.StudentDetails"
+    tools:context=".Query"
     tools:layout_editor_absoluteY="25dp"
     android:orientation="vertical">
 
@@ -16,36 +16,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-           <EditText
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginRight="10dp"
-               android:layout_marginLeft="10dp"
-               android:hint="@string/enter_id"
-               android:layout_marginTop="10dp"
-               android:id="@+id/enterid"/>
-
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textMultiLine"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="@string/content"
                 android:id="@+id/Qcontent"
                 />
-            <ImageButton
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_attach_file_black_24dp"
+                android:id="@+id/disptext"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dispsize"
+                android:layout_gravity="center"/>
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cloud_upload_black_24dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:contentDescription="@string/todo"
                 android:layout_marginStart="10dp"
-                android:id="@+id/attach"/>
+                android:background="@color/colorPrimaryDark"
+                android:id="@+id/attach"
+                android:layout_gravity="center"/>
             <Button
                 android:id="@+id/Qbutton"
                 android:layout_width="match_parent"
