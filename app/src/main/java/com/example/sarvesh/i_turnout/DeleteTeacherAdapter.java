@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteTeacherAdapter extends BaseAdapter {
@@ -69,5 +70,13 @@ public class DeleteTeacherAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+    public void setFilter(List<DeleteTeacherItem> newList)
+    {
+        //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
+        rowItems=new ArrayList<>();
+        rowItems.addAll(newList);
+        notifyDataSetChanged();
+        //Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
     }
 }

@@ -13,10 +13,9 @@ public class DeleteItemforStudent {
     }
 
     public String getStudentName() {
-        studentName=studentName+"\n\n"+studentId+"\n\n"+date;
+        studentName=studentName+"\n"+studentId+"\t\t\t"+date;
         return studentName;
     }
-
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }

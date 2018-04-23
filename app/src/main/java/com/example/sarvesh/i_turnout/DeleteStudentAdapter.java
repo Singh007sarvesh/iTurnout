@@ -7,14 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteAdapterforStudent extends BaseAdapter {
+public class DeleteStudentAdapter extends BaseAdapter {
     Context context;
     List<DeleteItemforStudent> rowItems;
 
-    DeleteAdapterforStudent(Context context, List<DeleteItemforStudent> rowItems) {
+    DeleteStudentAdapter(Context context, List<DeleteItemforStudent> rowItems) {
         this.context = context;
         this.rowItems = rowItems;
     }
@@ -44,13 +46,13 @@ public class DeleteAdapterforStudent extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DeleteAdapterforStudent.ViewHolder holder = null;
+        DeleteStudentAdapter.ViewHolder holder = null;
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.deletestudentlist, null);
-            holder = new DeleteAdapterforStudent.ViewHolder();
+            holder = new DeleteStudentAdapter.ViewHolder();
 
             holder.studentName = convertView
                     .findViewById(R.id.delstudent);
@@ -65,9 +67,17 @@ public class DeleteAdapterforStudent extends BaseAdapter {
 
             convertView.setTag(holder);
         } else {
-            holder = (DeleteAdapterforStudent.ViewHolder) convertView.getTag();
+            holder = (DeleteStudentAdapter.ViewHolder) convertView.getTag();
         }
 
         return convertView;
+    }
+    public void setFilter(List<DeleteItemforStudent> newList)
+    {
+      //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
+        rowItems=new ArrayList<>();
+        rowItems.addAll(newList);
+        notifyDataSetChanged();
+        //Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
     }
 }

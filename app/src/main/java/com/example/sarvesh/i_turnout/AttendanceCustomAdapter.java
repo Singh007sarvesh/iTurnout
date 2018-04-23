@@ -1,5 +1,6 @@
 package com.example.sarvesh.i_turnout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +12,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttendanceCustomAdapter extends BaseAdapter implements Filterable{
+public class AttendanceCustomAdapter extends BaseAdapter {
 
-    Context context;
-    List<AttendanceItemRow> rowItems;
-    private LayoutInflater inflater;
-    List<AttendanceItemRow> mStringFilterList;
-    ValueFilter valueFilter;
+    private Context context;
+    private List<AttendanceItemRow> rowItems;
+    private List<AttendanceItemRow> mStringFilterList;
+   // private ValueFilter valueFilter;
     AttendanceCustomAdapter(Context context, List<AttendanceItemRow> rowItems) {
         this.context = context;
         this.rowItems = rowItems;
@@ -41,72 +41,42 @@ public class AttendanceCustomAdapter extends BaseAdapter implements Filterable{
     }
 
     /* private view holder class */
-  /* private class ViewHolder {
+   private class ViewHolder {
 
 
         TextView rollNumber;
 
 
-    }*/
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (inflater == null) {
-            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
+        AttendanceCustomAdapter.ViewHolder holder = null;
 
+        LayoutInflater mInflater = (LayoutInflater) context
+                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.makeitemlist, null);
+            convertView = mInflater.inflate(R.layout.makeitemlist, null);
+            holder = new AttendanceCustomAdapter.ViewHolder();
+
+            holder.rollNumber = convertView
+                    .findViewById(R.id.rollNo);
+
+
+            AttendanceItemRow row_pos = rowItems.get(position);
+            holder.rollNumber.setText(row_pos.getRollNumber());
+            convertView.setTag(holder);
+        } else {
+            holder = (AttendanceCustomAdapter.ViewHolder) convertView.getTag();
         }
-
-        TextView txtName = convertView.findViewById(R.id.rollno);
-
-        AttendanceItemRow bean = rowItems.get(position);
-        String name = bean.getRollNumber();
-        txtName.setText(name);
 
         return convertView;
     }
-    @Override
-    public Filter getFilter() {
-        if (valueFilter == null) {
-            valueFilter = new ValueFilter();
-        }
-        return valueFilter;
-    }
-    private class ValueFilter extends Filter {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            FilterResults results = new FilterResults();
-
-            if (constraint != null && constraint.length() > 0) {
-                ArrayList<AttendanceItemRow> filterList = new ArrayList<AttendanceItemRow>();
-                for (int i = 0; i < mStringFilterList.size(); i++) {
-                    if ((mStringFilterList.get(i).getRollNumber().toUpperCase())
-                            .contains(constraint.toString().toUpperCase())) {
-                        AttendanceItemRow bean = new AttendanceItemRow(mStringFilterList.get(i)
-                                .getRollNumber()
-                        );
-                        filterList.add(bean);
-                    }
-                }
-                results.count = filterList.size();
-                results.values = filterList;
-            } else {
-                results.count = mStringFilterList.size();
-                results.values = mStringFilterList;
-            }
-            return results;
-
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint,
-                                      FilterResults results) {
-            rowItems = (ArrayList<AttendanceItemRow>) results.values;
-            notifyDataSetChanged();
-        }
-
+    public void setFilter(List<AttendanceItemRow> newList)
+    {
+        rowItems=new ArrayList<>();
+        rowItems.addAll(newList);
+        notifyDataSetChanged();
     }
 }

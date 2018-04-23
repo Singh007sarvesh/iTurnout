@@ -1,6 +1,5 @@
 package com.example.sarvesh.i_turnout;
 
-import android.widget.CheckBox;
 
 public class AttendanceItemRow {
 
