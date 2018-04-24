@@ -6,31 +6,30 @@ package com.example.sarvesh.i_turnout;
 
 public class CheckAttRowItem {
 
-    private String subjectcheck;
-  //  private String subjectid;
+    private String subjectName;
+    private String subjectId;
 
 
-    public CheckAttRowItem(String subjectcheck) {
+    public CheckAttRowItem(String subjectName,String subjectId) {
 
-        this.subjectcheck= subjectcheck;
-       // this.subjectid = subjectid;
+        this.subjectName= subjectName;
+        this.subjectId = subjectId;
 
     }
-    public String getSubject() {
-        return subjectcheck;
+
+    public String getSubjectName() {
+        return subjectName;
     }
 
-   /* public String getSubjectid() {
-        return subjectid;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
-    public void setSubjectid(String subjectid) {
-        this.subjectid = subjectid;
-    }*/
-
-    public void setSubjectCheck(String subjectcheck) {
-        this.subjectcheck = subjectcheck;
+    public String getSubjectId() {
+        return subjectId;
     }
 
-
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
+    }
 }

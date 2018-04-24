@@ -56,27 +56,9 @@ public class CheckAttByStudent extends AppCompatActivity {
         mylistview = findViewById(R.id.list6);
 
         rowItems = new ArrayList<CheckAttByStudentRowItem>();
-        /*for (int i = 0; i < 15; i++) {
-            rowItems.add(new CheckAttByStudentRowItem("Software Engineering"));
-        }*/
-
-
-      /* CheckAttStudentCustomAdapter adapter = new CheckAttStudentCustomAdapter(this, rowItems);
-        mylistview.setAdapter(adapter);
-
-        mylistview.setOnItemClickListener(this);*/
       loadListViewData();
 
     }
-
-  /*  @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
-
-        String subjectname = rowItems.get(position).getSSubjectname();
-        Toast.makeText(getApplicationContext(), "" + subjectname,
-                Toast.LENGTH_SHORT).show();
-    }*/
     public void loadListViewData()
     {
 

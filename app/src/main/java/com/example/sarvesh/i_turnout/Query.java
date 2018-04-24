@@ -19,13 +19,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.sarvesh.i_turnout.Moderator.Admin;
+import com.example.sarvesh.i_turnout.AttendanceInPerticuSubject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +41,10 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private ImageButton attach;
     private Bitmap bitmap;
     private TextView textView,textSize;
-    public static String teacherId="";
+    private static String teacherId="";
+    SharedPrefManager sharedPrefManager;
+    private static String userId="";
+    private static String courseId="";
     private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,8 +52,13 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
         Intent in=getIntent();
-        teacherId=in.getStringExtra("teacherId");
-      //  Toast.makeText(getApplicationContext(),teacherId,Toast.LENGTH_LONG).show();
+       teacherId=in.getStringExtra("teacherId");
+       Bundle bundle=getIntent().getExtras();
+       courseId=bundle.getString("courseId");
+
+        //AttendanceInPerticuSubject obj =new AttendanceInPerticuSubject();
+       //Toast.makeText(getApplicationContext(),,Toast.LENGTH_LONG).show();
+       Toast.makeText(getApplicationContext(),courseId,Toast.LENGTH_LONG).show();
         progressDialog = new ProgressDialog(this);
         qContent =  findViewById(R.id.Qcontent);
         attach =  findViewById(R.id.attach);
@@ -60,6 +67,9 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         textSize=findViewById(R.id.dispsize);
         attach.setOnClickListener(this);
         qButton.setOnClickListener(this);
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
+        userId = userDetails.get(SharedPrefManager.KEY_Id);
 
     }
 
@@ -127,7 +137,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                             JSONObject jsonObject=new JSONObject(response);
                             String Response=jsonObject.getString("message");
                             Toast.makeText(Query.this,Response,Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(getApplicationContext(), TeacherDetail.class);
+                            Intent i = new Intent(getApplicationContext(), Query.class);
                             startActivity(i);
                         }
                         catch (JSONException e)
@@ -147,8 +157,14 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
                 params.put("content",qContent.getText().toString().trim());
-                //params.put("name",textView.getText().toString().trim());
-               //params.put("image",imageToString(bitmap));
+                params.put("name",textView.getText().toString().trim());
+                params.put("studentId",userId);
+                params.put("teacherId",teacherId);
+                params.put("image",imageToString(bitmap));
+
+              //  params.put("studentId",userId);
+              //  params.put("teacherId",teacherId);
+                // params.put("courseId",courseId);
                 return params;
             }
         };
@@ -157,7 +173,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private String imageToString(Bitmap bitmap)
     {
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+       // bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
         byte[] imgBytes=byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imgBytes,Base64.DEFAULT);
     }

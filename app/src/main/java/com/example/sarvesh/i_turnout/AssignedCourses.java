@@ -53,7 +53,7 @@ public class AssignedCourses extends AppCompatActivity implements OnItemClickLis
             rowItems.add(new RowItem("Database Management System"));
         }*/
 
-        mylistview = (ListView) findViewById(R.id.list);
+        mylistview =  findViewById(R.id.list);
       //  CustomAdapter adapter = new CustomAdapter(this, rowItems);
       //  mylistview.setAdapter(adapter);
         loadListViewData();
@@ -121,8 +121,8 @@ public class AssignedCourses extends AppCompatActivity implements OnItemClickLis
         Toast.makeText(getApplicationContext(), "" + subjectname,
                 Toast.LENGTH_SHORT).show();*/
      Intent in=new Intent(AssignedCourses.this,MakeAttendance.class);
-      // in.putExtra("subjectid",rowItems.get(position).getSubjectid()) ;
-      startActivity(in);
+     in.putExtra("subjectId",rowItems.get(position).getSubjectid()) ;
+     startActivity(in);
     }
 
 }

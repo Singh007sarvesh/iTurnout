@@ -65,7 +65,7 @@ public class SubjectCheckAdapter extends BaseAdapter {
             CheckAttRowItem row_pos = rowItems.get(position);
 
 
-            holder.subjectcheck.setText(row_pos.getSubject());
+            holder.subjectcheck.setText(row_pos.getSubjectName());
 
 
 

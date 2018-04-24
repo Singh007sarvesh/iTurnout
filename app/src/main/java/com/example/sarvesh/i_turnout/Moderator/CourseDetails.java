@@ -62,7 +62,7 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
                 else
                 {
                     Toast.makeText(getApplicationContext(), "Plz fill teacher id in a proper way", Toast.LENGTH_LONG).show();
-                    return;
+
                 }
             }
             else
@@ -111,7 +111,7 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
         else
         {
             Toast.makeText(getApplicationContext(), "Plz Enter Course id in a proper way ", Toast.LENGTH_LONG).show();
-            return;
+
         }
     }
 

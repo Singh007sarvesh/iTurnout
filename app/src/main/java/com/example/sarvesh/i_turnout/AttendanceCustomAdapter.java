@@ -65,7 +65,7 @@ public class AttendanceCustomAdapter extends BaseAdapter {
 
 
             AttendanceItemRow row_pos = rowItems.get(position);
-            holder.rollNumber.setText(row_pos.getRollNumber());
+            holder.rollNumber.setText(row_pos.getStudentName());
             convertView.setTag(holder);
         } else {
             holder = (AttendanceCustomAdapter.ViewHolder) convertView.getTag();

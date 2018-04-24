@@ -134,25 +134,29 @@
             android:name=".MakeAttendance"
             android:label="Make Attendance"
             android:parentActivityName=".AssignedCourses">
-        <intent-filter>
-            <action android:name="android.intent.action.SEARCH"/>
-        </intent-filter>
-
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
         </activity>
-
         <activity
             android:name=".TeacherDetail"
             android:label="Teacher Details"
             android:parentActivityName=".Teacher.Teacher"
             android:theme="@style/customTheme" />
-        <activity android:name=".DeleteStudentRecords"
+        <activity
+            android:name=".DeleteStudentRecords"
             android:label="Delete"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Moderator.DeleteUser"/>
-        <activity android:name=".DeleteTeacherRecords"
-            android:theme="@style/customTheme"
+            android:parentActivityName=".Moderator.DeleteUser"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".DeleteTeacherRecords"
             android:label="Delete"
-            android:parentActivityName=".Moderator.DeleteUser"/>
+            android:parentActivityName=".Moderator.DeleteUser"
+            android:theme="@style/customTheme" />
+        <activity android:name=".AttendanceTeacher"
+            android:parentActivityName=".Teacher.TViewAttendance"
+            android:label="Attendance Details"
+            android:theme="@style/customTheme"></activity>
     </application>
 
 </manifest>

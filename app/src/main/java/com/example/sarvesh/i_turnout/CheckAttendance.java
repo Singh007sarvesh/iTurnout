@@ -33,7 +33,7 @@ import java.util.Map;
 public class CheckAttendance extends AppCompatActivity implements OnItemClickListener {
     private ProgressDialog progressDialog;
     SharedPrefManager sharedPrefManager;
-    private static String userid="";
+    private static String userId="";
     List<CheckAttRowItem> rowItem;
     ListView mylistview;
 
@@ -43,14 +43,14 @@ public class CheckAttendance extends AppCompatActivity implements OnItemClickLis
         setContentView(R.layout.activity_check_attendance);
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
-        userid = userDetails.get(SharedPrefManager.KEY_Id);
+        userId = userDetails.get(SharedPrefManager.KEY_Id);
         rowItem = new ArrayList<CheckAttRowItem>();
 
        /* for (int i = 0; i < 15; i++) {
             rowItem.add(new CheckAttRowItem("Database Management System"));
         }*/
 
-        mylistview = (ListView) findViewById(R.id.list1);
+        mylistview =  findViewById(R.id.list1);
         loadListViewData();
     }
     public void loadListViewData()
@@ -77,8 +77,8 @@ public class CheckAttendance extends AppCompatActivity implements OnItemClickLis
                             {
                                 JSONObject o= array.getJSONObject(i);
                                 CheckAttRowItem item=new CheckAttRowItem(
-                                        o.getString("data")
-                                       // o.getString("id")
+                                        o.getString("subjectName"),
+                                       o.getString("subjectId")
                                 );
                                 rowItem.add(item);
                             }
@@ -102,7 +102,7 @@ public class CheckAttendance extends AppCompatActivity implements OnItemClickLis
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("userid", userid);
+                params.put("userid", userId);
                 return params;
             }
 
@@ -123,7 +123,7 @@ public class CheckAttendance extends AppCompatActivity implements OnItemClickLis
                 Toast.LENGTH_SHORT).show();*/
 
        Intent in = new Intent(CheckAttendance.this,AttendanceInPerticuSubject.class);
-       //in.putExtra("subjectid",rowItem.get(position).getSubjectid()) ;
+       in.putExtra("subjectId",rowItem.get(position).getSubjectId()) ;
        startActivity(in);
     }
 

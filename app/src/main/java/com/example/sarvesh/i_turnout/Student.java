@@ -14,9 +14,9 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 public class Student extends AppCompatActivity implements  View.OnClickListener {
-    public TextView textCartItemCount;
-    private CardView getnotification, makeQuery, viewcourse, checkattendance, changepassword;
-    public String mCartItemCount = "10";
+    private TextView textCartItemCount;
+    private CardView getNotification, makeQuery, viewCourse, checkAttendance, changePassword;
+    private String mCartItemCount = "10";
     private TextView studentName;
     private ImageButton logout;
     SharedPrefManager sharedPrefManager;
@@ -35,18 +35,18 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
         studentName = findViewById(R.id.studentName);
         studentName.setText(userdetails.get(SharedPrefManager.KEY_NAME));
 
-         getnotification=(CardView) findViewById(R.id.getnotification);
+         getNotification=(CardView) findViewById(R.id.getnotification);
          makeQuery=(CardView)findViewById(R.id.makequery);
-        viewcourse=(CardView)findViewById(R.id.viewcourses);
-         checkattendance=(CardView)findViewById(R.id.checkattendance);
-        changepassword = (CardView) findViewById(R.id.change);
+        viewCourse=(CardView)findViewById(R.id.viewcourses);
+         checkAttendance=(CardView)findViewById(R.id.checkattendance);
+        changePassword = (CardView) findViewById(R.id.change);
         logout=findViewById(R.id.logout);
         //add click listener to the class;
         logout.setOnClickListener(this);
-         getnotification.setOnClickListener(this);
-          checkattendance.setOnClickListener(this);
-        viewcourse.setOnClickListener(this);
-        changepassword.setOnClickListener(this);
+         getNotification.setOnClickListener(this);
+          checkAttendance.setOnClickListener(this);
+        viewCourse.setOnClickListener(this);
+        changePassword.setOnClickListener(this);
         makeQuery.setOnClickListener(this);
         //setContentView(R.layout.activity_student);
         TextView textView= (TextView) findViewById(R.id.getnotification1);

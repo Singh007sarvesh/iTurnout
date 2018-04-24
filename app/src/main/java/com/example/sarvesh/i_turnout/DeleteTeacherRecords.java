@@ -32,19 +32,19 @@ public class DeleteTeacherRecords extends AppCompatActivity implements SearchVie
         setContentView(R.layout.activity_delete_teacher_records);
         rowItems = new ArrayList<>();
 
-        for (int i = 0; i < 30; i++) {
-            rowItems.add(new DeleteTeacherItem("Sarvesh Singh","t123456ca","2016"));
-        }
+     //   for (int i = 0; i < 30; i++) {
+        //    rowItems.add(new DeleteTeacherItem("Ajay Yadav","t123456ca","2016"));
+      //  }
 
         mylistview = findViewById(R.id.delteacherlist1);
-        adapter = new DeleteTeacherAdapter(getApplicationContext(),rowItems);
-        mylistview.setAdapter(adapter);
-        //loadListData();
+      //  adapter = new DeleteTeacherAdapter(getApplicationContext(),rowItems);
+       // mylistview.setAdapter(adapter);
+        loadListData();
         //DeleteAdapterforStudent adapter = new DeleteAdapterforStudent(getApplicationContext(), rowItems);
         // mylistview.setTextFilterEnabled(true);
         // mylistview.setAdapter(adapter);
     }
-  /*  public void loadListData()
+  public void loadListData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
@@ -69,9 +69,10 @@ public class DeleteTeacherRecords extends AppCompatActivity implements SearchVie
                                         o.getString("teacherId"),
                                         o.getString("date")
                                 );
-                                rowItems.add(item);
+
+                              rowItems.add(item);
                             }
-                            DeleteTeacherAdapter adapter=new DeleteTeacherAdapter(getApplicationContext(),rowItems);
+                            adapter=new DeleteTeacherAdapter(getApplicationContext(),rowItems);
                             mylistview.setAdapter(adapter);
                         }
                         catch (JSONException e)
@@ -88,7 +89,7 @@ public class DeleteTeacherRecords extends AppCompatActivity implements SearchVie
                     }
                 });
         RequestHandler.getInstance(this).addToRequestQueue(request);
-    }*/
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //   Toast.makeText(getApplicationContext(),"hey111",Toast.LENGTH_LONG).show();

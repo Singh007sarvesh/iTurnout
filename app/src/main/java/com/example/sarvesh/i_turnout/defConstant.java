@@ -21,4 +21,6 @@ public class defConstant {
     public static final String URL_Query=ROOT_URL+"Query.php";
     public static final String URL_DELETESTUDENT=ROOT_URL+"DeleteStudentRecords.php";
     public static final String URL_DELETETEACHER=ROOT_URL+"DeleteTeacherRecords.php";
+    public static final String URL_ATTENDANCE=ROOT_URL+"Attendance.php";
+    public static final String URL_STUDENTATTENDANCE=ROOT_URL+"StudentAttendance.php";
 }

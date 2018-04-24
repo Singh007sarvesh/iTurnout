@@ -21,11 +21,5 @@ public class CheckAttByStudentRowItem {
     public void setSubjectname(String subjectname) {
         this.subjectname = subjectname;
     }
-    /* public String getSSubjectname() {
-        return subjectname;
-    }
 
-    public void setSSubjectname(String subjectname) {
-        this.subjectname = subjectname;
-    }*/
 }

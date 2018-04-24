@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ViewStudentDetailsByTeacher extends AppCompatActivity {
+public class ViewStudentDetailsByTeacher extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private ProgressDialog progressDialog;
     private static String courseId="";
@@ -39,6 +41,7 @@ public class ViewStudentDetailsByTeacher extends AppCompatActivity {
 
         myListView =  findViewById(R.id.studentdetailslist);
         loadListViewData();
+        myListView.setOnItemClickListener(this);
     }
     public void loadListViewData()
     {
@@ -100,4 +103,11 @@ public class ViewStudentDetailsByTeacher extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent=new Intent(ViewStudentDetailsByTeacher.this,AttendanceTeacher.class);
+        intent.putExtra("studentId",rowItem.get(position).getStudentId());
+        intent.putExtra("courseId",courseId);
+        startActivity(intent);
+    }
 }
