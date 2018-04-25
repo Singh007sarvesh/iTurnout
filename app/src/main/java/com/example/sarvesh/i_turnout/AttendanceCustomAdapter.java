@@ -5,10 +5,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.Filterable;
 import android.widget.Filter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +44,14 @@ public class AttendanceCustomAdapter extends BaseAdapter {
         return position;
     }
 
+
+
     /* private view holder class */
    private class ViewHolder {
 
 
         TextView rollNumber;
+        //CheckBox checkBox;
 
 
     }
@@ -62,10 +69,12 @@ public class AttendanceCustomAdapter extends BaseAdapter {
 
             holder.rollNumber = convertView
                     .findViewById(R.id.rollNo);
+           // holder.checkBox=convertView.findViewById(R.id.check1);
 
 
             AttendanceItemRow row_pos = rowItems.get(position);
             holder.rollNumber.setText(row_pos.getStudentName());
+            //Toast.makeText(context,"" +row_pos.getStudentName(),Toast.LENGTH_SHORT).show();
             convertView.setTag(holder);
         } else {
             holder = (AttendanceCustomAdapter.ViewHolder) convertView.getTag();

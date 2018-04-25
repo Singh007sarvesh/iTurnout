@@ -1,15 +1,20 @@
 package com.example.sarvesh.i_turnout;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,12 +25,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class DeleteTeacherRecords extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class DeleteTeacherRecords extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener{
     List<DeleteTeacherItem> rowItems;
     ListView mylistview;
-    DeleteTeacherAdapter adapter;
+    private DeleteTeacherAdapter adapter;
+    private FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +45,14 @@ public class DeleteTeacherRecords extends AppCompatActivity implements SearchVie
       //  }
 
         mylistview = findViewById(R.id.delteacherlist1);
+        floatingActionButton=findViewById(R.id.delteacherrecords);
       //  adapter = new DeleteTeacherAdapter(getApplicationContext(),rowItems);
        // mylistview.setAdapter(adapter);
         loadListData();
         //DeleteAdapterforStudent adapter = new DeleteAdapterforStudent(getApplicationContext(), rowItems);
         // mylistview.setTextFilterEnabled(true);
         // mylistview.setAdapter(adapter);
+        floatingActionButton.setOnClickListener(this);
     }
   public void loadListData()
     {
@@ -131,5 +141,56 @@ public class DeleteTeacherRecords extends AppCompatActivity implements SearchVie
         }
         adapter.setFilter(searchRows);
         return true;
+    }
+
+    public void deleteData()
+    {
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("wait...");
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                defConstant.URL_DELSTUDENTRECORD,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.hide();
+                        Toast.makeText(getApplicationContext(),"ajay"+String.valueOf(rowItems.get(1).getTeacherId()),Toast.LENGTH_LONG).show();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                           // Intent i = new Intent(getApplicationContext(), AssignedCourses.class);
+                           // startActivity(i);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.hide();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+               /* params.put("tid", tid);
+                params.put("tname", tname);
+                params.put("password", password);*/
+                // for (int i=0;i<rowItems.size();i++) {
+                // params.put("subjectId", subjectId);
+                params.put("teacherId",String.valueOf(rowItems.get(1)));
+                //  }
+                return params;
+            }
+        };
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==floatingActionButton)
+            deleteData();
     }
 }

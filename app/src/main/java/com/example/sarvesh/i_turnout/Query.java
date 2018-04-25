@@ -53,12 +53,12 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_query);
         Intent in=getIntent();
        teacherId=in.getStringExtra("teacherId");
-       Bundle bundle=getIntent().getExtras();
-       courseId=bundle.getString("courseId");
+     //  Bundle bundle=getIntent().getExtras();
+      // courseId=bundle.getString("courseId");
 
         //AttendanceInPerticuSubject obj =new AttendanceInPerticuSubject();
        //Toast.makeText(getApplicationContext(),,Toast.LENGTH_LONG).show();
-       Toast.makeText(getApplicationContext(),courseId,Toast.LENGTH_LONG).show();
+       //Toast.makeText(getApplicationContext(),teacherId,Toast.LENGTH_LONG).show();
         progressDialog = new ProgressDialog(this);
         qContent =  findViewById(R.id.Qcontent);
         attach =  findViewById(R.id.attach);
@@ -157,14 +157,10 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
                 params.put("content",qContent.getText().toString().trim());
-                params.put("name",textView.getText().toString().trim());
+                //params.put("name",textView.getText().toString().trim());
                 params.put("studentId",userId);
                 params.put("teacherId",teacherId);
-                params.put("image",imageToString(bitmap));
-
-              //  params.put("studentId",userId);
-              //  params.put("teacherId",teacherId);
-                // params.put("courseId",courseId);
+             //   params.put("image",imageToString(bitmap));
                 return params;
             }
         };

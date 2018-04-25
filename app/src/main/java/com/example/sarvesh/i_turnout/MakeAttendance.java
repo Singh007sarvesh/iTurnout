@@ -2,6 +2,7 @@ package com.example.sarvesh.i_turnout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -26,6 +29,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.Moderator.Admin;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MakeAttendance extends AppCompatActivity implements TextWatcher {
+public class MakeAttendance extends AppCompatActivity implements TextWatcher,View.OnClickListener{
     ListView listview;
     List<AttendanceItemRow> rowItems;
     AttendanceCustomAdapter adapter;
@@ -45,6 +49,9 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher {
     private TextView tvTitle;
     private ImageButton bBack, bSearch;
     private boolean isSearching = false;
+    private FloatingActionButton floatingActionButton;
+    private CheckBox checkBox;
+    static String presence="0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,6 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher {
         setContentView(R.layout.activity_make_attendance);
         Intent in=getIntent();
         subjectId=in.getStringExtra("subjectId");
-        //Toast.makeText(getApplicationContext(),subjectId,Toast.LENGTH_LONG).show();
         initViews();
         bBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,22 +80,16 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher {
                 isSearching = !isSearching;
             }
         });
-
         rowItems = new ArrayList<>();
-        // rowItems.add(new ViewNotificationItem("Kunj Nivas Flat-2, Indira Nagar, Lucknow", R.drawable.ic_notifications_active_black_24dp));
-       /* for (int i = 0; i < 30; i++) {
-            rowItems.add(new AttendanceItemRow("M150054CA"));
-        }*/
-
         listview = findViewById(R.id.mattendance);
+        floatingActionButton=findViewById(R.id.attendance2);
+        checkBox=findViewById(R.id.check1);
         adapter = new AttendanceCustomAdapter(getApplicationContext(), rowItems);
-        // mylistview.setTextFilterEnabled(true);
         listview.setAdapter(adapter);
-
         etSearchField.addTextChangedListener(this);
-       loadData();
+        loadData();
+        floatingActionButton.setOnClickListener(this);
     }
-
     private void initViews() {
         tvTitle = findViewById(R.id.title_text);
         etSearchField = findViewById(R.id.search_field);
@@ -139,9 +139,7 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Toast.makeText(getApplicationContext(),userid,Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
-
                         try {
                             JSONObject jsonObject=new JSONObject(response.toString());
                             JSONArray array=jsonObject.getJSONArray("flag");
@@ -171,7 +169,6 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher {
                         Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 }){
-
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
@@ -180,6 +177,56 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher {
                 }
         };
         RequestHandler.getInstance(this).addToRequestQueue(request);
+    }
+    public void sendData() {
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("wait...");
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                defConstant.URL_SEND,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.hide();
+                       // Toast.makeText(getApplicationContext(),String.valueOf(rowItems.get(0)),Toast.LENGTH_SHORT).show();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(), AssignedCourses.class);
+                            startActivity(i);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.hide();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+              //  params.put("presence",presence);
+                params.put("size",String.valueOf(rowItems.size()));
+                params.put("subjectId", subjectId);
+               for (int i=0;i<rowItems.size();i++) {
+                   params.put("studentId"+i,String.valueOf(rowItems.get(i).getRollNumber()));
+              }
+              return params;
+            }
+        };
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v== floatingActionButton){
+            sendData();
+
+        }
     }
 }
 

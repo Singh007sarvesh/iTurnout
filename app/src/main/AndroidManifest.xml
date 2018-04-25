@@ -26,7 +26,9 @@
         <activity android:name=".Student" />
         <activity android:name=".Moderator.Admin" />
         <activity android:name=".Teacher.Teacher" />
-        <activity android:name=".Home" />
+        <activity android:name=".Home"
+            android:label="Login"
+            android:theme="@style/customTheme"/>
         <activity
             android:name=".Moderator.StudentDetails"
             android:label="Student Details"
@@ -107,12 +109,12 @@
             android:theme="@style/customTheme" />
         <activity
             android:name=".Teacher.TViewNotification"
-            android:label="Notification"
+            android:label="Message"
             android:parentActivityName=".Teacher.Teacher"
             android:theme="@style/customTheme" />
         <activity
             android:name=".Teacher.TDispNotification"
-            android:label="Notification"
+            android:label="Message Details"
             android:parentActivityName=".Teacher.TViewNotification"
             android:theme="@style/customTheme" />
         <activity

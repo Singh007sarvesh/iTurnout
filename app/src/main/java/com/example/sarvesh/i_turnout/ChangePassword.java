@@ -47,6 +47,7 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
         progressDialog = new ProgressDialog(this);
 
         changesubmit.setOnClickListener(this);
+        Toast.makeText(getApplicationContext(),userid,Toast.LENGTH_LONG).show();
 
 
     }

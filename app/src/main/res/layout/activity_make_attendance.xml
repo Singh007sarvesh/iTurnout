@@ -89,7 +89,7 @@
         android:orientation="vertical">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/make"
+            android:id="@+id/attendance2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

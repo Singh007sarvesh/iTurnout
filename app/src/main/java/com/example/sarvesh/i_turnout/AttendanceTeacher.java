@@ -24,7 +24,7 @@ public class AttendanceTeacher extends AppCompatActivity {
     private static String studentId="";
     private static String subjectId="";
     private static int totalClass=0,totalClass3=0,totalClass2=0;
-    private static float pre=0f;
+    private static int pre=0;
     SharedPrefManager sharedPrefManager;
     private static String userId="";
     private TextView totalClass1,presence,absent,percentage;
@@ -71,7 +71,7 @@ public class AttendanceTeacher extends AppCompatActivity {
                             String s=String.valueOf(totalClass);
                             String s1=String.valueOf(totalClass3);
                             String s2=String.valueOf(totalClass2);
-                            String s3=String.valueOf(pre);
+                            String s3=String.valueOf(pre+" %");
                             totalClass1.setText(s);
                             presence.setText(s1);
                             absent.setText(s2);
