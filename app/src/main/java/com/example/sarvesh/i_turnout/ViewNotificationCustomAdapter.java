@@ -39,8 +39,9 @@ public class ViewNotificationCustomAdapter extends BaseAdapter {
     /* private view holder class */
     private class ViewHolder {
 
-        ImageView seticon;
+        ImageView setIcon;
         TextView name;
+        TextView date;
 
     }
 
@@ -55,15 +56,16 @@ public class ViewNotificationCustomAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.viewnotificationlist, null);
             holder = new ViewHolder();
 
-            holder.name = (TextView) convertView
+            holder.name =  convertView
                     .findViewById(R.id.notification);
-            holder.seticon=(ImageView) convertView.findViewById(R.id.seticon);
+            holder.setIcon= convertView.findViewById(R.id.seticon);
+            holder.date=convertView.findViewById(R.id.sDate);
 
             ViewNotificationItem row_pos = rowItems.get(position);
 
-            holder.seticon.setImageResource(row_pos.getPicture());
-            holder.name.setText(row_pos.getName());
-
+            holder.setIcon.setImageResource(row_pos.getPicture());
+            holder.name.setText(row_pos.getSubjectName());
+            holder.date.setText(row_pos.getDate());
 
             convertView.setTag(holder);
         } else {

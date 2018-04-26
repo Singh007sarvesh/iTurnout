@@ -26,4 +26,8 @@ public class defConstant {
     public static final String URL_SEND=ROOT_URL+"Send.php";
     public static final String URL_DELSTUDENTRECORD=ROOT_URL+"DelStudentRecord.php";
     public static final String URL_MSG=ROOT_URL+"GetMessage.php";
+    public static final String URL_FMSG=ROOT_URL+"FetchMessage.php";
+    public static final String URL_TeacherQuery=ROOT_URL+"TeacherQuery.php";
+    public static final String URL_Notification=ROOT_URL+"GetNotification.php";
+    public static final String URL_sNotification=ROOT_URL+"FetchNotification.php";
 }

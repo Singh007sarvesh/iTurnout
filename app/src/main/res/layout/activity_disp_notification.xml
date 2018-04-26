@@ -19,20 +19,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/hello"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:textStyle="normal"
-                android:textSize="20sp"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="@string/reply"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:onClick="queryNotification"/>
+                android:textSize="20sp"
+                android:id="@+id/sNotification"/>
+
         </LinearLayout>
     </ScrollView>
 

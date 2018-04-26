@@ -15,7 +15,6 @@ public class AttendanceItemRow {
 
     }
     public String getStudentName() {
-        studentName=studentName+"\n"+rollNumber;
         return studentName;
     }
 

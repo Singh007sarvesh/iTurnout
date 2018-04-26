@@ -26,9 +26,10 @@
         <activity android:name=".Student" />
         <activity android:name=".Moderator.Admin" />
         <activity android:name=".Teacher.Teacher" />
-        <activity android:name=".Home"
+        <activity
+            android:name=".Home"
             android:label="Login"
-            android:theme="@style/customTheme"/>
+            android:theme="@style/customTheme" />
         <activity
             android:name=".Moderator.StudentDetails"
             android:label="Student Details"
@@ -155,10 +156,15 @@
             android:label="Delete"
             android:parentActivityName=".Moderator.DeleteUser"
             android:theme="@style/customTheme" />
-        <activity android:name=".AttendanceTeacher"
-            android:parentActivityName=".Teacher.TViewAttendance"
+        <activity
+            android:name=".AttendanceTeacher"
             android:label="Attendance Details"
-            android:theme="@style/customTheme"></activity>
+            android:parentActivityName=".Teacher.TViewAttendance"
+            android:theme="@style/customTheme" />
+        <activity android:name=".TeacherQuery"
+            android:label="Query"
+            android:theme="@style/customTheme"
+            android:parentActivityName=".Teacher.TDispNotification"></activity>
     </application>
 
 </manifest>

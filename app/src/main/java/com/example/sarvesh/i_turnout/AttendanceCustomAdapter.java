@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Filterable;
 import android.widget.Filter;
 import android.widget.TextView;
@@ -20,12 +21,16 @@ public class AttendanceCustomAdapter extends BaseAdapter {
 
     private Context context;
     private List<AttendanceItemRow> rowItems;
+    private List<String> absent;
     private List<AttendanceItemRow> mStringFilterList;
+    CheckBox checkBox;
+    TextView rollno;
    // private ValueFilter valueFilter;
-    AttendanceCustomAdapter(Context context, List<AttendanceItemRow> rowItems) {
+    AttendanceCustomAdapter(Context context, List<AttendanceItemRow> rowItems , List<String> absent) {
         this.context = context;
         this.rowItems = rowItems;
         mStringFilterList = rowItems;
+        this.absent = absent;
     }
 
     @Override
@@ -51,15 +56,22 @@ public class AttendanceCustomAdapter extends BaseAdapter {
 
 
         TextView rollNumber;
-        //CheckBox checkBox;
+        TextView attendanceId;
+        CheckBox checkBox;
+
 
 
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         AttendanceCustomAdapter.ViewHolder holder = null;
+        AttendanceItemRow row_pos = null;
+      //  absent = new ArrayList<>();
+
+     //   checkBox = (CheckBox) convertView.findViewById(R.id.check1);
+      //  holder.rollNumber = (TextView) convertView.findViewById(R.id.rollNo);
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -69,16 +81,37 @@ public class AttendanceCustomAdapter extends BaseAdapter {
 
             holder.rollNumber = convertView
                     .findViewById(R.id.rollNo);
+            holder.attendanceId=convertView.findViewById(R.id.attendanceId);
+            holder.checkBox = convertView
+                    .findViewById(R.id.check1);
+
            // holder.checkBox=convertView.findViewById(R.id.check1);
 
 
-            AttendanceItemRow row_pos = rowItems.get(position);
+            row_pos = rowItems.get(position);
             holder.rollNumber.setText(row_pos.getStudentName());
+            holder.attendanceId.setText(row_pos.getRollNumber());
             //Toast.makeText(context,"" +row_pos.getStudentName(),Toast.LENGTH_SHORT).show();
             convertView.setTag(holder);
         } else {
             holder = (AttendanceCustomAdapter.ViewHolder) convertView.getTag();
         }
+
+        //Toast.makeText(context,holder.rollNumber.getText().toString(),Toast.LENGTH_SHORT).show();
+        final ViewHolder finalHolder = holder;
+        final AttendanceItemRow finalRow_pos = row_pos;
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(finalHolder.checkBox.isChecked())
+                {
+                    Toast.makeText(context, finalHolder.attendanceId.getText().toString(),Toast.LENGTH_SHORT).show();
+                }
+                else
+                    absent.add(finalHolder.attendanceId.getText().toString());
+
+            }
+        });
 
         return convertView;
     }

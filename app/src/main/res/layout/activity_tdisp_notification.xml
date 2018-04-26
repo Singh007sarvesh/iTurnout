@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".DispNotification"
     android:orientation="vertical">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -19,20 +18,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/hello"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:textStyle="normal"
-                android:textSize="20sp"/>
-            <Button
+                android:textSize="20sp"
+                android:id="@+id/DNotification"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageDisp"/>
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="@string/reply"
+                android:src="@drawable/ic_edit_black_24dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
-                android:onClick="queryNotification"/>
+                android:id="@+id/TDispQuery"
+                />
         </LinearLayout>
     </ScrollView>
 

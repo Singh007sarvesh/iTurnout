@@ -42,7 +42,7 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
     String[] name;
     TypedArray seticon;
     private SharedPrefManager sharedPrefManager;
-    private static String userid="";
+    private static String userId="";
     private List<TViewNotificationItem> rowItems;
     private ListView mylistview;
 
@@ -52,7 +52,7 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
         setContentView(R.layout.activity_view_notification);
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
-        userid = userDetails.get(SharedPrefManager.KEY_Id);
+        userId = userDetails.get(SharedPrefManager.KEY_Id);
 
         rowItems = new ArrayList< TViewNotificationItem >();
         // rowItems.add(new ViewNotificationItem("Kunj Nivas Flat-2, Indira Nagar, Lucknow", R.drawable.ic_notifications_active_black_24dp));
@@ -91,7 +91,11 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
                                 TViewNotificationItem item=new TViewNotificationItem(
                                        o.getString("studentName"),
                                         o.getString("studentId"),
-                                        R.drawable.ic_message_black_24dp
+                                        R.drawable.ic_message_black_24dp,
+                                        o.getString("date"),
+                                        o.getString("id"),
+                                        o.getString("cid")
+
                                 );
                                 rowItems.add(item);
                             }
@@ -114,7 +118,7 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("teacherId", userid);
+                params.put("teacherId", userId);
                 return params;
             }
 
@@ -128,6 +132,9 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
                             long id) {
 
         Intent in=new Intent(TViewNotification.this,TDispNotification.class);
+        in.putExtra("contentId",rowItems.get(position).getNId());
+        in.putExtra("cid",rowItems.get(position).getCid());
+        in.putExtra("studentId",rowItems.get(position).getId());
         startActivity(in);
 
     }

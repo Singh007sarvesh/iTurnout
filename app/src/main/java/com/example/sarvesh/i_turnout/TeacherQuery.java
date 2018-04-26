@@ -1,0 +1,99 @@
+package com.example.sarvesh.i_turnout;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.Teacher.TViewNotification;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TeacherQuery extends AppCompatActivity implements View.OnClickListener{
+    private static String userId="";
+    private SharedPrefManager sharedPrefManager;
+    private static String cid="";
+    private static String studentId="";
+    private EditText editText;
+    private FloatingActionButton floatingActionButton;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_teacher_query);
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
+        userId = userDetails.get(SharedPrefManager.KEY_Id);
+        Intent in=getIntent();
+        cid=in.getStringExtra("cid");
+        studentId=in.getStringExtra("studentId");
+        editText=findViewById(R.id.QTeacher);
+        floatingActionButton=findViewById(R.id.TQButton);
+        floatingActionButton.setOnClickListener(this);
+    }
+    private void sendData()
+    {
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Wait...");
+        progressDialog.show();
+        //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
+        StringRequest stringRequest=new StringRequest(Request.Method.POST,
+                defConstant.URL_TeacherQuery,
+
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.hide();
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            String Response=jsonObject.getString("message");
+                            Toast.makeText(TeacherQuery.this,Response,Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(), TViewNotification.class);
+                            startActivity(i);
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.hide();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+               params.put("content",editText.getText().toString().trim());
+                //params.put("name",textView.getText().toString().trim());
+                params.put("studentId",studentId);
+                params.put("teacherId",userId);
+                params.put("cid",cid);
+                //   params.put("image",imageToString(bitmap));
+                return params;
+            }
+        };
+        MySingleton.getmInstance(TeacherQuery.this).addToRequestQue(stringRequest);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==floatingActionButton)
+            sendData();
+    }
+}

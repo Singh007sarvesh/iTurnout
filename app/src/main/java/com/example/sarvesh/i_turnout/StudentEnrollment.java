@@ -70,7 +70,7 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
                             progressDialog.hide();
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
-                             //   Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                               Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                                 Intent in = new Intent(getApplicationContext(), Admin.class);
                                 startActivity(in);
                             } catch (JSONException e) {

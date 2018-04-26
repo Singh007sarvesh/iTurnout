@@ -9,8 +9,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:contentDescription="desc"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:layout_marginLeft="3dp"
         android:background="@drawable/cerclebackgroundpurple"/>
     <TextView
         android:id="@+id/notification"
@@ -21,7 +20,18 @@
         android:paddingBottom="10dp"
         android:textSize="20sp"
         android:layout_toRightOf="@id/seticon"
-        android:layout_marginLeft="30dp"/>
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorPrimary"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sDate"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="10sp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="60dp"
+        />
+
 
 
 

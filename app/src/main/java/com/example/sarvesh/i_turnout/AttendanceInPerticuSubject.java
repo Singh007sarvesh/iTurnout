@@ -27,7 +27,7 @@ import java.util.Map;
 public class AttendanceInPerticuSubject extends AppCompatActivity  {
     private static String subjectId="";
     private static int totalClass=0,totalClass3=0,totalClass2=0;
-    private static int pre=0;
+    private static int pre=1;
     SharedPrefManager sharedPrefManager;
     private static String userId="";
     private TextView totalClass1,presence,absent,percentage;
@@ -37,8 +37,6 @@ public class AttendanceInPerticuSubject extends AppCompatActivity  {
         setContentView(R.layout.attendanceinperticulersubject);
         Intent in=getIntent();
         subjectId=in.getStringExtra("subjectId");
-       // courseId=in.getStringExtra("subjectId");
-      //  Toast.makeText(getApplicationContext(),courseId, Toast.LENGTH_LONG).show();
         totalClass1=findViewById(R.id.totalClass);
         presence=findViewById(R.id.presence);
         absent=findViewById(R.id.absent);
@@ -47,6 +45,13 @@ public class AttendanceInPerticuSubject extends AppCompatActivity  {
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
         userId = userDetails.get(SharedPrefManager.KEY_Id);
         getAttendance();
+
+
+    }
+    public void sendNotification()
+    {
+
+        Toast.makeText(getApplicationContext(),"you have laess attenadnce",Toast.LENGTH_LONG).show();
 
     }
     public void getAttendance()
@@ -75,7 +80,17 @@ public class AttendanceInPerticuSubject extends AppCompatActivity  {
                             totalClass3=Integer.parseInt(res1);
                             totalClass2=Integer.parseInt(res2);
                             pre=(totalClass3*100);
-                            pre=(pre/totalClass);
+                            try {
+                                pre = (pre / totalClass);
+                                if(pre<81)
+                                {
+                                    sendNotification();
+                                }
+                            }
+                            catch (ArithmeticException e)
+                            {
+                                e.printStackTrace();
+                            }
                             String s=String.valueOf(totalClass);
                             String s1=String.valueOf(totalClass3);
                             String s2=String.valueOf(totalClass2);
@@ -84,6 +99,7 @@ public class AttendanceInPerticuSubject extends AppCompatActivity  {
                             presence.setText(s1);
                             absent.setText(s2);
                             percentage.setText(s3);
+
                            // absent.setText(Response2);
                             //Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
                            // Toast.makeText(AttendanceInPerticuSubject.this,Response, Toast.LENGTH_LONG).show();
@@ -106,7 +122,6 @@ public class AttendanceInPerticuSubject extends AppCompatActivity  {
                 Map<String, String> params = new HashMap<>();
                 params.put("userId", userId);
                 params.put("subjectId",subjectId);
-              // Toast.makeText(getApplicationContext(),"hello---", Toast.LENGTH_LONG).show();
                 return params;
             }
 

@@ -42,7 +42,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private Bitmap bitmap;
     private TextView textView,textSize;
     private static String teacherId="";
-    SharedPrefManager sharedPrefManager;
+    private SharedPrefManager sharedPrefManager;
     private static String userId="";
     private static String courseId="";
     private ProgressDialog progressDialog;
@@ -53,12 +53,6 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_query);
         Intent in=getIntent();
        teacherId=in.getStringExtra("teacherId");
-     //  Bundle bundle=getIntent().getExtras();
-      // courseId=bundle.getString("courseId");
-
-        //AttendanceInPerticuSubject obj =new AttendanceInPerticuSubject();
-       //Toast.makeText(getApplicationContext(),,Toast.LENGTH_LONG).show();
-       //Toast.makeText(getApplicationContext(),teacherId,Toast.LENGTH_LONG).show();
         progressDialog = new ProgressDialog(this);
         qContent =  findViewById(R.id.Qcontent);
         attach =  findViewById(R.id.attach);
@@ -137,7 +131,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                             JSONObject jsonObject=new JSONObject(response);
                             String Response=jsonObject.getString("message");
                             Toast.makeText(Query.this,Response,Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(getApplicationContext(), Query.class);
+                            Intent i = new Intent(getApplicationContext(), TeacherDetail.class);
                             startActivity(i);
                         }
                         catch (JSONException e)

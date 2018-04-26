@@ -36,10 +36,10 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
-        editTextcid = (EditText)findViewById(R.id.cid);
-        editTextcname = (EditText)findViewById(R.id.cname);
-        editTextctid =(EditText) findViewById(R.id.ctid);
-        csubmit = (Button)findViewById(R.id.csubmit);
+        editTextcid = findViewById(R.id.cid);
+        editTextcname =findViewById(R.id.cname);
+        editTextctid = findViewById(R.id.ctid);
+        csubmit = findViewById(R.id.csubmit);
 
         progressDialog = new ProgressDialog(this);
 

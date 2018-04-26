@@ -44,6 +44,7 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher,Vie
     ListView listview;
     List<AttendanceItemRow> rowItems;
     AttendanceCustomAdapter adapter;
+    List<String> absent,present;
     private static String subjectId;
     private EditText etSearchField;
     private TextView tvTitle;
@@ -84,11 +85,16 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher,Vie
         listview = findViewById(R.id.mattendance);
         floatingActionButton=findViewById(R.id.attendance2);
         checkBox=findViewById(R.id.check1);
-        adapter = new AttendanceCustomAdapter(getApplicationContext(), rowItems);
+        absent = new ArrayList<>();
+        present = new ArrayList<>();
+        adapter = new AttendanceCustomAdapter(getApplicationContext(), rowItems , absent);
         listview.setAdapter(adapter);
         etSearchField.addTextChangedListener(this);
         loadData();
         floatingActionButton.setOnClickListener(this);
+
+
+
     }
     private void initViews() {
         tvTitle = findViewById(R.id.title_text);
@@ -153,7 +159,7 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher,Vie
                                 );
                                 rowItems.add(item);
                             }
-                            AttendanceCustomAdapter adapter=new AttendanceCustomAdapter(getApplicationContext(),rowItems);
+                            AttendanceCustomAdapter adapter=new AttendanceCustomAdapter(getApplicationContext(),rowItems, absent);
                             listview.setAdapter(adapter);
                         }
                         catch (JSONException e)
@@ -212,8 +218,12 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher,Vie
               //  params.put("presence",presence);
                 params.put("size",String.valueOf(rowItems.size()));
                 params.put("subjectId", subjectId);
+                params.put("abSize",String.valueOf(absent.size()));
                for (int i=0;i<rowItems.size();i++) {
                    params.put("studentId"+i,String.valueOf(rowItems.get(i).getRollNumber()));
+              }
+                for (int i=0;i<absent.size();i++) {
+                   params.put("stuAbsent"+i,absent.get(i).toString());
               }
               return params;
             }

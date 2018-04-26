@@ -35,10 +35,10 @@ public class AssignedCourses extends AppCompatActivity implements OnItemClickLis
 
 
     SharedPrefManager sharedPrefManager;
-    private static String userid="";
+    private static String userId="";
 
     List<RowItem> rowItems;
-    ListView mylistview;
+    ListView myListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +46,11 @@ public class AssignedCourses extends AppCompatActivity implements OnItemClickLis
         setContentView(R.layout.activity_assigned_courses);
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
-        userid = userDetails.get(SharedPrefManager.KEY_Id);
+        userId = userDetails.get(SharedPrefManager.KEY_Id);
         rowItems = new ArrayList<RowItem>();
-
-     /*   for (int i = 0; i < 5; i++) {
-            rowItems.add(new RowItem("Database Management System"));
-        }*/
-
-        mylistview =  findViewById(R.id.list);
-      //  CustomAdapter adapter = new CustomAdapter(this, rowItems);
-      //  mylistview.setAdapter(adapter);
+        myListView =  findViewById(R.id.list);
         loadListViewData();
-
-        mylistview.setOnItemClickListener(this);
+        myListView.setOnItemClickListener(this);
 
     }
     public  void loadListViewData()
@@ -87,7 +79,7 @@ public class AssignedCourses extends AppCompatActivity implements OnItemClickLis
                                 rowItems.add(item);
                             }
                             CustomAdapter adapter=new CustomAdapter(getApplicationContext(),rowItems);
-                            mylistview.setAdapter(adapter);
+                            myListView.setAdapter(adapter);
                         }
                         catch (JSONException e)
                         {
@@ -105,7 +97,7 @@ public class AssignedCourses extends AppCompatActivity implements OnItemClickLis
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("userid", userid);
+                params.put("userId", userId);
                 return params;
             }
 
