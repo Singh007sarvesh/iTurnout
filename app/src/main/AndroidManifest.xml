@@ -161,10 +161,17 @@
             android:label="Attendance Details"
             android:parentActivityName=".Teacher.TViewAttendance"
             android:theme="@style/customTheme" />
-        <activity android:name=".TeacherQuery"
+        <activity
+            android:name=".TeacherQuery"
             android:label="Query"
-            android:theme="@style/customTheme"
-            android:parentActivityName=".Teacher.TDispNotification"></activity>
+            android:parentActivityName=".Teacher.TViewNotification"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".MessageForStudent"
+            android:label="Message"
+            android:parentActivityName=".Student"
+            android:theme="@style/customTheme" />
+        <activity android:name=".StudentGetMessage"></activity>
     </application>
 
 </manifest>

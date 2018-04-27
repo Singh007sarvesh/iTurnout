@@ -1,9 +1,5 @@
 package com.example.sarvesh.i_turnout;
 
-/**
- * Created by sarvesh on 31/3/18.
- */
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -11,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,35 +25,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ViewNotification extends AppCompatActivity implements OnItemClickListener {
+public class MessageForStudent extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private String[] name;
     private TypedArray setIcon;
-    private List<ViewNotificationItem> rowItems;
-    private ListView myListView;
     private SharedPrefManager sharedPrefManager;
     private static String userId="";
+    private List<StudentMessageItem> rowItems;
+    private ListView myListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_notification);
+        setContentView(R.layout.activity_message_for_student);
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
         userId = userDetails.get(SharedPrefManager.KEY_Id);
-        rowItems = new ArrayList<ViewNotificationItem>();
-        myListView = findViewById(R.id.viewNotification);
+        rowItems = new ArrayList< StudentMessageItem>();
+        myListView =  findViewById(R.id.messageStudent);
+        StudentMessageAdapter adapter = new StudentMessageAdapter(this, rowItems);
+        myListView.setAdapter(adapter);
         myListView.setOnItemClickListener(this);
-        loadListViewData();
-
+        loadData();
     }
-    public  void loadListViewData()
+
+    public void loadData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.show();
 
-        StringRequest request=new StringRequest(Request.Method.POST,
-                defConstant.URL_Notification,
+        StringRequest request=new StringRequest(Request.Method.POST, defConstant.URL_StudentMessage,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -71,15 +67,17 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
                             for(int i=0;i<array.length();i++)
                             {
                                 JSONObject o= array.getJSONObject(i);
-                                ViewNotificationItem item=new ViewNotificationItem(
-                                        o.getString("subjectName"),
-                                        o.getString("nid"),
+                                StudentMessageItem item=new StudentMessageItem(
+                                        o.getString("teacherName"),
+                                        o.getString("teacherId"),
                                         o.getString("date"),
-                                        R.drawable.ic_notifications_active_black_24dp
+                                        R.drawable.message,
+                                        o.getString("id"),
+                                        o.getString("cid")
                                 );
                                 rowItems.add(item);
                             }
-                            ViewNotificationCustomAdapter adapter=new ViewNotificationCustomAdapter(getApplicationContext(),rowItems);
+                            StudentMessageAdapter adapter=new StudentMessageAdapter(getApplicationContext(),rowItems);
                             myListView.setAdapter(adapter);
                         }
                         catch (JSONException e)
@@ -104,19 +102,15 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
 
         };
         RequestHandler.getInstance(this).addToRequestQueue(request);
-
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent in=new Intent(MessageForStudent.this,StudentGetMessage.class);
+        in.putExtra("contentId",rowItems.get(position).getqId());
+        in.putExtra("cid",rowItems.get(position).getCid());
+        in.putExtra("teacherId",rowItems.get(position).getUserId());
+        startActivity(in);
 
-       /* String subjectname = rowItems.get(position).getSubjectname();
-        Toast.makeText(getApplicationContext(), "" + subjectname,
-                Toast.LENGTH_SHORT).show();*/
-      Intent in=new Intent(ViewNotification.this,DispNotification.class);
-      in.putExtra("nId",rowItems.get(position).getNid());
-      startActivity(in);
     }
-
 }

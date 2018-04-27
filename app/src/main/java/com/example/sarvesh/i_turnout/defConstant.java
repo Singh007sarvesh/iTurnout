@@ -1,7 +1,5 @@
 package com.example.sarvesh.i_turnout;
 
-import android.sax.RootElement;
-
 public class defConstant {
     public static final String ROOT_URL = "https://i-turmout.000webhostapp.com/";
     public  static  final String URL_SIGNUP = ROOT_URL + "TeacherDetails.php";
@@ -30,4 +28,5 @@ public class defConstant {
     public static final String URL_TeacherQuery=ROOT_URL+"TeacherQuery.php";
     public static final String URL_Notification=ROOT_URL+"GetNotification.php";
     public static final String URL_sNotification=ROOT_URL+"FetchNotification.php";
+    public static final String URL_StudentMessage=ROOT_URL+"StudentMessage.php";
 }

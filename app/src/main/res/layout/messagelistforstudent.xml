@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="2dp" >
+
+    <ImageView
+        android:id="@+id/sSetIcon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="desc"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/cerclebackgroundpurple"/>
+    <TextView
+        android:id="@+id/studentMessageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:paddingBottom="10dp"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/tseticon"
+        android:layout_marginLeft="80dp"
+        android:textColor="@color/colorPrimary"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/messageListDate"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/sSetIcon"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        />
+
+
+
+</RelativeLayout>

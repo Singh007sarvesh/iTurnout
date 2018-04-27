@@ -4,7 +4,6 @@ package com.example.sarvesh.i_turnout.Teacher;
  * Created by sarvesh on 31/3/18.
  */
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -21,10 +20,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.sarvesh.i_turnout.CustomAdapter;
 import com.example.sarvesh.i_turnout.R;
 import com.example.sarvesh.i_turnout.RequestHandler;
-import com.example.sarvesh.i_turnout.RowItem;
 import com.example.sarvesh.i_turnout.SharedPrefManager;
 import com.example.sarvesh.i_turnout.defConstant;
 
@@ -39,12 +36,12 @@ import java.util.Map;
 
 public class TViewNotification extends AppCompatActivity implements OnItemClickListener {
 
-    String[] name;
-    TypedArray seticon;
+    private String[] name;
+    private TypedArray setIcon;
     private SharedPrefManager sharedPrefManager;
     private static String userId="";
     private List<TViewNotificationItem> rowItems;
-    private ListView mylistview;
+    private ListView myListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +52,11 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
         userId = userDetails.get(SharedPrefManager.KEY_Id);
 
         rowItems = new ArrayList< TViewNotificationItem >();
-        // rowItems.add(new ViewNotificationItem("Kunj Nivas Flat-2, Indira Nagar, Lucknow", R.drawable.ic_notifications_active_black_24dp));
-       // for (int i = 0; i < 15; i++) {
-         //   rowItems.add(new TViewNotificationItem("m150056ca",R.drawable.ic_message_black_24dp));
-      //  }
-
-        mylistview = (ListView) findViewById(R.id.viewnotification);
+        myListView = (ListView) findViewById(R.id.viewNotification);
         TViewNotificationCusAdapter adapter = new TViewNotificationCusAdapter(this, rowItems);
-        mylistview.setAdapter(adapter);
+        myListView.setAdapter(adapter);
 
-        mylistview.setOnItemClickListener(this);
+        myListView.setOnItemClickListener(this);
         loadData();
 
     }
@@ -91,7 +83,7 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
                                 TViewNotificationItem item=new TViewNotificationItem(
                                        o.getString("studentName"),
                                         o.getString("studentId"),
-                                        R.drawable.ic_message_black_24dp,
+                                        R.drawable.message,
                                         o.getString("date"),
                                         o.getString("id"),
                                         o.getString("cid")
@@ -100,7 +92,7 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
                                 rowItems.add(item);
                             }
                             TViewNotificationCusAdapter adapter=new TViewNotificationCusAdapter(getApplicationContext(),rowItems);
-                            mylistview.setAdapter(adapter);
+                            myListView.setAdapter(adapter);
                         }
                         catch (JSONException e)
                         {

@@ -1,8 +1,6 @@
 package com.example.sarvesh.i_turnout;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,19 +10,18 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.sarvesh.i_turnout.AttendanceInPerticuSubject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +33,7 @@ import java.util.Map;
 
 public class Query extends AppCompatActivity implements View.OnClickListener{
     private EditText qContent;
-    private final int IMG_REQUEST=1;
+    private final int IMG_REQUEST=1024;
     private Button qButton;
     private ImageButton attach;
     private Bitmap bitmap;
@@ -45,6 +42,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private SharedPrefManager sharedPrefManager;
     private static String userId="";
     private static String courseId="";
+    private static String status="0";
     private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,7 +50,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
         Intent in=getIntent();
-       teacherId=in.getStringExtra("teacherId");
+        teacherId=in.getStringExtra("teacherId");
         progressDialog = new ProgressDialog(this);
         qContent =  findViewById(R.id.Qcontent);
         attach =  findViewById(R.id.attach);
@@ -74,6 +72,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         {
             case R.id.attach:
                 selectImage();
+                status="1";
                 break;
 
             case R.id.Qbutton:
@@ -86,7 +85,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         Intent intent=new Intent();
         intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,IMG_REQUEST);
+        startActivityForResult(Intent.createChooser(intent,"select PDF"),IMG_REQUEST);
     }
 
     @Override
@@ -155,6 +154,12 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                 params.put("studentId",userId);
                 params.put("teacherId",teacherId);
              //   params.put("image",imageToString(bitmap));
+                if(status.equals("1"))
+                {
+                    params.put("name",textView.getText().toString().trim());
+                    params.put("image",imageToString(bitmap));
+                    params.put("status",status);
+                }
                 return params;
             }
         };
@@ -163,8 +168,52 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private String imageToString(Bitmap bitmap)
     {
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-       // bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        //bitmap.compress(Bitmap.CompressFormat.PDF,100,byteArrayOutputStream);
         byte[] imgBytes=byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imgBytes,Base64.DEFAULT);
     }
+   /* public void sendImage()
+    {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST,
+                defConstant.URL_Query,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.hide();
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            String Response=jsonObject.getString("message");
+                            Toast.makeText(Query.this,Response,Toast.LENGTH_LONG).show();
+                           // Intent i = new Intent(getApplicationContext(), TeacherDetail.class);
+                           // startActivity(i);
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.hide();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+               // params.put("content",qContent.getText().toString().trim());
+                //params.put("name",textView.getText().toString().trim());
+              //  params.put("studentId",userId);
+              //  params.put("teacherId",teacherId);
+                String status="1";
+                params.put("name",textView.getText().toString().trim());
+                params.put("image",imageToString(bitmap));
+                params.put("status",status);
+                return params;
+            }
+        };
+        MySingleton.getmInstance(Query.this).addToRequestQue(stringRequest);
+    }*/
 }

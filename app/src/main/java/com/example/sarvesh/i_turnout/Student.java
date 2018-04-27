@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 public class Student extends AppCompatActivity implements  View.OnClickListener {
     private TextView textCartItemCount;
-    private CardView getNotification, makeQuery, viewCourse, checkAttendance, changePassword;
+    private CardView getNotification, makeQuery, viewCourse, checkAttendance, changePassword,getMessage;
     private String mCartItemCount = "10";
     private TextView studentName;
     private ImageButton logout;
@@ -35,12 +35,13 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
         studentName = findViewById(R.id.studentName);
         studentName.setText(userdetails.get(SharedPrefManager.KEY_NAME));
 
-         getNotification=(CardView) findViewById(R.id.getnotification);
-         makeQuery=(CardView)findViewById(R.id.makequery);
-        viewCourse=(CardView)findViewById(R.id.viewcourses);
-         checkAttendance=(CardView)findViewById(R.id.checkattendance);
-        changePassword = (CardView) findViewById(R.id.change);
+         getNotification= findViewById(R.id.getnotification);
+         makeQuery=findViewById(R.id.makequery);
+        viewCourse=findViewById(R.id.viewcourses);
+         checkAttendance=findViewById(R.id.checkattendance);
+        changePassword = findViewById(R.id.change);
         logout=findViewById(R.id.logout);
+        getMessage=findViewById(R.id.sGetMessage);
         //add click listener to the class;
         logout.setOnClickListener(this);
          getNotification.setOnClickListener(this);
@@ -48,6 +49,7 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
         viewCourse.setOnClickListener(this);
         changePassword.setOnClickListener(this);
         makeQuery.setOnClickListener(this);
+        getMessage.setOnClickListener(this);
         //setContentView(R.layout.activity_student);
         TextView textView= (TextView) findViewById(R.id.getnotification1);
         textView.setText(mCartItemCount);
@@ -57,6 +59,10 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
     public void onClick(View v) {
         Intent in;
         switch (v.getId()) {
+            case R.id.sGetMessage:
+                in=new Intent(Student.this,MessageForStudent.class);
+                startActivity(in);
+                break;
             case R.id.makequery: in = new Intent(Student.this, TeacherDetail.class);
                 startActivity(in);
                 break;
@@ -73,9 +79,9 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
                 break;
             case R.id.change:
                 in = new Intent(Student.this, ChangePassword.class);
-
                 startActivity(in);
                 break;
+
             case R.id.logout:
                 sharedPrefManager.logoutUser();
                 finish();
