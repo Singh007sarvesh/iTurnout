@@ -68,8 +68,8 @@ public class MessageForStudent extends AppCompatActivity implements AdapterView.
                             {
                                 JSONObject o= array.getJSONObject(i);
                                 StudentMessageItem item=new StudentMessageItem(
-                                        o.getString("teacherName"),
-                                        o.getString("teacherId"),
+                                        o.getString("teacherName").substring(0).toUpperCase(),
+                                        o.getString("teacherId").substring(0).toUpperCase(),
                                         o.getString("date"),
                                         R.drawable.message,
                                         o.getString("id"),

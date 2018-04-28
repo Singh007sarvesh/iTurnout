@@ -19,6 +19,7 @@ import com.example.sarvesh.i_turnout.R;
 import com.example.sarvesh.i_turnout.RequestHandler;
 import com.example.sarvesh.i_turnout.TeacherQuery;
 import com.example.sarvesh.i_turnout.defConstant;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,12 +41,11 @@ public class TDispNotification extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_tdisp_notification);
         Intent in=getIntent();
         contentId=in.getStringExtra("contentId");
-        cid=in.getStringExtra("cid");
         studentId=in.getStringExtra("studentId");
       // Toast.makeText(getApplicationContext(),cid,Toast.LENGTH_SHORT).show();
         textView=findViewById(R.id.DNotification);
         floatingActionButton=findViewById(R.id.TDispQuery);
-        imageView=findViewById(R.id.imageView);
+        imageView=findViewById(R.id.imageDisp);
 
         loadData();
         floatingActionButton.setOnClickListener(this);
@@ -68,6 +68,7 @@ public class TDispNotification extends AppCompatActivity implements View.OnClick
                             //JSONArray array=jsonObject.getJSONArray("flag");
                             JSONObject jsonObject = new JSONObject(response);
                             textView.setText(jsonObject.getString("content"));
+                            Picasso.with(getApplicationContext()).load(jsonObject.getString("image")).into(imageView);
 
                            // Toast.makeText(getApplicationContext(), jsonObject.getString("content"), Toast.LENGTH_LONG).show();
 
@@ -100,7 +101,6 @@ public class TDispNotification extends AppCompatActivity implements View.OnClick
         Intent in=new Intent(TDispNotification.this,TeacherQuery.class);
        // in.putExtra("contentId",rowIt);
         in.putExtra("studentId",studentId);
-        in.putExtra("cid",cid);
         startActivity(in);
 
     }

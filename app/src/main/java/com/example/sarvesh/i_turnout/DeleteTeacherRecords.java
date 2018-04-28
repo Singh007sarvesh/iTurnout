@@ -1,16 +1,13 @@
 package com.example.sarvesh.i_turnout;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,22 +26,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DeleteTeacherRecords extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener{
-    List<DeleteTeacherItem> rowItems;
-    ListView mylistview;
+public class DeleteTeacherRecords extends AppCompatActivity implements View.OnClickListener{
+    private List<DeleteTeacherItem> rowItems = new ArrayList<>();;
+    private ListView myListView;
     private DeleteTeacherAdapter adapter;
     private FloatingActionButton floatingActionButton;
+    private SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_teacher_records);
-        rowItems = new ArrayList<>();
+       // rowItems = new ArrayList<>();
 
      //   for (int i = 0; i < 30; i++) {
         //    rowItems.add(new DeleteTeacherItem("Ajay Yadav","t123456ca","2016"));
       //  }
 
-        mylistview = findViewById(R.id.delteacherlist1);
+        myListView = findViewById(R.id.delteacherlist1);
         floatingActionButton=findViewById(R.id.delteacherrecords);
       //  adapter = new DeleteTeacherAdapter(getApplicationContext(),rowItems);
        // mylistview.setAdapter(adapter);
@@ -75,15 +73,15 @@ public class DeleteTeacherRecords extends AppCompatActivity implements SearchVie
                             {
                                 JSONObject o= array.getJSONObject(i);
                                 DeleteTeacherItem item=new DeleteTeacherItem(
-                                        o.getString("teacherName"),
-                                        o.getString("teacherId"),
+                                        o.getString("teacherName").toUpperCase(),
+                                        o.getString("teacherId").toUpperCase(),
                                         o.getString("date")
                                 );
 
                               rowItems.add(item);
                             }
                             adapter=new DeleteTeacherAdapter(getApplicationContext(),rowItems);
-                            mylistview.setAdapter(adapter);
+                            myListView.setAdapter(adapter);
                         }
                         catch (JSONException e)
                         {
@@ -102,21 +100,55 @@ public class DeleteTeacherRecords extends AppCompatActivity implements SearchVie
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //   Toast.makeText(getApplicationContext(),"hey111",Toast.LENGTH_LONG).show();
+        getMenuInflater().inflate(R.menu.menu_items, menu);
 
-        getMenuInflater().inflate(R.menu.menu_items,menu);
-        MenuItem menuItem=menu.findItem(R.id.action_search);
-        SearchView searchView=(SearchView) MenuItemCompat.getActionView(menuItem);
-        //   Toast.makeText(getApplicationContext(),"hey22",Toast.LENGTH_LONG).show();
+        final MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) myActionMenuItem.getActionView();
 
-        searchView.setOnQueryTextListener(this);
-        //   Toast.makeText(getApplicationContext(),"hey333",Toast.LENGTH_LONG).show();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (!searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                myActionMenuItem.collapseActionView();
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                final  List<DeleteTeacherItem> filtermodelist=filter(rowItems,newText);
+                adapter.setfilter(filtermodelist);
+                return true;
+            }
+        });
 
         return true;
     }
+    private List<DeleteTeacherItem> filter(List<DeleteTeacherItem> pl,String query)
+    {
+        query=query.toUpperCase();
+        final List<DeleteTeacherItem> filteredModeList=new ArrayList<>();
+        for (DeleteTeacherItem model:pl)
+        {
+             String text=model.getTeacherName().toUpperCase();
+            if (text.startsWith(query))
+            {
+                filteredModeList.add(model);
+            }
+        }
+        return filteredModeList;
+    }
 
-    @Override
+   /* @Override
     public boolean onQueryTextSubmit(String query) {
+        if(!searchView.isIconified())
+        {
+            searchView.setIconified(true);
+        }
+
         return false;
     }
 
@@ -130,18 +162,18 @@ public class DeleteTeacherRecords extends AppCompatActivity implements SearchVie
         //Log.d("Query", newText);
 
 
-        ArrayList<DeleteTeacherItem> searchRows = new ArrayList<>();
+        final List<DeleteTeacherItem> searchRows = new ArrayList<>();
 
         for (DeleteTeacherItem deleteTeacherItem : rowItems) {
-            String name = deleteTeacherItem.getTeacherName().toLowerCase();
-            if (name.contains(newText)) {
+            final String name = deleteTeacherItem.getTeacherName().toLowerCase();
+            if (name.startsWith(newText)) {
                 searchRows.add(deleteTeacherItem);
                 // Toast.makeText(getApplicationContext(),name,Toast.LENGTH_LONG).show();
             }
         }
         adapter.setFilter(searchRows);
         return true;
-    }
+    }*/
 
     public void deleteData()
     {

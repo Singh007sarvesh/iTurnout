@@ -37,7 +37,6 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
         userId = userDetails.get(SharedPrefManager.KEY_Id);
         Intent in=getIntent();
-        cid=in.getStringExtra("cid");
         studentId=in.getStringExtra("studentId");
         editText=findViewById(R.id.QTeacher);
         floatingActionButton=findViewById(R.id.TQButton);
@@ -59,7 +58,7 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
                         try {
                             JSONObject jsonObject=new JSONObject(response);
                             String Response=jsonObject.getString("message");
-                            Toast.makeText(TeacherQuery.this,Response,Toast.LENGTH_LONG).show();
+                           // Toast.makeText(TeacherQuery.this,Response,Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), TViewNotification.class);
                             startActivity(i);
                         }
@@ -83,7 +82,6 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
                 //params.put("name",textView.getText().toString().trim());
                 params.put("studentId",studentId);
                 params.put("teacherId",userId);
-                params.put("cid",cid);
                 //   params.put("image",imageToString(bitmap));
                 return params;
             }

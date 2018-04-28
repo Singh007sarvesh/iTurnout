@@ -13,8 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:id="@+id/delteacher"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:id="@+id/delTeacher"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentStart="true" />
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

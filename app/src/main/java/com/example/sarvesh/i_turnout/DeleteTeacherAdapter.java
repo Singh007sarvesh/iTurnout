@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteTeacherAdapter extends BaseAdapter {
-    Context context;
-    List<DeleteTeacherItem> rowItems;
+    private Context context;
+    private List<DeleteTeacherItem> rowItems;
 
     DeleteTeacherAdapter(Context context, List<DeleteTeacherItem> rowItems) {
         this.context = context;
@@ -45,7 +45,7 @@ public class DeleteTeacherAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DeleteTeacherAdapter.ViewHolder holder = null;
+       DeleteTeacherAdapter.ViewHolder holder ;
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -54,15 +54,9 @@ public class DeleteTeacherAdapter extends BaseAdapter {
             holder = new DeleteTeacherAdapter.ViewHolder();
 
             holder.studentName = convertView
-                    .findViewById(R.id.delteacher);
-
-
-            DeleteTeacherItem row_pos = rowItems.get(position);
-
-
-            holder.studentName.setText(row_pos.getTeacherName());
-
-
+                   .findViewById(R.id.delTeacher);
+           // DeleteTeacherItem row_pos = rowItems.get(position);
+            holder.studentName.setText(rowItems.get(position).getTeacherName());
 
             convertView.setTag(holder);
         } else {
@@ -71,7 +65,7 @@ public class DeleteTeacherAdapter extends BaseAdapter {
 
         return convertView;
     }
-    public void setFilter(List<DeleteTeacherItem> newList)
+    public void setfilter(List<DeleteTeacherItem> newList)
     {
         //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
         rowItems=new ArrayList<>();

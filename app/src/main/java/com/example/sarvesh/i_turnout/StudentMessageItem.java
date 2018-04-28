@@ -26,7 +26,6 @@ public class StudentMessageItem {
     }
 
     public String getUserId() {
-        userId=userId+"\t\t"+date;
         return userId;
     }
 

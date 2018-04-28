@@ -171,7 +171,9 @@
             android:label="Message"
             android:parentActivityName=".Student"
             android:theme="@style/customTheme" />
-        <activity android:name=".StudentGetMessage"></activity>
+        <activity android:name=".StudentGetMessage"
+            android:label="Message Detail"
+            android:theme="@style/customTheme"></activity>
     </application>
 
 </manifest>

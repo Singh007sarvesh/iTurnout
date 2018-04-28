@@ -6,12 +6,15 @@
 
     <ImageView
         android:id="@+id/sSetIcon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:contentDescription="desc"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/cerclebackgroundpurple"
+        android:contentDescription="@string/desc"
+        android:layout_marginTop="17dp"
         android:paddingLeft="5dp"
         android:paddingRight="10dp"
-        android:background="@drawable/cerclebackgroundpurple"/>
+        android:paddingStart="5dp"
+        android:paddingEnd="10dp" />
     <TextView
         android:id="@+id/studentMessageText"
         android:layout_width="wrap_content"
@@ -20,19 +23,27 @@
         android:paddingBottom="10dp"
         android:textSize="20sp"
         android:layout_toRightOf="@id/tseticon"
-        android:layout_marginLeft="80dp"
-        android:textColor="@color/colorPrimary"/>
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_toEndOf="@id/tseticon"
+        android:layout_marginStart="50dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/messageListDate"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/sSetIcon"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="40dp"
-        />
-
-
+        android:textSize="15sp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="50dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="15sp"
+        android:id="@+id/studentGetMessageDate"
+        android:layout_marginLeft="200dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginStart="200dp" />
 
 </RelativeLayout>

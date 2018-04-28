@@ -2,8 +2,8 @@ package com.example.sarvesh.i_turnout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -14,11 +14,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.sarvesh.i_turnout.Teacher.TViewAttendance;
-import com.example.sarvesh.i_turnout.Teacher.TViewAttendanceRowItem;
 import com.example.sarvesh.i_turnout.Teacher.TeacherDetailAdapter;
 import com.example.sarvesh.i_turnout.Teacher.TeacherDetailRowItem;
-import com.example.sarvesh.i_turnout.Teacher.TviewAttendanceCustomAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,8 +67,8 @@ public class TeacherDetail extends AppCompatActivity implements AdapterView.OnIt
                             {
                                 JSONObject o= array.getJSONObject(i);
                                 TeacherDetailRowItem item=new TeacherDetailRowItem(
-                                        o.getString("teacherName"),
-                                        o.getString("teacherId")
+                                        o.getString("teacherName").substring(0).toUpperCase(),
+                                        o.getString("teacherId").substring(0).toUpperCase()
                                 );
                                 rowItems.add(item);
                             }

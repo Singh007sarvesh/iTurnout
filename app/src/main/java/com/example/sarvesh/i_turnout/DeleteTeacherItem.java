@@ -14,7 +14,7 @@ public class DeleteTeacherItem {
     }
 
     public String getTeacherName() {
-        teacherName=teacherName+"\n\n"+teacherId+"\n\n"+date;
+
         return teacherName;
     }
 

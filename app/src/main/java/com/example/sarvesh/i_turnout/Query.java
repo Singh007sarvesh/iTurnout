@@ -83,9 +83,9 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private void selectImage()
     {
         Intent intent=new Intent();
-        intent.setType("application/pdf");
+        intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"select PDF"),IMG_REQUEST);
+        startActivityForResult(Intent.createChooser(intent,"select JPEG"),IMG_REQUEST);
     }
 
     @Override
@@ -149,10 +149,12 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
-                params.put("content",qContent.getText().toString().trim());
+
                 //params.put("name",textView.getText().toString().trim());
-                params.put("studentId",userId);
+
                 params.put("teacherId",teacherId);
+                params.put("content",qContent.getText().toString().trim());
+                params.put("studentId",userId);
              //   params.put("image",imageToString(bitmap));
                 if(status.equals("1"))
                 {
@@ -160,6 +162,8 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                     params.put("image",imageToString(bitmap));
                     params.put("status",status);
                 }
+                else
+                    status="0";
                 return params;
             }
         };
@@ -168,7 +172,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private String imageToString(Bitmap bitmap)
     {
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        //bitmap.compress(Bitmap.CompressFormat.PDF,100,byteArrayOutputStream);
+       // bitmap.compress(Bitmap.CompressFormat.JPEG,30,byteArrayOutputStream);
         byte[] imgBytes=byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imgBytes,Base64.DEFAULT);
     }

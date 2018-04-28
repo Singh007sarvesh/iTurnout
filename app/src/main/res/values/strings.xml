@@ -113,5 +113,10 @@
     <string name="submit">Submit</string>
     <string name="search">Search..</string>
     <string name="search1">Search...</string>
+    <string name="desc1">desc</string>
+    <string name="ttxt1">ttxt</string>
+    <string name="desc2">desc</string>
+    <string name="txt3">txt</string>
+    <string name="desc">desc</string>
 
 </resources>

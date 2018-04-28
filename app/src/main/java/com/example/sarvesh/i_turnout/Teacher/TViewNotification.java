@@ -81,13 +81,11 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
                             {
                                 JSONObject o= array.getJSONObject(i);
                                 TViewNotificationItem item=new TViewNotificationItem(
-                                       o.getString("studentName"),
-                                        o.getString("studentId"),
+                                       o.getString("studentName").substring(0).toUpperCase(),
+                                        o.getString("studentId").substring(0).toUpperCase(),
                                         R.drawable.message,
                                         o.getString("date"),
-                                        o.getString("id"),
-                                        o.getString("cid")
-
+                                        o.getString("id")
                                 );
                                 rowItems.add(item);
                             }
@@ -125,7 +123,6 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
 
         Intent in=new Intent(TViewNotification.this,TDispNotification.class);
         in.putExtra("contentId",rowItems.get(position).getNId());
-        in.putExtra("cid",rowItems.get(position).getCid());
         in.putExtra("studentId",rowItems.get(position).getId());
         startActivity(in);
 

@@ -1,15 +1,18 @@
 package com.example.sarvesh.i_turnout;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Window;
-import android.view.WindowManager;
-public class splash extends Activity {
+import android.widget.ProgressBar;
+
+public class splash extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT=2000;
+    private ProgressBar progressBar;
+    private int progressStatus=0;
+    private Handler handler=new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -24,5 +27,6 @@ public class splash extends Activity {
                 finish();
             }
         },SPLASH_TIME_OUT);
+
     }
 }

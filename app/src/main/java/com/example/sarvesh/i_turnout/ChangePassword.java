@@ -9,13 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.sarvesh.i_turnout.Teacher.Teacher;
-
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,18 +46,18 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
         progressDialog = new ProgressDialog(this);
 
         changesubmit.setOnClickListener(this);
-        Toast.makeText(getApplicationContext(),userid,Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(),userid,Toast.LENGTH_LONG).show();
 
 
     }
 
     public void registerUser(){
 
-        final String changeold = editTextold.getText().toString().trim();
-        final String changenew = editTextnew.getText().toString().trim();
-        final String changeconfirm = editTextconfirm.getText().toString().trim();
+        final String changeOld = editTextold.getText().toString().trim();
+        final String changeNew = editTextnew.getText().toString().trim();
+        final String changeConfirm = editTextconfirm.getText().toString().trim();
 
-        if (changeold.length()>4 && changenew.length()>4 && changeconfirm.length()>4 ) {
+        if (changeOld.length()>4 && changeNew.length()>4 && changeConfirm.length()>4 ) {
             progressDialog.setMessage("Changing...");
             progressDialog.show();
 
@@ -89,9 +88,9 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
                     params.put("userid", userid);
-                    params.put("changeold", changeold);
-                    params.put("changenew", changenew);
-                    params.put("changeconfirm", changeconfirm);
+                    params.put("changeold", changeOld);
+                    params.put("changenew", changeNew);
+                    params.put("changeconfirm", changeConfirm);
                     return params;
                 }
             };

@@ -6,33 +6,42 @@
 
     <ImageView
         android:id="@+id/tseticon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:contentDescription="desc"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/cerclebackgroundpurple"
+        android:contentDescription="@string/desc1"
         android:paddingLeft="5dp"
         android:paddingRight="10dp"
-        android:background="@drawable/cerclebackgroundpurple"/>
+        android:layout_marginTop="17dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="10dp" />
     <TextView
         android:id="@+id/tnotification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ttxt"
-        android:layout_marginTop="1dp"
-        android:paddingBottom="10dp"
+        android:layout_marginTop="6dp"
         android:textSize="20sp"
-        android:layout_toRightOf="@id/tseticon"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorPrimary"/>
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/colorPrimary" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notificationId"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="13sp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="40dp"
+
+         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/vDate"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/tseticon"
-        android:layout_marginLeft="50dp"
+        android:textSize="13sp"
+        android:layout_marginLeft="250dp"
         android:layout_marginTop="40dp"
-        />
+       />
 
 
 
