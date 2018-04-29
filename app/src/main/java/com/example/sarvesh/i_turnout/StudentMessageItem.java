@@ -3,18 +3,18 @@ package com.example.sarvesh.i_turnout;
 public class StudentMessageItem {
     private String userName;
     private String userId;
-    private String date;
     private int picture;
+    private String date;
     private String qId;
-    private String cid;
 
-    public StudentMessageItem(String userName,String userId,String date, int picture,String qId,String cid) {
+
+    public StudentMessageItem(String userName,String userId, int picture,String date,String qId) {
         this.userName=userName;
         this.userId=userId;
-        this.date=date;
         this.picture = picture;
+        this.date=date;
         this.qId=qId;
-        this.cid=cid;
+
     }
 
     public String getUserName() {
@@ -57,11 +57,4 @@ public class StudentMessageItem {
         this.qId = qId;
     }
 
-    public String getCid() {
-        return cid;
-    }
-
-    public void setCid(String cid) {
-        this.cid = cid;
-    }
 }

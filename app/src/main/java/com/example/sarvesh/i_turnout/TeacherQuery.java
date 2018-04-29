@@ -47,7 +47,6 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Wait...");
         progressDialog.show();
-        //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
         StringRequest stringRequest=new StringRequest(Request.Method.POST,
                 defConstant.URL_TeacherQuery,
 
@@ -58,7 +57,7 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
                         try {
                             JSONObject jsonObject=new JSONObject(response);
                             String Response=jsonObject.getString("message");
-                           // Toast.makeText(TeacherQuery.this,Response,Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),Response,Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), TViewNotification.class);
                             startActivity(i);
                         }
@@ -66,7 +65,6 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
                         {
                             e.printStackTrace();
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -79,10 +77,8 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
                params.put("content",editText.getText().toString().trim());
-                //params.put("name",textView.getText().toString().trim());
-                params.put("studentId",studentId);
-                params.put("teacherId",userId);
-                //   params.put("image",imageToString(bitmap));
+                params.put("receiverId",studentId);
+                params.put("senderId",userId);
                 return params;
             }
         };

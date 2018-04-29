@@ -1,15 +1,12 @@
 package com.example.sarvesh.i_turnout;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -36,7 +33,7 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
         studentName.setText(userdetails.get(SharedPrefManager.KEY_NAME));
 
          getNotification= findViewById(R.id.getnotification);
-         makeQuery=findViewById(R.id.makequery);
+
         viewCourse=findViewById(R.id.viewcourses);
          checkAttendance=findViewById(R.id.checkattendance);
         changePassword = findViewById(R.id.change);
@@ -48,7 +45,7 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
           checkAttendance.setOnClickListener(this);
         viewCourse.setOnClickListener(this);
         changePassword.setOnClickListener(this);
-        makeQuery.setOnClickListener(this);
+
         getMessage.setOnClickListener(this);
         //setContentView(R.layout.activity_student);
         TextView textView= (TextView) findViewById(R.id.getnotification1);
@@ -61,9 +58,6 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
         switch (v.getId()) {
             case R.id.sGetMessage:
                 in=new Intent(Student.this,MessageForStudent.class);
-                startActivity(in);
-                break;
-            case R.id.makequery: in = new Intent(Student.this, TeacherDetail.class);
                 startActivity(in);
                 break;
             case R.id.getnotification : in=new Intent(Student.this,ViewNotification.class);

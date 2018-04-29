@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sarvesh.i_turnout.R;
 import com.example.sarvesh.i_turnout.RequestHandler;
+import com.example.sarvesh.i_turnout.SharedPrefManager;
 import com.example.sarvesh.i_turnout.TeacherQuery;
 import com.example.sarvesh.i_turnout.defConstant;
 import com.squareup.picasso.Picasso;
@@ -34,21 +35,31 @@ public class TDispNotification extends AppCompatActivity implements View.OnClick
     private TextView textView;
     private static String cid="";
     private static String studentId="";
+    private static String userId="";
     private FloatingActionButton floatingActionButton;
+    private SharedPrefManager sharedPrefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tdisp_notification);
         Intent in=getIntent();
         contentId=in.getStringExtra("contentId");
-        studentId=in.getStringExtra("studentId");
-      // Toast.makeText(getApplicationContext(),cid,Toast.LENGTH_SHORT).show();
+        studentId=in.getStringExtra("receiverId");
         textView=findViewById(R.id.DNotification);
         floatingActionButton=findViewById(R.id.TDispQuery);
         imageView=findViewById(R.id.imageDisp);
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
+        userId = userDetails.get(SharedPrefManager.KEY_Id);
+        if(userId.equalsIgnoreCase(studentId))
+        {
+           floatingActionButton.setVisibility(View.GONE);
+          //  floatingActionButton.setEnabled(false);
+        }
+        else
+        floatingActionButton.setOnClickListener(this);
 
         loadData();
-        floatingActionButton.setOnClickListener(this);
     }
     public void loadData()
     {
@@ -60,18 +71,12 @@ public class TDispNotification extends AppCompatActivity implements View.OnClick
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Toast.makeText(getApplicationContext(),userid,Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
 
                         try {
-                           // JSONObject jsonObject=new JSONObject(response.toString());
-                            //JSONArray array=jsonObject.getJSONArray("flag");
                             JSONObject jsonObject = new JSONObject(response);
                             textView.setText(jsonObject.getString("content"));
                             Picasso.with(getApplicationContext()).load(jsonObject.getString("image")).into(imageView);
-
-                           // Toast.makeText(getApplicationContext(), jsonObject.getString("content"), Toast.LENGTH_LONG).show();
-
                         }
                         catch (JSONException e)
                         {
@@ -97,7 +102,7 @@ public class TDispNotification extends AppCompatActivity implements View.OnClick
         RequestHandler.getInstance(this).addToRequestQueue(request);
     }
 
-    public void sendDate(){
+    public void sendData(){
         Intent in=new Intent(TDispNotification.this,TeacherQuery.class);
        // in.putExtra("contentId",rowIt);
         in.putExtra("studentId",studentId);
@@ -107,8 +112,9 @@ public class TDispNotification extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if(v==floatingActionButton)
-            sendDate();
+       if(v==floatingActionButton) {
+           sendData();
+       }
 
     }
 }

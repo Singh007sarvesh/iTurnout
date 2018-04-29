@@ -59,8 +59,8 @@ public class StudentMessageAdapter extends BaseAdapter{
             holder.name =  convertView
                     .findViewById(R.id.studentMessageText);
             holder.setIcon= convertView.findViewById(R.id.sSetIcon);
-            holder.tid=convertView.findViewById(R.id.messageListDate);
-            holder.sDate=convertView.findViewById(R.id.studentGetMessageDate);
+           holder.tid=convertView.findViewById(R.id.messageListDate);
+           holder.sDate=convertView.findViewById(R.id.studentGetMessageDate);
 
             StudentMessageItem row_pos = rowItems.get(position);
 

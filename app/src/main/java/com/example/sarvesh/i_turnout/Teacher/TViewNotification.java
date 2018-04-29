@@ -42,7 +42,9 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
     private static String userId="";
     private List<TViewNotificationItem> rowItems;
     private ListView myListView;
-
+    private String str="";
+    private String id2="";
+    private String contentId="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +54,11 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
         userId = userDetails.get(SharedPrefManager.KEY_Id);
 
         rowItems = new ArrayList< TViewNotificationItem >();
-        myListView = (ListView) findViewById(R.id.viewNotification);
-        TViewNotificationCusAdapter adapter = new TViewNotificationCusAdapter(this, rowItems);
-        myListView.setAdapter(adapter);
-
-        myListView.setOnItemClickListener(this);
+        myListView =  findViewById(R.id.viewNotification);
+        //TViewNotificationCusAdapter adapter = new TViewNotificationCusAdapter(this, rowItems);
+       // myListView.setAdapter(adapter);
         loadData();
+        myListView.setOnItemClickListener(this);
 
     }
 
@@ -71,23 +72,41 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Toast.makeText(getApplicationContext(),userid,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),userId,Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+                      //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
 
                         try {
-                            JSONObject jsonObject=new JSONObject(response.toString());
+                            JSONObject jsonObject=new JSONObject(response);
                             JSONArray array=jsonObject.getJSONArray("flag");
+                         //   Toast.makeText(getApplicationContext(),"hey.",Toast.LENGTH_LONG).show();
                             for(int i=0;i<array.length();i++)
                             {
+
                                 JSONObject o= array.getJSONObject(i);
+                                //student=o.getString("receiverId");
+                              //  Toast.makeText(getApplicationContext(),array.length(),Toast.LENGTH_LONG).show();
+
+                                if(userId.equalsIgnoreCase(o.getString("senderId")))
+                                {
+                                   // Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
+                                    str="Me";
+                                    id2=o.getString("senderId").toUpperCase();
+                                }
+                                else {
+                                    str=o.getString("senderName").toUpperCase();
+                                    id2=o.getString("senderId").toUpperCase();
+                                }
+
                                 TViewNotificationItem item=new TViewNotificationItem(
-                                       o.getString("studentName").substring(0).toUpperCase(),
-                                        o.getString("studentId").substring(0).toUpperCase(),
+                                        str,
+                                        id2,
                                         R.drawable.message,
                                         o.getString("date"),
                                         o.getString("id")
                                 );
                                 rowItems.add(item);
+                                //Toast.makeText(getApplicationContext(),"hey...",Toast.LENGTH_LONG).show();
                             }
                             TViewNotificationCusAdapter adapter=new TViewNotificationCusAdapter(getApplicationContext(),rowItems);
                             myListView.setAdapter(adapter);
@@ -113,6 +132,7 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
             }
 
         };
+      //  Toast.makeText(getApplicationContext(),"hey.....",Toast.LENGTH_LONG).show();
         RequestHandler.getInstance(this).addToRequestQueue(request);
 
     }
@@ -120,10 +140,9 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
-
         Intent in=new Intent(TViewNotification.this,TDispNotification.class);
-        in.putExtra("contentId",rowItems.get(position).getNId());
-        in.putExtra("studentId",rowItems.get(position).getId());
+        in.putExtra("contentId",rowItems.get(position).getQueryId());
+        in.putExtra("receiverId",rowItems.get(position).getId());
         startActivity(in);
 
     }

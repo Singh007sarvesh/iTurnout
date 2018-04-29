@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class Query extends AppCompatActivity implements View.OnClickListener{
     private EditText qContent;
-    private final int IMG_REQUEST=1024;
+    private final int IMG_REQUEST=1;
     private Button qButton;
     private ImageButton attach;
     private Bitmap bitmap;
@@ -72,7 +72,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         {
             case R.id.attach:
                 selectImage();
-                status="1";
+                //status="1";
                 break;
 
             case R.id.Qbutton:
@@ -85,15 +85,16 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         Intent intent=new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"select JPEG"),IMG_REQUEST);
+        startActivityForResult(Intent.createChooser(intent,"select image"),IMG_REQUEST);
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==IMG_REQUEST && resultCode==RESULT_OK && data!=null)
+        if(requestCode==IMG_REQUEST && resultCode==RESULT_OK && data!=null && data.getData()!=null)
         {
-            Uri path=data.getData();
+           Uri  path=data.getData();
             Cursor filePath=
                     getContentResolver().query(path,null,null,null,null);
             int nameIndex=filePath.getColumnIndex(OpenableColumns.DISPLAY_NAME);
@@ -103,10 +104,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
             textSize.setText(Long.toString(filePath.getLong(sizeIndex)));
             try
             {
-
-
-                bitmap=MediaStore.Images.Media.getBitmap(getContentResolver(),path);
-
+                bitmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(),path);
             }
             catch (IOException e)
             {
@@ -116,20 +114,19 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     }
     private void uploadImage()
     {
+        final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Wait...");
         progressDialog.show();
-      //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
         StringRequest stringRequest=new StringRequest(Request.Method.POST,
                 defConstant.URL_Query,
-
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.hide();
                         try {
                             JSONObject jsonObject=new JSONObject(response);
-                            String Response=jsonObject.getString("message");
-                            Toast.makeText(Query.this,Response,Toast.LENGTH_LONG).show();
+                            String Response=(String) jsonObject.getString("message");
+                            Toast.makeText(getApplicationContext(),Response,Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), TeacherDetail.class);
                             startActivity(i);
                         }
@@ -137,7 +134,6 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                         {
                             e.printStackTrace();
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -149,21 +145,15 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
-
-                //params.put("name",textView.getText().toString().trim());
-
                 params.put("teacherId",teacherId);
                 params.put("content",qContent.getText().toString().trim());
                 params.put("studentId",userId);
-             //   params.put("image",imageToString(bitmap));
-                if(status.equals("1"))
-                {
+
                     params.put("name",textView.getText().toString().trim());
                     params.put("image",imageToString(bitmap));
                     params.put("status",status);
-                }
-                else
-                    status="0";
+
+
                 return params;
             }
         };
@@ -172,9 +162,9 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private String imageToString(Bitmap bitmap)
     {
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-       // bitmap.compress(Bitmap.CompressFormat.JPEG,30,byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG,30,byteArrayOutputStream);
         byte[] imgBytes=byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(imgBytes,Base64.DEFAULT);
+        return Base64.encodeToString(imgBytes, Base64.DEFAULT);
     }
    /* public void sendImage()
     {
