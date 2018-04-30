@@ -5,74 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginLeft="-16dp"
-            android:layout_marginStart="-16dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/back_button"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:background="#0fff"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_arrow_back_black_24dp"
-                     />
-
-                <TextView
-                    android:id="@+id/title_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_toRightOf="@+id/back_button"
-                    android:gravity="left"
-                    android:paddingLeft="16dp"
-                    android:text="Make Attendance"
-                    android:textColor="#fff"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    />
-
-                <EditText
-                    android:id="@+id/search_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_toLeftOf="@+id/search_button"
-                    android:layout_toRightOf="@+id/back_button"
-                    android:hint="Search..."
-                    android:paddingLeft="16dp"
-                    android:textSize="18sp"
-                    android:paddingRight="16dp"
-                    android:textColor="#FFF"
-                    android:textColorHint="#5FFF"
-                    android:visibility="gone"
-                    />
-
-                <ImageButton
-                    android:id="@+id/search_button"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:background="#0fff"
-                    android:padding="12dp"
-                    android:scaleType="centerCrop"
-                    android:src="@android:drawable/ic_menu_search" />
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
 
     <ListView
         android:id="@+id/mattendance"
@@ -83,21 +16,18 @@
         android:layout_marginTop="10dp"
         android:layout_weight="1" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/attendance2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/colorPrimaryDark"
             android:src="@drawable/ic_send_black_24dp"
             android:textColor="#fff" />
-    </LinearLayout>
+
 
 </LinearLayout>

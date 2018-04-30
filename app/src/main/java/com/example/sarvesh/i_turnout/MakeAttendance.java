@@ -2,34 +2,21 @@ package com.example.sarvesh.i_turnout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.Log;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.sarvesh.i_turnout.Moderator.Admin;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,18 +27,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MakeAttendance extends AppCompatActivity implements TextWatcher,View.OnClickListener{
-    ListView listview;
-    List<AttendanceItemRow> rowItems;
-    AttendanceCustomAdapter adapter;
-    List<String> absent,present;
+public class MakeAttendance extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener {
+    private ListView listview;
+    private List<AttendanceItemRow> rowItems;
+    private AttendanceCustomAdapter adapter;
+    private List<String> absent;
     private static String subjectId;
-    private EditText etSearchField;
-    private TextView tvTitle;
-    private ImageButton bBack, bSearch;
-    private boolean isSearching = false;
     private FloatingActionButton floatingActionButton;
-    private CheckBox checkBox;
+
     static String presence="0";
 
     @Override
@@ -60,86 +43,20 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher,Vie
         setContentView(R.layout.activity_make_attendance);
         Intent in=getIntent();
         subjectId=in.getStringExtra("subjectId");
-        initViews();
-        bBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        bSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isSearching) {
-                    etSearchField.setVisibility(View.GONE);
-                    tvTitle.setVisibility(View.VISIBLE);
-                } else {
-                    tvTitle.setVisibility(View.GONE);
-                    etSearchField.setVisibility(View.VISIBLE);
-                }
-                isSearching = !isSearching;
-            }
-        });
         rowItems = new ArrayList<>();
         listview = findViewById(R.id.mattendance);
         floatingActionButton=findViewById(R.id.attendance2);
-        checkBox=findViewById(R.id.check1);
+
         absent = new ArrayList<>();
-        present = new ArrayList<>();
-        adapter = new AttendanceCustomAdapter(getApplicationContext(), rowItems , absent);
-        listview.setAdapter(adapter);
-        etSearchField.addTextChangedListener(this);
+       // Toast.makeText(getApplicationContext(),absent.,Toast.LENGTH_SHORT).show();
         loadData();
         floatingActionButton.setOnClickListener(this);
-
-
-
-    }
-    private void initViews() {
-        tvTitle = findViewById(R.id.title_text);
-        etSearchField = findViewById(R.id.search_field);
-        bBack = findViewById(R.id.back_button);
-        bSearch = findViewById(R.id.search_button);
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-        if(!TextUtils.isEmpty(s)) {
-            String newText = s.toString().toLowerCase();
-            //Log.d("Query", newText);
-
-            try {
-                ArrayList<AttendanceItemRow> searchRows = new ArrayList<>();
-                for (AttendanceItemRow attendanceItemRow : rowItems) {
-                    String name = attendanceItemRow.getRollNumber().toLowerCase();
-                    if (name.contains(newText))
-                        searchRows.add(attendanceItemRow);
-                }
-                adapter.setFilter(searchRows);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }else{
-            adapter.setFilter(rowItems);
-        }
     }
     public void loadData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.show();
-
         StringRequest request=new StringRequest(Request.Method.POST,
                 defConstant.URL_ATTENDANCE,
                 new Response.Listener<String>() {
@@ -159,7 +76,7 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher,Vie
                                 );
                                 rowItems.add(item);
                             }
-                            AttendanceCustomAdapter adapter=new AttendanceCustomAdapter(getApplicationContext(),rowItems, absent);
+                           adapter=new AttendanceCustomAdapter(getApplicationContext(),rowItems, absent);
                             listview.setAdapter(adapter);
                         }
                         catch (JSONException e)
@@ -195,14 +112,15 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher,Vie
                     public void onResponse(String response) {
                         progressDialog.hide();
                        // Toast.makeText(getApplicationContext(),String.valueOf(rowItems.get(0)),Toast.LENGTH_SHORT).show();
-                        try {
+                       try {
+                            //Log.("tagconvertstr", "["+response+"]");
                             JSONObject jsonObject = new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                           Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), AssignedCourses.class);
                             startActivity(i);
-                        } catch (JSONException e) {
+                       } catch (JSONException e) {
                             e.printStackTrace();
-                        }
+                       }
                     }
                 },
                 new Response.ErrorListener() {
@@ -234,9 +152,55 @@ public class MakeAttendance extends AppCompatActivity implements TextWatcher,Vie
     @Override
     public void onClick(View v) {
         if(v== floatingActionButton){
+//            Toast.makeText(getApplicationContext(),absent.size(),Toast.LENGTH_SHORT).show();
             sendData();
+           /* for (int i=0;i<rowItems.size();i++) {
+                Toast.makeText(getApplicationContext(),String.valueOf(rowItems.get(i).getRollNumber()),Toast.LENGTH_SHORT).show();
+            }
+            for (int i=0;i<absent.size();i++) {
+                Toast.makeText(getApplicationContext(),absent.get(i).toString(),Toast.LENGTH_SHORT).show();
+            }*/
 
         }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //   Toast.makeText(getApplicationContext(),"hey111",Toast.LENGTH_LONG).show();
+
+        getMenuInflater().inflate(R.menu.menu_item2,menu);
+        MenuItem menuItem=menu.findItem(R.id.action_search2);
+        SearchView searchView=(SearchView) menuItem.getActionView();
+        //   Toast.makeText(getApplicationContext(),"hey22",Toast.LENGTH_LONG).show();
+
+        searchView.setOnQueryTextListener(this);
+        //   Toast.makeText(getApplicationContext(),"hey333",Toast.LENGTH_LONG).show();
+
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        newText = newText.toString().toLowerCase();
+        //Log.d("Query", newText);
+        ArrayList<AttendanceItemRow> searchRows = new ArrayList<>();
+
+        for (AttendanceItemRow attendanceItemRow: rowItems) {
+            String name = attendanceItemRow.getStudentName().toLowerCase();
+            if (name.startsWith(newText)){
+                searchRows.add(attendanceItemRow);
+                // Toast.makeText(getApplicationContext(),name,Toast.LENGTH_LONG).show();
+            }
+        }
+        adapter.setfilter(searchRows);
+        return true;
+
     }
 }
 

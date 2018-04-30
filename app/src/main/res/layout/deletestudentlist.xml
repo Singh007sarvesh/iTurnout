@@ -13,13 +13,32 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:id="@+id/delstudent"
+        android:id="@+id/delStudentData"
         android:textColor="@color/colorPrimaryDark"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/studentDeleteData"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="13sp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="40dp"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteStudentDate1"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="13sp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="40dp"
+        />
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/check2"
+        android:id="@+id/studentCheck2"
         />
 </RelativeLayout>

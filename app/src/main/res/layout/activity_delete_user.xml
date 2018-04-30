@@ -30,7 +30,7 @@
                 android:textStyle="bold"/>
 
             <Button
-                android:id="@+id/deletestudentdetails"
+                android:id="@+id/deleteStudentDetails1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -44,7 +44,7 @@
                 android:textStyle="bold"
                 />
             <Button
-                android:id="@+id/delteacherrecord1"
+                android:id="@+id/deleteTeacherRecord1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Delete Teachers Records"

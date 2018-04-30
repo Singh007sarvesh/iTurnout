@@ -6,19 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteStudentAdapter extends BaseAdapter {
-    Context context;
-    List<DeleteItemforStudent> rowItems;
 
-    DeleteStudentAdapter(Context context, List<DeleteItemforStudent> rowItems) {
+    private Context context;
+    private List<DeleteStudentItem> rowItems;
+    private List<String> deleteStudent;
+
+    DeleteStudentAdapter(Context context, List<DeleteStudentItem> rowItems, List<String> deleteStudent) {
         this.context = context;
         this.rowItems = rowItems;
+        this.deleteStudent=deleteStudent;
     }
 
     @Override
@@ -36,45 +39,52 @@ public class DeleteStudentAdapter extends BaseAdapter {
         return rowItems.indexOf(getItem(position));
     }
 
-    /* private view holder class */
     public class ViewHolder {
 
         TextView studentName;
-
+        TextView studentId;
+        TextView sDate;
+        CheckBox StudentCheckBox;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        DeleteStudentAdapter.ViewHolder holder = null;
+        final DeleteStudentAdapter.ViewHolder holder;
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.deletestudentlist, null);
             holder = new DeleteStudentAdapter.ViewHolder();
-
-            holder.studentName = convertView
-                    .findViewById(R.id.delstudent);
-
-
-            DeleteItemforStudent row_pos = rowItems.get(position);
-
-
-            holder.studentName.setText(row_pos.getStudentName());
-
-
+            holder.studentName= convertView
+                    .findViewById(R.id.delStudentData);
+            holder.studentId=convertView.findViewById(R.id.studentDeleteData);
+            holder.sDate=convertView.findViewById(R.id.deleteStudentDate1);
+            holder.StudentCheckBox=convertView.findViewById(R.id.studentCheck2);
+            //  rowP = rowItems.get(position);
+            // DeleteTeacherItem row_pos = rowItems.get(position);
+            holder.studentName.setText(rowItems.get(position).getStudentName());
+            holder.studentId.setText(rowItems.get(position).getStudentId());
+            holder.sDate.setText(rowItems.get(position).getsDate());
 
             convertView.setTag(holder);
         } else {
             holder = (DeleteStudentAdapter.ViewHolder) convertView.getTag();
         }
+        final DeleteStudentAdapter.ViewHolder finalHolder = holder;
+        holder.StudentCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(finalHolder.StudentCheckBox.isChecked());
+                deleteStudent.add(finalHolder.studentId.getText().toString());
 
+            }
+        });
         return convertView;
     }
-    public void setFilter(List<DeleteItemforStudent> newList)
+    public void setfilter(List<DeleteStudentItem> newList)
     {
-      //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
+        //  Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_LONG).show();
         rowItems=new ArrayList<>();
         rowItems.addAll(newList);
         notifyDataSetChanged();

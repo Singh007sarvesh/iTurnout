@@ -67,7 +67,14 @@ public class AttendanceTeacher extends AppCompatActivity {
                             totalClass3=Integer.parseInt(res1);
                             totalClass2=Integer.parseInt(res2);
                             pre=(totalClass3*100);
-                            pre=(pre/totalClass);
+                            try
+                            {
+                                pre=(pre/totalClass);
+                            }
+                            catch(ArithmeticException e)
+                            {
+                                e.printStackTrace();
+                            }
                             String s=String.valueOf(totalClass);
                             String s1=String.valueOf(totalClass3);
                             String s2=String.valueOf(totalClass2);

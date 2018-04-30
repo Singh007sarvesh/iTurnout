@@ -2,11 +2,8 @@ package com.example.sarvesh.i_turnout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +12,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,12 +44,6 @@ public class AttendanceInPerticuSubject extends AppCompatActivity  {
 
 
     }
-    public void sendNotification()
-    {
-
-        Toast.makeText(getApplicationContext(),"you have laess attenadnce",Toast.LENGTH_LONG).show();
-
-    }
     public void getAttendance()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
@@ -82,10 +72,7 @@ public class AttendanceInPerticuSubject extends AppCompatActivity  {
                             pre=(totalClass3*100);
                             try {
                                 pre = (pre / totalClass);
-                                if(pre<81)
-                                {
-                                    sendNotification();
-                                }
+
                             }
                             catch (ArithmeticException e)
                             {

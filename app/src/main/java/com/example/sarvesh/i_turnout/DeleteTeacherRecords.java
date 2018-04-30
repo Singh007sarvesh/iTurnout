@@ -1,6 +1,7 @@
 package com.example.sarvesh.i_turnout;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.Moderator.DeleteUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,11 +29,12 @@ import java.util.List;
 import java.util.Map;
 
 public class DeleteTeacherRecords extends AppCompatActivity implements View.OnClickListener{
-    private List<DeleteTeacherItem> rowItems = new ArrayList<>();;
+    private List<DeleteTeacherItem> rowItems = new ArrayList<>();
     private ListView myListView;
     private DeleteTeacherAdapter adapter;
     private FloatingActionButton floatingActionButton;
     private SearchView searchView;
+    private List<String> deleteTeacher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +45,11 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
         //    rowItems.add(new DeleteTeacherItem("Ajay Yadav","t123456ca","2016"));
       //  }
 
-        myListView = findViewById(R.id.delteacherlist1);
-        floatingActionButton=findViewById(R.id.delteacherrecords);
+        myListView = findViewById(R.id.delTeacherList1);
+        floatingActionButton=findViewById(R.id.delTeacherRecords2);
       //  adapter = new DeleteTeacherAdapter(getApplicationContext(),rowItems);
        // mylistview.setAdapter(adapter);
+        deleteTeacher = new ArrayList<>();
         loadListData();
         //DeleteAdapterforStudent adapter = new DeleteAdapterforStudent(getApplicationContext(), rowItems);
         // mylistview.setTextFilterEnabled(true);
@@ -80,7 +84,7 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
 
                               rowItems.add(item);
                             }
-                            adapter=new DeleteTeacherAdapter(getApplicationContext(),rowItems);
+                            adapter=new DeleteTeacherAdapter(getApplicationContext(),rowItems,deleteTeacher);
                             myListView.setAdapter(adapter);
                         }
                         catch (JSONException e)
@@ -93,6 +97,7 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
@@ -113,7 +118,6 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
                     searchView.setIconified(true);
                 }
                 myActionMenuItem.collapseActionView();
-
                 return false;
             }
 
@@ -134,7 +138,7 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
         for (DeleteTeacherItem model:pl)
         {
              String text=model.getTeacherName().toUpperCase();
-            if (text.startsWith(query))
+            if (text.contains(query))
             {
                 filteredModeList.add(model);
             }
@@ -181,17 +185,16 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
         progressDialog.setMessage("wait...");
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                defConstant.URL_DELSTUDENTRECORD,
+                defConstant.URL_delTeacherRecord,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.hide();
-                        Toast.makeText(getApplicationContext(),"ajay"+String.valueOf(rowItems.get(1).getTeacherId()),Toast.LENGTH_LONG).show();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-                           // Intent i = new Intent(getApplicationContext(), AssignedCourses.class);
-                           // startActivity(i);
+                            Intent intent = new Intent(getApplicationContext(), DeleteUser.class);
+                            startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -207,13 +210,10 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-               /* params.put("tid", tid);
-                params.put("tname", tname);
-                params.put("password", password);*/
-                // for (int i=0;i<rowItems.size();i++) {
-                // params.put("subjectId", subjectId);
-                params.put("teacherId",String.valueOf(rowItems.get(1)));
-                //  }
+                params.put("size",String.valueOf(deleteTeacher.size()));
+                for (int i=0;i<deleteTeacher.size();i++) {
+                    params.put("userId"+i,deleteTeacher.get(i).toString());
+                }
                 return params;
             }
         };
@@ -222,7 +222,12 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        if(v==floatingActionButton)
+        if(v==floatingActionButton) {
+            //for (int i=0;i<deleteTeacher.size();i++) {
+            //        Toast.makeText(getApplicationContext(),deleteTeacher.get(i).toString(),Toast.LENGTH_SHORT).show();
+            //    }
+            //   Toast.makeText(getApplicationContext(),"hey",Toast.LENGTH_SHORT).show();
             deleteData();
+        }
     }
 }

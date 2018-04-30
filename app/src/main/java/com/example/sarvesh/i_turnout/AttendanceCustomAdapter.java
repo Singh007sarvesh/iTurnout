@@ -5,14 +5,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Filterable;
-import android.widget.Filter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +17,14 @@ public class AttendanceCustomAdapter extends BaseAdapter {
     private Context context;
     private List<AttendanceItemRow> rowItems;
     private List<String> absent;
-    private List<AttendanceItemRow> mStringFilterList;
-    CheckBox checkBox;
-    TextView rollno;
+
+
    // private ValueFilter valueFilter;
     AttendanceCustomAdapter(Context context, List<AttendanceItemRow> rowItems , List<String> absent) {
         this.context = context;
         this.rowItems = rowItems;
-        mStringFilterList = rowItems;
         this.absent = absent;
     }
-
     @Override
     public int getCount() {
         return rowItems.size();
@@ -84,14 +76,9 @@ public class AttendanceCustomAdapter extends BaseAdapter {
             holder.attendanceId=convertView.findViewById(R.id.attendanceId);
             holder.checkBox = convertView
                     .findViewById(R.id.check1);
-
-           // holder.checkBox=convertView.findViewById(R.id.check1);
-
-
-            row_pos = rowItems.get(position);
+             row_pos = rowItems.get(position);
             holder.rollNumber.setText(row_pos.getStudentName());
             holder.attendanceId.setText(row_pos.getRollNumber());
-            //Toast.makeText(context,"" +row_pos.getStudentName(),Toast.LENGTH_SHORT).show();
             convertView.setTag(holder);
         } else {
             holder = (AttendanceCustomAdapter.ViewHolder) convertView.getTag();
@@ -99,14 +86,11 @@ public class AttendanceCustomAdapter extends BaseAdapter {
 
         //Toast.makeText(context,holder.rollNumber.getText().toString(),Toast.LENGTH_SHORT).show();
         final ViewHolder finalHolder = holder;
-        final AttendanceItemRow finalRow_pos = row_pos;
+        //final AttendanceItemRow finalRow_pos = row_pos;
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(finalHolder.checkBox.isChecked())
-                {
-                    Toast.makeText(context, finalHolder.attendanceId.getText().toString(),Toast.LENGTH_SHORT).show();
-                }
+                if(finalHolder.checkBox.isChecked());
                 else
                     absent.add(finalHolder.attendanceId.getText().toString());
 
@@ -115,7 +99,7 @@ public class AttendanceCustomAdapter extends BaseAdapter {
 
         return convertView;
     }
-    public void setFilter(List<AttendanceItemRow> newList)
+    public void setfilter(List<AttendanceItemRow> newList)
     {
         rowItems=new ArrayList<>();
         rowItems.addAll(newList);

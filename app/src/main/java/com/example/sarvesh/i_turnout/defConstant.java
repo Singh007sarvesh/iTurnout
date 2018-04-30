@@ -17,16 +17,17 @@ public class defConstant {
     public static final String URL_CHECKENROLLTEACHER=ROOT_URL+"CheckEnrollStudentByTeacher.php";
     public static final String URL_TeacherDetail=ROOT_URL+"TeacherDetail.php";
     public static final String URL_Query=ROOT_URL+"Query.php";
-    public static final String URL_DELETESTUDENT=ROOT_URL+"DeleteStudentRecords.php";
+    public static final String URL_DeleteStudent=ROOT_URL+"DeleteStudentRecords.php";
     public static final String URL_DELETETEACHER=ROOT_URL+"DeleteTeacherRecords.php";
     public static final String URL_ATTENDANCE=ROOT_URL+"Attendance.php";
     public static final String URL_STUDENTATTENDANCE=ROOT_URL+"StudentAttendance.php";
     public static final String URL_SEND=ROOT_URL+"Send.php";
-    public static final String URL_DELSTUDENTRECORD=ROOT_URL+"DelStudentRecord.php";
+    public static final String URL_delStudentRecord=ROOT_URL+"DelStudentRecord.php";
     public static final String URL_MSG=ROOT_URL+"GetMessage.php";
     public static final String URL_FMSG=ROOT_URL+"FetchMessage.php";
     public static final String URL_TeacherQuery=ROOT_URL+"TeacherQuery.php";
     public static final String URL_Notification=ROOT_URL+"GetNotification.php";
     public static final String URL_sNotification=ROOT_URL+"FetchNotification.php";
     public static final String URL_StudentMessage=ROOT_URL+"StudentMessage.php";
+    public static final String URL_delTeacherRecord=ROOT_URL+"DelTeacherRecord.php";
 }

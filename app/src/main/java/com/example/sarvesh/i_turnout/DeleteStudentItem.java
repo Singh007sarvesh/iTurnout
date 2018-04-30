@@ -1,21 +1,23 @@
 package com.example.sarvesh.i_turnout;
 
-public class DeleteItemforStudent {
+public class DeleteStudentItem {
+
+
     private String studentName;
     private String studentId;
-    private String date;
+    private String sDate;
 
-    public DeleteItemforStudent(String studentName,String studentId,String date) {
+    public DeleteStudentItem(String studentName,String studentId,String sDate) {
 
-        this.studentName= studentName;
+        this.studentName=studentName;
         this.studentId=studentId;
-        this.date=date;
+        this.sDate=sDate;
     }
 
     public String getStudentName() {
-        studentName=studentName+"\n"+studentId+"\t\t\t"+date;
         return studentName;
     }
+
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
@@ -28,11 +30,11 @@ public class DeleteItemforStudent {
         this.studentId = studentId;
     }
 
-    public String getDate() {
-        return date;
+    public String getsDate() {
+        return sDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setsDate(String sDate) {
+        this.sDate = sDate;
     }
 }
