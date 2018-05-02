@@ -38,6 +38,7 @@ public class ViewStudentDetailsAdapter extends BaseAdapter{
     public class ViewHolder {
 
         TextView studentName;
+        TextView studentId;
 
     }
 
@@ -53,13 +54,15 @@ public class ViewStudentDetailsAdapter extends BaseAdapter{
             holder = new ViewStudentDetailsAdapter.ViewHolder();
 
             holder.studentName = convertView
-                    .findViewById(R.id.viewstudentdetails);
+                    .findViewById(R.id.viewStudentDetails1);
+            holder.studentId=convertView.findViewById(R.id.view6);
 
 
             ViewStudentDetailsRowItem row_pos = rowItems.get(position);
 
 
             holder.studentName.setText(row_pos.getStudentName());
+            holder.studentId.setText(row_pos.getStudentId());
 
 
 
@@ -68,6 +71,13 @@ public class ViewStudentDetailsAdapter extends BaseAdapter{
             holder = (ViewStudentDetailsAdapter.ViewHolder) convertView.getTag();
         }
 
+        holder.studentName = convertView
+                .findViewById(R.id.viewStudentDetails1);
+        holder.studentId=convertView.findViewById(R.id.view6);
+        ViewStudentDetailsRowItem row_pos = rowItems.get(position);
+
+        holder.studentName.setText(row_pos.getStudentName());
+        holder.studentId.setText(row_pos.getStudentId());
         return convertView;
     }
 }

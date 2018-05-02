@@ -71,7 +71,17 @@ public class DeleteTeacherAdapter extends BaseAdapter {
         } else {
             holder = (DeleteTeacherAdapter.ViewHolder) convertView.getTag();
         }
-         final DeleteTeacherAdapter.ViewHolder finalHolder = holder;
+        holder.teacherName= convertView
+                .findViewById(R.id.delTeacher4);
+        holder.teacherId=convertView.findViewById(R.id.tNotificationId1);
+        holder.tDate=convertView.findViewById(R.id.tDate1);
+        holder.checkBox=convertView.findViewById(R.id.tCheck6);
+        //  rowP = rowItems.get(position);
+        // DeleteTeacherItem row_pos = rowItems.get(position);
+        holder.teacherName.setText(rowItems.get(position).getTeacherName());
+        holder.teacherId.setText(rowItems.get(position).getTeacherId());
+        holder.tDate.setText(rowItems.get(position).getDate());
+        final ViewHolder finalHolder = holder;
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

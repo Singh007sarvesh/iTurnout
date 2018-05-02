@@ -73,6 +73,10 @@ public class CustomAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        holder.subjectname = convertView
+                .findViewById(R.id.subjectname);
+        RowItem row_pos = rowItems.get(position);
+        holder.subjectname.setText(row_pos.getSubjectname());
         return convertView;
     }
 

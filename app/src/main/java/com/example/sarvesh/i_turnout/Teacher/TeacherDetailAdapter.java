@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sarvesh.i_turnout.R;
@@ -43,6 +42,7 @@ public class TeacherDetailAdapter extends BaseAdapter {
 
 
         TextView teacherName;
+        TextView teacherId;
 
     }
 
@@ -59,11 +59,13 @@ public class TeacherDetailAdapter extends BaseAdapter {
 
             holder.teacherName = convertView
                     .findViewById(R.id.teacherdetail);
+            holder.teacherId=convertView.findViewById(R.id.teacherDetail6);
 
 
             TeacherDetailRowItem row_pos = rowItems.get(position);
 
             holder.teacherName.setText(row_pos.getTeacherName());
+            holder.teacherId.setText(row_pos.getTeacherId());
 
 
             convertView.setTag(holder);
@@ -71,6 +73,13 @@ public class TeacherDetailAdapter extends BaseAdapter {
             holder = (TeacherDetailAdapter.ViewHolder) convertView.getTag();
         }
 
+        holder.teacherName = convertView
+                .findViewById(R.id.teacherdetail);
+        holder.teacherId=convertView.findViewById(R.id.teacherDetail6);
+        TeacherDetailRowItem row_pos = rowItems.get(position);
+
+        holder.teacherName.setText(row_pos.getTeacherName());
+        holder.teacherId.setText(row_pos.getTeacherId());
         return convertView;
     }
 }

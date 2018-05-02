@@ -72,6 +72,16 @@ public class ViewNotificationCustomAdapter extends BaseAdapter {
             holder = (ViewNotificationCustomAdapter.ViewHolder) convertView.getTag();
         }
 
+        holder.name =  convertView
+                .findViewById(R.id.notification);
+        holder.setIcon= convertView.findViewById(R.id.seticon);
+        holder.date=convertView.findViewById(R.id.sDate);
+
+        ViewNotificationItem row_pos = rowItems.get(position);
+
+        holder.setIcon.setImageResource(row_pos.getPicture());
+        holder.name.setText(row_pos.getSubjectName());
+        holder.date.setText(row_pos.getDate());
         return convertView;
     }
 

@@ -137,7 +137,7 @@
             android:name=".MakeAttendance"
             android:label="Make Attendance"
             android:parentActivityName=".AssignedCourses"
-            android:theme="@style/customTheme"></activity>
+            android:theme="@style/customTheme" />
         <activity
             android:name=".TeacherDetail"
             android:label="Teacher Details"
@@ -167,11 +167,15 @@
             android:name=".StudentGetMessage"
             android:label="Message Detail"
             android:theme="@style/customTheme" />
-        <activity android:name=".DeleteStudentRecord"
+        <activity
+            android:name=".DeleteStudentRecord"
             android:label="Delete"
+            android:parentActivityName=".Moderator.DeleteUser"
+            android:theme="@style/customTheme" />
+        <activity android:name=".updateEnrollment"
+            android:label="Update Enrollment"
             android:theme="@style/customTheme"
-            android:parentActivityName=".Moderator.DeleteUser">
-        </activity>
+            android:parentActivityName=".Moderator.Admin"></activity>
     </application>
 
 </manifest>

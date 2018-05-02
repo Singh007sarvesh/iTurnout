@@ -4,11 +4,9 @@
 
     <string name="welcome_teacher">Welcome Teacher</string>
     <string name="welcome_student">Welcome Student</string>
-
     <string name="iturnout">i-Turnout</string>
     <string name="i_turnout">i-Turnout</string>
     <string name="title_activity_login">Sign in</string>
-
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -59,13 +57,11 @@
     <string name="back2">back</string>
     <string name="back3">back</string>
     <string name="fill_details_of_teachers">Fill Details of Teachers</string>
-
     <string name="enter_course_name">Enter Course Name</string>
     <string name="fill_details_of_course">Fill Details of Course</string>
     <string name="enter_course_id3">Enter Course Id</string>
     <string name="enter_student_id1">Enter Student id</string>
     <string name="fill_details_of_enrollment">Fill Details of Enrollment</string>
-
     <string name="get">Get</string>
     <string name="notification">Notification</string>
     <string name="check">Check</string>
@@ -118,5 +114,8 @@
     <string name="desc2">desc</string>
     <string name="txt3">txt</string>
     <string name="desc">desc</string>
+    <string name="enter_student_id5">Enter Student Id</string>
+    <string name="enter_new_enrollment">Enter New Enrollment</string>
+    <string name="enter_old_enrollment">Enter Old Enrollment</string>
 
 </resources>

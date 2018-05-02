@@ -1,6 +1,5 @@
 package com.example.sarvesh.i_turnout;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -176,8 +175,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
             protected Map<String, String> getParams() throws AuthFailureError
             {
                 Map <String, String> params = new HashMap<>();
-                params.put("userid",userid);
-                params.put("password",password);
+                params.put("userid",userid.toUpperCase());
+                params.put("password",password.toUpperCase());
                 return params;
             }
 

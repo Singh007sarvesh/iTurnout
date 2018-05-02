@@ -3,23 +3,20 @@ package com.example.sarvesh.i_turnout;
 public class CheckEnStudInPerSubRowItem {
 
 
-    private String studentname;
-   // private String studentid;
-    //  private String subjectid;
+    private String studentName;
 
+    public CheckEnStudInPerSubRowItem(String studentName) {
 
-    public CheckEnStudInPerSubRowItem(String studentname) {
-
-        this.studentname= studentname;
+        this.studentName= studentName;
         // this.subjectid = subjectid;
 
     }
 
     public String getStudentname() {
-        return studentname;
+        return studentName;
     }
 
-    public void setStudentname(String studentname) {
-        this.studentname = studentname;
+    public void setStudentname(String studentName) {
+        this.studentName = studentName;
     }
 }

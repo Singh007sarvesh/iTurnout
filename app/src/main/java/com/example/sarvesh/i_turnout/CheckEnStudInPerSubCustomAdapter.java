@@ -48,7 +48,7 @@ public class CheckEnStudInPerSubCustomAdapter extends BaseAdapter{
             convertView = mInflater.inflate(R.layout.checkenstudinpersublistitem, null);
             holder = new CheckEnStudInPerSubCustomAdapter.ViewHolder();
 
-            holder.studentname = (TextView) convertView
+            holder.studentname = convertView
                     .findViewById(R.id.enrollmentinperticulersubject);
 
 
@@ -63,6 +63,10 @@ public class CheckEnStudInPerSubCustomAdapter extends BaseAdapter{
             holder= (CheckEnStudInPerSubCustomAdapter.ViewHolder) convertView.getTag();
         }
 
+        holder.studentname =  convertView
+                .findViewById(R.id.enrollmentinperticulersubject);
+        CheckEnStudInPerSubRowItem row_pos = rowItems.get(position);
+        holder.studentname.setText(row_pos.getStudentname());
         return convertView;
     }
 }

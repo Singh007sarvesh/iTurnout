@@ -72,6 +72,10 @@ public class ViewEnrollCustomAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        holder.studentid = (TextView) convertView
+                .findViewById(R.id.studentid);
+        ViewEnrollRowItem row_pos = rowItems.get(position);
+        holder.studentid.setText(row_pos.getSubjectname());
         return convertView;
     }
 

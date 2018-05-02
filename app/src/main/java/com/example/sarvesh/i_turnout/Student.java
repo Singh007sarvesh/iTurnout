@@ -20,14 +20,15 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(!(new SharedPrefManager(this).isLoggedIn()))
+        {
+            Intent intent = new Intent(this, Home.class);
+            startActivity(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        }
         setContentView(R.layout.activity_student);
-
-
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userdetails = sharedPrefManager.getUserDetails();
-        //USER LOGIN
-
-
 
         studentName = findViewById(R.id.studentName);
         studentName.setText(userdetails.get(SharedPrefManager.KEY_NAME));

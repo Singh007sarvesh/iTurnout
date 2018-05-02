@@ -74,6 +74,18 @@ public class StudentMessageAdapter extends BaseAdapter{
             holder = (StudentMessageAdapter.ViewHolder) convertView.getTag();
         }
 
+        holder.name =  convertView
+                .findViewById(R.id.studentMessageText);
+        holder.setIcon= convertView.findViewById(R.id.sSetIcon);
+        holder.tid=convertView.findViewById(R.id.messageListDate);
+        holder.sDate=convertView.findViewById(R.id.studentGetMessageDate);
+
+        StudentMessageItem row_pos = rowItems.get(position);
+
+        holder.setIcon.setImageResource(row_pos.getPicture());
+        holder.name.setText(row_pos.getUserName());
+        holder.tid.setText(row_pos.getUserId());
+        holder.sDate.setText(row_pos.getDate());
         return convertView;
     }
 }

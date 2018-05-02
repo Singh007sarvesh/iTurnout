@@ -27,14 +27,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MakeAttendance extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener {
+public class MakeAttendance extends AppCompatActivity implements View.OnClickListener {
     private ListView listview;
     private List<AttendanceItemRow> rowItems;
     private AttendanceCustomAdapter adapter;
     private List<String> absent;
     private static String subjectId;
     private FloatingActionButton floatingActionButton;
-
+    private SearchView searchView;
     static String presence="0";
 
     @Override
@@ -165,42 +165,46 @@ public class MakeAttendance extends AppCompatActivity implements SearchView.OnQu
     }
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //   Toast.makeText(getApplicationContext(),"hey111",Toast.LENGTH_LONG).show();
+        getMenuInflater().inflate(R.menu.menu_item2, menu);
+        final MenuItem myActionMenuItem = menu.findItem(R.id.action_search2);
+        searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (!searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                myActionMenuItem.collapseActionView();
+                return false;
+            }
 
-        getMenuInflater().inflate(R.menu.menu_item2,menu);
-        MenuItem menuItem=menu.findItem(R.id.action_search2);
-        SearchView searchView=(SearchView) menuItem.getActionView();
-        //   Toast.makeText(getApplicationContext(),"hey22",Toast.LENGTH_LONG).show();
-
-        searchView.setOnQueryTextListener(this);
-        //   Toast.makeText(getApplicationContext(),"hey333",Toast.LENGTH_LONG).show();
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                final  List<AttendanceItemRow> filterModeList=filter(rowItems,newText);
+                adapter.setFilter(filterModeList);
+                return true;
+            }
+        });
 
         return true;
     }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        newText = newText.toString().toLowerCase();
-        //Log.d("Query", newText);
-        ArrayList<AttendanceItemRow> searchRows = new ArrayList<>();
-
-        for (AttendanceItemRow attendanceItemRow: rowItems) {
-            String name = attendanceItemRow.getStudentName().toLowerCase();
-            if (name.startsWith(newText)){
-                searchRows.add(attendanceItemRow);
-                // Toast.makeText(getApplicationContext(),name,Toast.LENGTH_LONG).show();
+    private List<AttendanceItemRow> filter(List<AttendanceItemRow> pl,String query)
+    {
+        query=query.toUpperCase();
+        final List<AttendanceItemRow> filteredModeList=new ArrayList<>();
+        for (AttendanceItemRow model:pl)
+        {
+            String text=model.getStudentName().toUpperCase();
+            if (text.contains(query))
+            {
+                filteredModeList.add(model);
             }
         }
-        adapter.setfilter(searchRows);
-        return true;
-
+        return filteredModeList;
     }
+
 }
 

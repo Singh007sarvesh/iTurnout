@@ -13,7 +13,16 @@
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/teacherDetail6"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="13sp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="40dp"
 
+        />
 
 
 </RelativeLayout>

@@ -57,7 +57,7 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
             else
             {
                 Toast.makeText(getApplicationContext(),"Plz fill course id in a proper way",Toast.LENGTH_LONG).show();
-
+                return;
             }
             progressDialog.setMessage("Enrolling user...");
             progressDialog.show();
@@ -73,6 +73,7 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                                 Intent in = new Intent(getApplicationContext(), Admin.class);
                                 startActivity(in);
+                                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -88,8 +89,8 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("cid", cid);
-                    params.put("sid", sid);
+                    params.put("cid", cid.toUpperCase());
+                    params.put("sid", sid.toUpperCase());
                     return params;
                 }
             };

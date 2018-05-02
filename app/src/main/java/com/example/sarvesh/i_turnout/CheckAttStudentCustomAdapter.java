@@ -68,6 +68,10 @@ public class CheckAttStudentCustomAdapter extends BaseAdapter{
             holder = (CheckAttStudentCustomAdapter.ViewHolder) convertView.getTag();
         }
 
+        holder.subjectname = (TextView) convertView
+                .findViewById(R.id.checkattbystudent);
+        CheckAttByStudentRowItem row_pos = rowItems.get(position);
+        holder.subjectname.setText(row_pos.getSubjectname());
         return convertView;
     }
 

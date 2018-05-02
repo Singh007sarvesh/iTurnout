@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.sarvesh.i_turnout.CustomAdapter;
 import com.example.sarvesh.i_turnout.R;
-import com.example.sarvesh.i_turnout.RowItem;
 
 import java.util.List;
 
@@ -73,6 +71,15 @@ public class TviewAttendanceCustomAdapter extends BaseAdapter{
         } else {
             holder = (TviewAttendanceCustomAdapter.ViewHolder) convertView.getTag();
         }
+
+        holder.subjectname = convertView
+                .findViewById(R.id.tviewattitemlist);
+
+
+        TViewAttendanceRowItem row_pos = rowItems.get(position);
+
+
+        holder.subjectname.setText(row_pos.getSubjectname());
 
         return convertView;
     }

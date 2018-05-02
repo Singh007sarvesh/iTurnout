@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -48,9 +49,8 @@ public class DeleteStudentAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final DeleteStudentAdapter.ViewHolder holder;
-
+    public View getView(final int position, View convertView, ViewGroup parent) {
+         DeleteStudentAdapter.ViewHolder holder=null;
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
@@ -71,12 +71,35 @@ public class DeleteStudentAdapter extends BaseAdapter {
         } else {
             holder = (DeleteStudentAdapter.ViewHolder) convertView.getTag();
         }
-        final DeleteStudentAdapter.ViewHolder finalHolder = holder;
+      //  holder.StudentCheckBox.setFocusable(false);
+        holder.studentName= convertView
+                .findViewById(R.id.delStudentData);
+        holder.studentId=convertView.findViewById(R.id.studentDeleteData);
+        holder.sDate=convertView.findViewById(R.id.deleteStudentDate1);
+        holder.StudentCheckBox=convertView.findViewById(R.id.studentCheck2);
+        holder.StudentCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
+        //  rowP = rowItems.get(position);
+        // DeleteTeacherItem row_pos = rowItems.get(position);
+        holder.studentName.setText(rowItems.get(position).getStudentName());
+        holder.studentId.setText(rowItems.get(position).getStudentId());
+        holder.sDate.setText(rowItems.get(position).getsDate());
+      //  return convertView;
+        final ViewHolder finalHolder = holder;
         holder.StudentCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(finalHolder.StudentCheckBox.isChecked());
-                deleteStudent.add(finalHolder.studentId.getText().toString());
+                {
+                    deleteStudent.add(finalHolder.studentId.getText().toString());
+
+
+                }
 
             }
         });

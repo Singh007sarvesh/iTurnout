@@ -11,7 +11,6 @@ public class TeacherDetailRowItem {
     }
 
     public String getTeacherName() {
-        teacherName=teacherName+"\n\n"+teacherId;
         return teacherName;
     }
 

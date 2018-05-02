@@ -59,21 +59,19 @@ public class SubjectCheckAdapter extends BaseAdapter {
 
             holder.subjectcheck = (TextView) convertView
                     .findViewById(R.id.subjectcheck);
-
-
-
             CheckAttRowItem row_pos = rowItems.get(position);
 
-
             holder.subjectcheck.setText(row_pos.getSubjectName());
-
-
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        holder.subjectcheck = (TextView) convertView
+                .findViewById(R.id.subjectcheck);
+        CheckAttRowItem row_pos = rowItems.get(position);
 
+        holder.subjectcheck.setText(row_pos.getSubjectName());
         return convertView;
     }
 

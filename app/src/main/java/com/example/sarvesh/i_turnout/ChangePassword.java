@@ -87,10 +87,10 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("userid", userid);
-                    params.put("changeold", changeOld);
-                    params.put("changenew", changeNew);
-                    params.put("changeconfirm", changeConfirm);
+                    params.put("userid", userid.toUpperCase());
+                    params.put("changeold", changeOld.toUpperCase());
+                    params.put("changenew", changeNew.toUpperCase());
+                    params.put("changeconfirm", changeConfirm.toUpperCase());
                     return params;
                 }
             };

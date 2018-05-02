@@ -84,6 +84,14 @@ public class AttendanceCustomAdapter extends BaseAdapter {
             holder = (AttendanceCustomAdapter.ViewHolder) convertView.getTag();
         }
 
+        holder.rollNumber = convertView
+                .findViewById(R.id.rollNo);
+        holder.attendanceId=convertView.findViewById(R.id.attendanceId);
+        holder.checkBox = convertView
+                .findViewById(R.id.check1);
+        row_pos = rowItems.get(position);
+        holder.rollNumber.setText(row_pos.getStudentName());
+        holder.attendanceId.setText(row_pos.getRollNumber());
         //Toast.makeText(context,holder.rollNumber.getText().toString(),Toast.LENGTH_SHORT).show();
         final ViewHolder finalHolder = holder;
         //final AttendanceItemRow finalRow_pos = row_pos;
@@ -99,7 +107,7 @@ public class AttendanceCustomAdapter extends BaseAdapter {
 
         return convertView;
     }
-    public void setfilter(List<AttendanceItemRow> newList)
+    public void setFilter(List<AttendanceItemRow> newList)
     {
         rowItems=new ArrayList<>();
         rowItems.addAll(newList);

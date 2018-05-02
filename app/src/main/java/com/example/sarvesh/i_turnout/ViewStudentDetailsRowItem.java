@@ -12,7 +12,6 @@ public class ViewStudentDetailsRowItem {
     }
 
     public String getStudentName() {
-        studentName=studentName+"\n\n"+studentId;
         return studentName;
     }
 

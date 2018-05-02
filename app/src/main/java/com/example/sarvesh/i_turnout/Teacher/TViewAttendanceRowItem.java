@@ -3,30 +3,30 @@ package com.example.sarvesh.i_turnout.Teacher;
 public class TViewAttendanceRowItem {
 
 
-    private String subjectname;
-    private String subjectid;
+    private String subjectName;
+    private String subjectId;
 
 
-    public TViewAttendanceRowItem (String subjectname,String subjectid) {
+    public TViewAttendanceRowItem (String subjectName,String subjectId) {
 
-        this.subjectname= subjectname;
-        this.subjectid= subjectid;
+        this.subjectName= subjectName;
+        this.subjectId= subjectId;
 
     }
 
     public String getSubjectname() {
-        return subjectname;
+        return subjectName;
     }
 
-    public void setSubjectname(String subjectname) {
-        this.subjectname = subjectname;
+    public void setSubjectname(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     public String getSubjectid() {
-        return subjectid;
+        return subjectId;
     }
 
-    public void setSubjectid(String subjectid) {
-        this.subjectid = subjectid;
+    public void setSubjectid(String subjectId) {
+        this.subjectId = subjectId;
     }
 }

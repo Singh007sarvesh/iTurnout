@@ -1,10 +1,10 @@
 package com.example.sarvesh.i_turnout;
-import java.util.HashMap;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import java.util.HashMap;
 
 public class SharedPrefManager {
     // Shared Preferences
@@ -34,7 +34,7 @@ public class SharedPrefManager {
     public static final String KEY_Id = "email";
 
     // Constructor
-    public SharedPrefManager(Context context){
+    public SharedPrefManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
@@ -42,7 +42,11 @@ public class SharedPrefManager {
 
     /**
      * Create login session
-     * */
+     */
+    public String getId()
+    {
+        return pref.getString(KEY_Id, null);
+    }
     public void createLoginSession(String name, String id,String last_Login){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
@@ -68,6 +72,7 @@ public class SharedPrefManager {
         if(!this.isLoggedIn()){
             // user is not logged in redirect him to Login Activity
             Intent i = new Intent(_context, Home.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             // Closing all the Activities
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

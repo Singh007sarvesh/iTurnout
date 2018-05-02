@@ -62,6 +62,7 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
                 else
                 {
                     Toast.makeText(getApplicationContext(), "Plz fill teacher id in a proper way", Toast.LENGTH_LONG).show();
+                    return;
 
                 }
             }
@@ -85,6 +86,7 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(getApplicationContext(), Admin.class);
                                 startActivity(i);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -100,9 +102,9 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("cid", cid);
-                    params.put("cname", cname);
-                    params.put("ctid", ctid);
+                    params.put("cid", cid.toUpperCase());
+                    params.put("cname", cname.toUpperCase());
+                    params.put("ctid", ctid.toUpperCase());
                     return params;
                 }
             };
@@ -114,7 +116,6 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
 
         }
     }
-
     @Override
     public void onClick(View view){
         if(view == csubmit){

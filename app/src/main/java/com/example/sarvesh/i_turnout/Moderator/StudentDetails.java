@@ -85,6 +85,7 @@ public class StudentDetails extends AppCompatActivity implements View.OnClickLis
                                 Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(getApplicationContext(), Admin.class);
                                 startActivity(i);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -100,9 +101,9 @@ public class StudentDetails extends AppCompatActivity implements View.OnClickLis
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("did", did);
-                    params.put("dname", dname);
-                    params.put("dpassword", dpassword);
+                    params.put("did", did.toUpperCase());
+                    params.put("dname", dname.toUpperCase());
+                    params.put("dpassword", dpassword.toUpperCase());
                     return params;
                 }
             };
