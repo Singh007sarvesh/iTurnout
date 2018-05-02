@@ -60,26 +60,37 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
 
 
 
-        editTextUserid = findViewById(R.id.userid);
+        editTextUserid = findViewById(R.id.userId);
         editTextPassword = findViewById(R.id.password);
-        signinButton = (Button) findViewById(R.id.userLoginButton);
+        signinButton =  findViewById(R.id.userLoginButton);
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
-        String s = editTextUserid.getText().toString();
+
 
 
 
         signinButton.setOnClickListener(this);
     }
-    public void signin()
+    public void signIn()
     {
         //Intent in;
-       /* EditText e=(EditText) findViewById(R.id.editText);
-        String s=e.getText().toString();
-        if(s.length()<1)
+        EditText user=findViewById(R.id.userId);
+        EditText pass=findViewById(R.id.password);
+        String user1=user.getText().toString();
+        String pass1=pass.getText().toString();
+        if(user1.length()>8)
         {
-            Toast.makeText(getApplicationContext(),"Plz fill proper id....",Toast.LENGTH_LONG).show();
-        }*/
+            if(pass1.length()<5)
+            {
+                Toast.makeText(getApplicationContext(),"Plz fill proper Password....",Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Plz fill proper id....",Toast.LENGTH_SHORT).show();
+            return;
+        }
        /* else if(s.charAt(0)=='a'){
             Intent in = new Intent(Home.this, Admin.class);
             startActivity(in);
@@ -188,7 +199,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View view){
         if(view == signinButton){
-            signin();
+            signIn();
         }
     }
 

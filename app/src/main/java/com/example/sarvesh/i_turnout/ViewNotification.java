@@ -4,10 +4,17 @@ package com.example.sarvesh.i_turnout;
  * Created by sarvesh on 31/3/18.
  */
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,6 +45,9 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
     private ListView myListView;
     private SharedPrefManager sharedPrefManager;
     private static String userId="";
+    private NotificationCompat.Builder notificationBuilder;
+    private NotificationManager notificationManager;
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +61,27 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
         loadListViewData();
 
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    private void setNotificationData()
+    {
+        notificationBuilder=new NotificationCompat.Builder(this);
+        notificationBuilder.setSmallIcon(R.drawable.ic_notifications_active_black_24dp);
+        notificationBuilder.setContentTitle("MyNotification");
+        notificationBuilder.setContentText("hello...");
+        Intent intent=new Intent(this,ViewNotification.class);
+        TaskStackBuilder stackBuilder=TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(ViewNotification.class);
+        stackBuilder.addNextIntent(intent);
+        PendingIntent pendingIntent=stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationBuilder.setContentIntent(pendingIntent);
+        notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,notificationBuilder.build());
+
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public  void loadListViewData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
@@ -81,6 +112,10 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
                             }
                             ViewNotificationCustomAdapter adapter=new ViewNotificationCustomAdapter(getApplicationContext(),rowItems);
                             myListView.setAdapter(adapter);
+                            if(rowItems.size()>0)
+                            {
+                                setNotificationData();
+                            }
                         }
                         catch (JSONException e)
                         {

@@ -57,7 +57,6 @@ public class ViewStudentDetailsAdapter extends BaseAdapter{
                     .findViewById(R.id.viewStudentDetails1);
             holder.studentId=convertView.findViewById(R.id.view6);
 
-
             ViewStudentDetailsRowItem row_pos = rowItems.get(position);
 
 

@@ -4,9 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -28,12 +28,13 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Query extends AppCompatActivity implements View.OnClickListener{
     private EditText qContent;
-    private final int IMG_REQUEST=1;
+    private final int IMG_REQUEST=999;
     private Button qButton;
     private ImageButton attach;
     private Bitmap bitmap;
@@ -44,6 +45,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     private static String courseId="";
     private static String status="0";
     private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -72,7 +74,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
         {
             case R.id.attach:
                 selectImage();
-                //status="1";
+                status="1";
                 break;
 
             case R.id.Qbutton:
@@ -82,7 +84,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
     }
     private void selectImage()
     {
-        Intent intent=new Intent();
+        Intent intent=new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"select image"),IMG_REQUEST);
@@ -104,7 +106,9 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
             textSize.setText(Long.toString(filePath.getLong(sizeIndex)));
             try
             {
-                bitmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(),path);
+                InputStream inputStream=getContentResolver().openInputStream(path);
+                bitmap= BitmapFactory.decodeStream(inputStream);
+
             }
             catch (IOException e)
             {
@@ -122,10 +126,10 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObject=new JSONObject(response);
-                            String Response=(String) jsonObject.getString("message");
+                            String Response= jsonObject.getString("message");
                             Toast.makeText(getApplicationContext(),Response,Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), TeacherDetail.class);
                             startActivity(i);
@@ -138,7 +142,7 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressDialog.hide();
+                progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }){
@@ -148,23 +152,24 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                 params.put("teacherId",teacherId);
                 params.put("content",qContent.getText().toString().trim());
                 params.put("studentId",userId);
-
-                    params.put("name",textView.getText().toString().trim());
-                    params.put("image",imageToString(bitmap));
-                    params.put("status",status);
-
-
+                params.put("name",textView.getText().toString().trim());
+                String imageData=imageToString(bitmap);
+                params.put("image",imageData);
+                params.put("status",status);
                 return params;
             }
         };
         MySingleton.getmInstance(Query.this).addToRequestQue(stringRequest);
     }
+
     private String imageToString(Bitmap bitmap)
     {
-        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,30,byteArrayOutputStream);
-        byte[] imgBytes=byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(imgBytes, Base64.DEFAULT);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte[] imgBytes = byteArrayOutputStream.toByteArray();
+            String encodedImage= Base64.encodeToString(imgBytes, Base64.DEFAULT);
+            return encodedImage;
+
     }
    /* public void sendImage()
     {

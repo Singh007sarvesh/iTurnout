@@ -39,7 +39,6 @@ public class StudentGetMessage extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_student_get_message);
         Intent in=getIntent();
         contentId=in.getStringExtra("contentId");
-        cid=in.getStringExtra("cid");
         teacherId=in.getStringExtra("teacherId");
         Toast.makeText(getApplicationContext(),teacherId,Toast.LENGTH_SHORT).show();
         editText=findViewById(R.id.studentSendMessage);
@@ -48,8 +47,15 @@ public class StudentGetMessage extends AppCompatActivity implements View.OnClick
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
         userId = userDetails.get(SharedPrefManager.KEY_Id);
+
+        if(userId.equalsIgnoreCase(teacherId))
+        {
+            floatingActionButton.setVisibility(View.GONE);
+            //  floatingActionButton.setEnabled(false);
+        }
+        else
+            floatingActionButton.setOnClickListener(this);
         loadData();
-        floatingActionButton.setOnClickListener(this);
     }
     public void loadData()
     {
@@ -103,7 +109,7 @@ public class StudentGetMessage extends AppCompatActivity implements View.OnClick
                         try {
                             JSONObject jsonObject=new JSONObject(response);
                             String Response=jsonObject.getString("message");
-                            Toast.makeText(StudentGetMessage.this,Response,Toast.LENGTH_LONG).show();
+                            Toast.makeText(StudentGetMessage.this,Response,Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(),MessageForStudent.class);
                             startActivity(i);
                         }
@@ -122,7 +128,7 @@ public class StudentGetMessage extends AppCompatActivity implements View.OnClick
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
                // params.put("content",qContent.getText().toString().trim());
-                params.put("cid",cid);
+             //   params.put("cid",cid);
                 params.put("studentId",userId);
                 params.put("teacherId",teacherId);
                 params.put("content",editText.getText().toString().trim());

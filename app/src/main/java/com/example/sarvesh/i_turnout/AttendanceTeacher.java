@@ -52,7 +52,7 @@ public class AttendanceTeacher extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObject=new JSONObject(response);
                             JSONArray array=jsonObject.getJSONArray("flag");
@@ -96,7 +96,7 @@ public class AttendanceTeacher extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }) {

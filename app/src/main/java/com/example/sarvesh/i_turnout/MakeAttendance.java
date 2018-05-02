@@ -35,8 +35,6 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
     private static String subjectId;
     private FloatingActionButton floatingActionButton;
     private SearchView searchView;
-    static String presence="0";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +108,7 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                        // Toast.makeText(getApplicationContext(),String.valueOf(rowItems.get(0)),Toast.LENGTH_SHORT).show();
                        try {
                             //Log.("tagconvertstr", "["+response+"]");
@@ -126,7 +124,7 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }) {
