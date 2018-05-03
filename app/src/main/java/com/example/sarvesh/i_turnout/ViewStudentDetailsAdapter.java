@@ -2,6 +2,7 @@ package com.example.sarvesh.i_turnout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,14 +57,19 @@ public class ViewStudentDetailsAdapter extends BaseAdapter{
             holder.studentName = convertView
                     .findViewById(R.id.viewStudentDetails1);
             holder.studentId=convertView.findViewById(R.id.view6);
-
             ViewStudentDetailsRowItem row_pos = rowItems.get(position);
-
-
-            holder.studentName.setText(row_pos.getStudentName());
-            holder.studentId.setText(row_pos.getStudentId());
-
-
+            int x= Integer.parseInt(row_pos.getTotalAttendance());
+            if(x<81)
+            {
+                convertView.setBackgroundColor(Color.parseColor("#F7AEAB"));
+                holder.studentName.setText(row_pos.getStudentName());
+                holder.studentId.setText(row_pos.getStudentId());
+            }
+            else
+            {
+                holder.studentName.setText(row_pos.getStudentName());
+                holder.studentId.setText(row_pos.getStudentId());
+            }
 
             convertView.setTag(holder);
         } else {

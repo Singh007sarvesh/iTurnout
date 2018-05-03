@@ -43,11 +43,12 @@ public class StudentGetMessage extends AppCompatActivity implements View.OnClick
         Toast.makeText(getApplicationContext(),teacherId,Toast.LENGTH_SHORT).show();
         editText=findViewById(R.id.studentSendMessage);
         textView=findViewById(R.id.studentGetMessage);
-        floatingActionButton=findViewById(R.id.studentFloatingButton);
+        floatingActionButton=findViewById(R.id.studentFloatingButton1);
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
         userId = userDetails.get(SharedPrefManager.KEY_Id);
 
+        loadData();
         if(userId.equalsIgnoreCase(teacherId))
         {
             floatingActionButton.setVisibility(View.GONE);
@@ -55,14 +56,13 @@ public class StudentGetMessage extends AppCompatActivity implements View.OnClick
         }
         else
             floatingActionButton.setOnClickListener(this);
-        loadData();
+        sendData();
     }
     public void loadData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.show();
-
         StringRequest request=new StringRequest(Request.Method.POST, defConstant.URL_FMSG,
                 new Response.Listener<String>() {
                     @Override

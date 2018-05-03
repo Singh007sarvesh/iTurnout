@@ -39,7 +39,7 @@ public class ViewStudentDetailsByTeacher extends AppCompatActivity implements Ad
         courseId=in.getStringExtra("courseId");
         rowItem = new ArrayList<ViewStudentDetailsRowItem>();
 
-        myListView =  findViewById(R.id.studentdetailslist);
+        myListView =  findViewById(R.id.studentDetailsList);
         loadListViewData();
         myListView.setOnItemClickListener(this);
     }
@@ -70,7 +70,8 @@ public class ViewStudentDetailsByTeacher extends AppCompatActivity implements Ad
 
                                ViewStudentDetailsRowItem item=new ViewStudentDetailsRowItem(
                                         o.getString("data"),
-                                        o.getString("data1")
+                                        o.getString("data1"),
+                                        o.getString("total")
                                 );
                                 rowItem.add(item);
                             }
@@ -94,7 +95,7 @@ public class ViewStudentDetailsByTeacher extends AppCompatActivity implements Ad
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("courseid", courseId);
+                params.put("courseId", courseId);
                 return params;
             }
 

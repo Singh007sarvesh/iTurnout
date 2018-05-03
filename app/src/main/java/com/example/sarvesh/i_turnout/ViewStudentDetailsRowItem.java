@@ -3,12 +3,13 @@ package com.example.sarvesh.i_turnout;
 public class ViewStudentDetailsRowItem {
     private String studentName;
     private String studentId;
+    private String totalAttendance;
 
-    public ViewStudentDetailsRowItem(String studentName,String studentId) {
+    public ViewStudentDetailsRowItem(String studentName,String studentId,String totalAttendance) {
 
         this.studentName= studentName;
         this.studentId=studentId;
-
+        this.totalAttendance=totalAttendance;
     }
 
     public String getStudentName() {
@@ -25,5 +26,13 @@ public class ViewStudentDetailsRowItem {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public String getTotalAttendance() {
+        return totalAttendance;
+    }
+
+    public void setTotalAttendance(String totalAttendance) {
+        this.totalAttendance = totalAttendance;
     }
 }
