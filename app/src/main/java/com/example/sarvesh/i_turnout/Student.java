@@ -7,16 +7,30 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Student extends AppCompatActivity implements  View.OnClickListener {
-    private TextView textCartItemCount;
+
     private CardView getNotification,viewCourse, checkAttendance, changePassword,getMessage;
-    private String mCartItemCount = "10";
+    private String mCartItemCount ="";
     private TextView studentName;
     private ImageButton logout;
-    SharedPrefManager sharedPrefManager;
+    private SharedPrefManager sharedPrefManager;
+    private String userId="";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +43,10 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
         }
         setContentView(R.layout.activity_student);
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
-        HashMap<String,String> userdetails = sharedPrefManager.getUserDetails();
-
+        HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
+        userId = userDetails.get(SharedPrefManager.KEY_Id);
         studentName = findViewById(R.id.studentName);
-        studentName.setText(userdetails.get(SharedPrefManager.KEY_NAME));
+        studentName.setText(userDetails.get(SharedPrefManager.KEY_NAME));
 
          getNotification= findViewById(R.id.getnotification);
 
@@ -50,13 +64,51 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
 
         getMessage.setOnClickListener(this);
         //setContentView(R.layout.activity_student);
-        TextView textView=  findViewById(R.id.getnotification1);
-        textView.setText(mCartItemCount);
-
+       // TextView textView=  findViewById(R.id.getnotification1);
+        getTotalNotification();
 
     }
 
+    public void getTotalNotification()
+    {
+       final TextView textView1=  findViewById(R.id.getnotification1);
+       // textView1.setText(mCartItemCount);
+        StringRequest request=new StringRequest(Request.Method.POST,
+                defConstant.URl_GetTotal,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Toast.makeText(getApplicationContext(),userid,Toast.LENGTH_LONG).show();
 
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            mCartItemCount=jsonObject.getString("message");
+                            textView1.setText(mCartItemCount);
+
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("studentId", userId);
+                return params;
+            }
+
+        };
+        RequestHandler.getInstance(this).addToRequestQueue(request);
+    }
     @Override
     public void onClick(View v) {
         Intent in;

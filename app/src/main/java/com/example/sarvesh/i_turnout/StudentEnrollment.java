@@ -67,7 +67,7 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            progressDialog.hide();
+                            progressDialog.dismiss();
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
@@ -82,7 +82,7 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            progressDialog.hide();
+                            progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }) {

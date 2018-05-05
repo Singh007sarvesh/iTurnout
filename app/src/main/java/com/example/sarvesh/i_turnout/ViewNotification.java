@@ -37,7 +37,7 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
     private ListView myListView;
     private SharedPrefManager sharedPrefManager;
     private static String userId="";
-    public int size=0;
+
   //  private NotificationCompat.Builder notificationBuilder;
   //  private NotificationManager notificationManager;
     @Override
@@ -51,6 +51,7 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
         myListView = findViewById(R.id.viewNotification);
         myListView.setOnItemClickListener(this);
         loadListViewData();
+
 
     }
 
@@ -107,8 +108,7 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
                             }
                             ViewNotificationCustomAdapter adapter=new ViewNotificationCustomAdapter(getApplicationContext(),NotificationRowItems);
                             myListView.setAdapter(adapter);
-                            size=NotificationRowItems.size();
-                            Toast.makeText(getApplicationContext(),String.valueOf(size),Toast.LENGTH_SHORT).show();
+
                             /*if(rowItems.size()>0)
                             {
                                 setNotificationData();
@@ -150,5 +150,6 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
       in.putExtra("nId",NotificationRowItems.get(position).getNid());
       startActivity(in);
     }
+
 
 }
