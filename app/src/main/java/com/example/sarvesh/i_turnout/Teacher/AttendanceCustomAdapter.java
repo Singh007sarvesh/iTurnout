@@ -1,4 +1,4 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Teacher;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import com.example.sarvesh.i_turnout.AttendanceItemRow;
+import com.example.sarvesh.i_turnout.R;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +20,17 @@ public class AttendanceCustomAdapter extends BaseAdapter {
     private Context context;
     private List<AttendanceItemRow> rowItems;
     private List<String> absent;
-
-
+    private ArrayList<Boolean>positionArray;
    // private ValueFilter valueFilter;
     AttendanceCustomAdapter(Context context, List<AttendanceItemRow> rowItems , List<String> absent) {
         this.context = context;
         this.rowItems = rowItems;
         this.absent = absent;
+        positionArray=new ArrayList<Boolean>(rowItems.size());
+        for(int j=0;j<rowItems.size();j++)
+        {
+            positionArray.add(true);
+        }
     }
     @Override
     public int getCount() {
@@ -46,13 +53,9 @@ public class AttendanceCustomAdapter extends BaseAdapter {
     /* private view holder class */
    private class ViewHolder {
 
-
         TextView rollNumber;
         TextView attendanceId;
         CheckBox checkBox;
-
-
-
     }
 
     @Override
@@ -82,31 +85,53 @@ public class AttendanceCustomAdapter extends BaseAdapter {
             convertView.setTag(holder);
         } else {
             holder = (AttendanceCustomAdapter.ViewHolder) convertView.getTag();
+            holder.checkBox.setOnCheckedChangeListener(null);
         }
+        holder.checkBox.setFocusable(false);
 
-        holder.rollNumber = convertView
-                .findViewById(R.id.rollNo);
-        holder.attendanceId=convertView.findViewById(R.id.attendanceId);
-        holder.checkBox = convertView
-                .findViewById(R.id.check1);
         row_pos = rowItems.get(position);
         holder.rollNumber.setText(row_pos.getStudentName());
         holder.attendanceId.setText(row_pos.getRollNumber());
+        holder.checkBox.setChecked(positionArray.get(position));
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    positionArray.set(position,true);
+                }
+                else
+                    positionArray.set(position,false);
+            }
+        });
+
         //Toast.makeText(context,holder.rollNumber.getText().toString(),Toast.LENGTH_SHORT).show();
         final ViewHolder finalHolder = holder;
         //final AttendanceItemRow finalRow_pos = row_pos;
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(finalHolder.checkBox.isChecked());
-                else
+                if(finalHolder.checkBox.isChecked())
+                {
+                    absent.remove(finalHolder.attendanceId.getText().toString());
+                    Toast.makeText(context,"checked"+finalHolder.attendanceId.getText().toString(),Toast.LENGTH_SHORT).show();
+
+                }
+                else {
                     absent.add(finalHolder.attendanceId.getText().toString());
+
+                    Toast.makeText(context,"unchecked"+finalHolder.attendanceId.getText().toString(),Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
 
         return convertView;
     }
+
+
+
+
     public void setFilter(List<AttendanceItemRow> newList)
     {
         rowItems=new ArrayList<>();

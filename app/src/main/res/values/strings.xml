@@ -117,5 +117,6 @@
     <string name="enter_student_id5">Enter Student Id</string>
     <string name="enter_new_enrollment">Enter New Enrollment</string>
     <string name="enter_old_enrollment">Enter Old Enrollment</string>
+    <string name="text1">text,</string>
 
 </resources>

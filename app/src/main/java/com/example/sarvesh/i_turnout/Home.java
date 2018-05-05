@@ -38,7 +38,6 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
         if (sharedPrefManager.isLoggedIn()) {
@@ -50,25 +49,14 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
                 startActivity(new Intent(this, Teacher.class));
             else if(last_login.equals("admin"))
                 startActivity(new Intent(this, Admin.class));
+
             finish();
         }
-
-        //  EditText e= findViewById(R.id.userid);
-       //
-        //USER LOGIN
-
-
-
-
         editTextUserid = findViewById(R.id.userId);
         editTextPassword = findViewById(R.id.password);
         signinButton =  findViewById(R.id.userLoginButton);
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
-
-
-
-
         signinButton.setOnClickListener(this);
     }
     public void signIn()

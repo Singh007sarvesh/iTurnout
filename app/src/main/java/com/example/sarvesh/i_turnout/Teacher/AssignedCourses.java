@@ -1,11 +1,16 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Teacher;
+
+/**
+ * Created by sarvesh on 31/3/18.
+ */
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,6 +19,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.R;
+import com.example.sarvesh.i_turnout.RequestHandler;
+import com.example.sarvesh.i_turnout.RowItem;
+import com.example.sarvesh.i_turnout.SharedPrefManager;
+import com.example.sarvesh.i_turnout.defConstant;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,33 +34,35 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ViewStudentDetailsByTeacher extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class AssignedCourses extends AppCompatActivity implements OnItemClickListener {
 
-    private ProgressDialog progressDialog;
-    private static String courseId="";
-    List<ViewStudentDetailsRowItem> rowItem;
-    ListView myListView;
+
+    private SharedPrefManager sharedPrefManager;
+    private static String userId="";
+
+    private List<RowItem> rowItems;
+    private ListView myListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_student_details_by_teacher);
-        Intent in=getIntent();
-        //Toast.makeText(getApplicationContext(),in.getStringExtra("subjectid"),Toast.LENGTH_LONG).show();
-        courseId=in.getStringExtra("courseId");
-        rowItem = new ArrayList<ViewStudentDetailsRowItem>();
-
-        myListView =  findViewById(R.id.studentDetailsList);
+        setContentView(R.layout.activity_assigned_courses);
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
+        userId = userDetails.get(SharedPrefManager.KEY_Id);
+        rowItems = new ArrayList<RowItem>();
+        myListView =  findViewById(R.id.list);
         loadListViewData();
         myListView.setOnItemClickListener(this);
+
     }
-    public void loadListViewData()
+    public  void loadListViewData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.show();
 
-        StringRequest request=new StringRequest(Request.Method.POST,
-                defConstant.URL_CHECKENROLLTEACHER,
+        StringRequest request=new StringRequest(Request.Method.POST, defConstant.URL_ASSIGNEDCOURSE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -60,24 +72,17 @@ public class ViewStudentDetailsByTeacher extends AppCompatActivity implements Ad
                         try {
                             JSONObject jsonObject=new JSONObject(response.toString());
                             JSONArray array=jsonObject.getJSONArray("flag");
-                            //  JSONArray array1=jsonObject.getJSONArray("flagid");
-                            //JSONObject o1= array.getJSONObject(0);
-                            //Toast.makeText(getApplicationContext(),o1.getString("data1"),Toast.LENGTH_LONG).show();
                             for(int i=0;i<array.length();i++)
                             {
                                 JSONObject o= array.getJSONObject(i);
-                                //  Toast.makeText(getApplicationContext(),o.getString("data"),Toast.LENGTH_LONG).show();
-
-                               ViewStudentDetailsRowItem item=new ViewStudentDetailsRowItem(
+                                RowItem item=new RowItem(
                                         o.getString("data"),
-                                        o.getString("data1"),
-                                        o.getString("total")
+                                        o.getString("data1")
                                 );
-                                rowItem.add(item);
+                                rowItems.add(item);
                             }
-                            ViewStudentDetailsAdapter adapter=new ViewStudentDetailsAdapter(getApplicationContext(),rowItem);
+                            CustomAdapter adapter=new CustomAdapter(getApplicationContext(),rowItems);
                             myListView.setAdapter(adapter);
-                            //Toast.makeText(getApplicationContext(),o1.getString("d"),Toast.LENGTH_LONG).show();
                         }
                         catch (JSONException e)
                         {
@@ -95,7 +100,7 @@ public class ViewStudentDetailsByTeacher extends AppCompatActivity implements Ad
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("courseId", courseId);
+                params.put("userId", userId);
                 return params;
             }
 
@@ -103,12 +108,16 @@ public class ViewStudentDetailsByTeacher extends AppCompatActivity implements Ad
         RequestHandler.getInstance(this).addToRequestQueue(request);
 
     }
-
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent=new Intent(ViewStudentDetailsByTeacher.this,AttendanceTeacher.class);
-        intent.putExtra("studentId",rowItem.get(position).getStudentId());
-        intent.putExtra("courseId",courseId);
-        startActivity(intent);
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+                            long id) {
+
+       /* String subjectname = rowItems.get(position).getSubjectname();
+        Toast.makeText(getApplicationContext(), "" + subjectname,
+                Toast.LENGTH_SHORT).show();*/
+     Intent in=new Intent(AssignedCourses.this,MakeAttendance.class);
+     in.putExtra("subjectId",rowItems.get(position).getSubjectid()) ;
+     startActivity(in);
     }
+
 }

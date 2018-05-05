@@ -3,6 +3,7 @@
     package="com.example.sarvesh.i_turnout">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -61,7 +62,7 @@
             android:parentActivityName=".TeacherDetail"
             android:theme="@style/customTheme" />
         <activity
-            android:name=".AssignedCourses"
+            android:name=".Teacher.AssignedCourses"
             android:label="Subject Details"
             android:parentActivityName=".Teacher.Teacher"
             android:theme="@style/customTheme" />
@@ -129,14 +130,9 @@
             android:parentActivityName=".Teacher.Teacher"
             android:theme="@style/customTheme" />
         <activity
-            android:name=".ViewStudentDetailsByTeacher"
-            android:label="Student Details"
-            android:parentActivityName=".ViewStudentDetailsByTeacher"
-            android:theme="@style/customTheme" />
-        <activity
-            android:name=".MakeAttendance"
+            android:name=".Teacher.MakeAttendance"
             android:label="Make Attendance"
-            android:parentActivityName=".AssignedCourses"
+            android:parentActivityName=".Teacher.AssignedCourses"
             android:theme="@style/customTheme" />
         <activity
             android:name=".TeacherDetail"
@@ -172,10 +168,20 @@
             android:label="Delete"
             android:parentActivityName=".Moderator.DeleteUser"
             android:theme="@style/customTheme" />
-        <activity android:name=".updateEnrollment"
+        <activity
+            android:name=".updateEnrollment"
             android:label="Update Enrollment"
+            android:parentActivityName=".Moderator.Admin"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".QueryStudentDetails"
+            android:label="Student Details"
+            android:parentActivityName=".Teacher.TViewNotification"
+            android:theme="@style/customTheme" />
+        <activity android:name=".Teacher.TeacherCheckAttendance"
             android:theme="@style/customTheme"
-            android:parentActivityName=".Moderator.Admin"></activity>
+            android:label="Student Details"
+            android:parentActivityName=".Teacher.TViewAttendance"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Teacher;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,6 +17,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.AttendanceItemRow;
+import com.example.sarvesh.i_turnout.R;
+import com.example.sarvesh.i_turnout.RequestHandler;
+import com.example.sarvesh.i_turnout.defConstant;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +54,44 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
         loadData();
         floatingActionButton.setOnClickListener(this);
     }
+  /* public void submitData()
+    {
+        String studentId=rowItems.get(0).getRollNumber();
+        String courseId=subjectId;
+        saveData(studentId,courseId);
+
+    }
+    public void saveData(String studentId,String courseId)
+    {
+        DbHelper dbHelper=new DbHelper(this);
+        SQLiteDatabase database= dbHelper.getWritableDatabase();
+        if(checkNetworkConnection())
+        {
+            sendData();
+        }
+        else
+        {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = new Date();
+            String date1=String.valueOf(date);
+            String  presence="1";
+            //dbHelper.saveToLocalDatabase(studentId,courseId,dateFormat.format(date),presence,DbContract.SYNC_STATUS_FAILED,database);
+            saveToLocalStorage(studentId,courseId,date1,presence,DbContract.SYNC_STATUS_FAILED);
+        }
+    }
+    public boolean checkNetworkConnection()
+    {
+        ConnectivityManager connectivityManager=(ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+        return (networkInfo!=null && networkInfo.isConnected());
+    }
+    private void saveToLocalStorage(String studentId,String courseId,String date, String presence,int sync)
+    {
+        DbHelper dbHelper=new DbHelper(this);
+        SQLiteDatabase database= dbHelper.getWritableDatabase();
+        dbHelper.saveToLocalDatabase(studentId,courseId,date,presence,sync,database);
+        dbHelper.close();
+    }*/
     public void loadData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
@@ -113,9 +155,10 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
                        try {
                             //Log.("tagconvertstr", "["+response+"]");
                             JSONObject jsonObject = new JSONObject(response);
-                           Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), AssignedCourses.class);
                             startActivity(i);
+
                        } catch (JSONException e) {
                             e.printStackTrace();
                        }
@@ -151,14 +194,14 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if(v== floatingActionButton){
 //            Toast.makeText(getApplicationContext(),absent.size(),Toast.LENGTH_SHORT).show();
-            sendData();
+           sendData();
+          // submitData();
            /* for (int i=0;i<rowItems.size();i++) {
                 Toast.makeText(getApplicationContext(),String.valueOf(rowItems.get(i).getRollNumber()),Toast.LENGTH_SHORT).show();
-            }
-            for (int i=0;i<absent.size();i++) {
-                Toast.makeText(getApplicationContext(),absent.get(i).toString(),Toast.LENGTH_SHORT).show();
             }*/
-
+           // for (int i=0;i<absent.size();i++) {
+          //     Toast.makeText(getApplicationContext(),absent.get(i).toString(),Toast.LENGTH_SHORT).show();
+           // }
         }
     }
 
@@ -177,7 +220,9 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
                 }
                 myActionMenuItem.collapseActionView();
                 return false;
+
             }
+
 
             @Override
             public boolean onQueryTextChange(String newText) {
@@ -203,6 +248,7 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
         }
         return filteredModeList;
     }
+
 
 }
 

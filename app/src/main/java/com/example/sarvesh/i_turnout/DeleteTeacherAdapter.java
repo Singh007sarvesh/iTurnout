@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,10 +17,16 @@ public class DeleteTeacherAdapter extends BaseAdapter {
     private Context context;
     private List<DeleteTeacherItem> rowItems;
     private List<String> deleteTeacher;
+    private ArrayList<Boolean>positionArray;
     DeleteTeacherAdapter(Context context, List<DeleteTeacherItem> rowItems, List<String> deleteTeacher) {
         this.context = context;
         this.rowItems = rowItems;
         this.deleteTeacher=deleteTeacher;
+        positionArray=new ArrayList<Boolean>(rowItems.size());
+        for(int j=0;j<rowItems.size();j++)
+        {
+            positionArray.add(false);
+        }
     }
     @Override
     public int getCount() {
@@ -47,7 +54,7 @@ public class DeleteTeacherAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final DeleteTeacherAdapter.ViewHolder holder;
 
@@ -70,14 +77,29 @@ public class DeleteTeacherAdapter extends BaseAdapter {
             convertView.setTag(holder);
         } else {
             holder = (DeleteTeacherAdapter.ViewHolder) convertView.getTag();
+            holder.checkBox.setOnCheckedChangeListener(null);
         }
+        holder.checkBox.setFocusable(false);
         holder.teacherName= convertView
                 .findViewById(R.id.delTeacher4);
         holder.teacherId=convertView.findViewById(R.id.tNotificationId1);
         holder.tDate=convertView.findViewById(R.id.tDate1);
         holder.checkBox=convertView.findViewById(R.id.tCheck6);
+        holder.checkBox.setChecked(positionArray.get(position));
         //  rowP = rowItems.get(position);
         // DeleteTeacherItem row_pos = rowItems.get(position);
+
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    positionArray.set(position,true);
+                }
+                else
+                    positionArray.set(position,false);
+            }
+        });
         holder.teacherName.setText(rowItems.get(position).getTeacherName());
         holder.teacherId.setText(rowItems.get(position).getTeacherId());
         holder.tDate.setText(rowItems.get(position).getDate());
@@ -85,7 +107,9 @@ public class DeleteTeacherAdapter extends BaseAdapter {
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(finalHolder.checkBox.isChecked());
+                if(finalHolder.checkBox.isChecked())
+                    deleteTeacher.add(finalHolder.teacherId.getText().toString());
+                else
                     deleteTeacher.add(finalHolder.teacherId.getText().toString());
 
             }

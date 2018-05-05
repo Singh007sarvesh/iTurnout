@@ -24,11 +24,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hello"
                 android:layout_marginTop="30dp"
                 android:textStyle="normal"
                 android:textSize="20sp"
-                android:id="@+id/DNotification"/>
+                android:id="@+id/DNotification"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
             <android.support.design.widget.FloatingActionButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -4,17 +4,9 @@ package com.example.sarvesh.i_turnout;
  * Created by sarvesh on 31/3/18.
  */
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.app.TaskStackBuilder;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,15 +31,15 @@ import java.util.Map;
 
 public class ViewNotification extends AppCompatActivity implements OnItemClickListener {
 
-    private String[] name;
-    private TypedArray setIcon;
-    private List<ViewNotificationItem> rowItems;
+    //private String[] name;
+   // private TypedArray setIcon;
+    private List<ViewNotificationItem> NotificationRowItems;
     private ListView myListView;
     private SharedPrefManager sharedPrefManager;
     private static String userId="";
-    private NotificationCompat.Builder notificationBuilder;
-    private NotificationManager notificationManager;
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public int size=0;
+  //  private NotificationCompat.Builder notificationBuilder;
+  //  private NotificationManager notificationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,13 +47,15 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
         userId = userDetails.get(SharedPrefManager.KEY_Id);
-        rowItems = new ArrayList<ViewNotificationItem>();
+        NotificationRowItems = new ArrayList<ViewNotificationItem>();
         myListView = findViewById(R.id.viewNotification);
         myListView.setOnItemClickListener(this);
         loadListViewData();
 
     }
 
+
+/*
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void setNotificationData()
@@ -82,6 +76,7 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
 
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    */
     public  void loadListViewData()
     {
         final ProgressDialog progressDialog=new ProgressDialog(this);
@@ -108,14 +103,16 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
                                         o.getString("date"),
                                         R.drawable.ic_notifications_active_black_24dp
                                 );
-                                rowItems.add(item);
+                                NotificationRowItems.add(item);
                             }
-                            ViewNotificationCustomAdapter adapter=new ViewNotificationCustomAdapter(getApplicationContext(),rowItems);
+                            ViewNotificationCustomAdapter adapter=new ViewNotificationCustomAdapter(getApplicationContext(),NotificationRowItems);
                             myListView.setAdapter(adapter);
-                            if(rowItems.size()>0)
+                            size=NotificationRowItems.size();
+                            Toast.makeText(getApplicationContext(),String.valueOf(size),Toast.LENGTH_SHORT).show();
+                            /*if(rowItems.size()>0)
                             {
                                 setNotificationData();
-                            }
+                            }*/
                         }
                         catch (JSONException e)
                         {
@@ -150,7 +147,7 @@ public class ViewNotification extends AppCompatActivity implements OnItemClickLi
         Toast.makeText(getApplicationContext(), "" + subjectname,
                 Toast.LENGTH_SHORT).show();*/
       Intent in=new Intent(ViewNotification.this,DispNotification.class);
-      in.putExtra("nId",rowItems.get(position).getNid());
+      in.putExtra("nId",NotificationRowItems.get(position).getNid());
       startActivity(in);
     }
 

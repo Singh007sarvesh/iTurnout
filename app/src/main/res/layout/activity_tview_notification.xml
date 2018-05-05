@@ -4,10 +4,27 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+
+
     <ListView
-        android:id="@+id/tviewnotification"
+        android:id="@+id/tViewNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        />
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/tSend2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/ic_edit_black_24dp"
+        android:textColor="#fff" />
+
 </LinearLayout>

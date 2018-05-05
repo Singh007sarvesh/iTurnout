@@ -6,8 +6,8 @@ package com.example.sarvesh.i_turnout.Teacher;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sarvesh.i_turnout.QueryStudentDetails;
 import com.example.sarvesh.i_turnout.R;
 import com.example.sarvesh.i_turnout.RequestHandler;
 import com.example.sarvesh.i_turnout.SharedPrefManager;
@@ -34,10 +35,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TViewNotification extends AppCompatActivity implements OnItemClickListener {
+public class TViewNotification extends AppCompatActivity implements OnItemClickListener,View.OnClickListener {
 
-    private String[] name;
-    private TypedArray setIcon;
+
     private SharedPrefManager sharedPrefManager;
     private static String userId="";
     private List<TViewNotificationItem> rowItems;
@@ -45,20 +45,23 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
     private String str="";
     private String id2="";
     private String contentId="";
+    private FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_notification);
+        setContentView(R.layout.activity_tview_notification);
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         HashMap<String,String> userDetails = sharedPrefManager.getUserDetails();
         userId = userDetails.get(SharedPrefManager.KEY_Id);
 
         rowItems = new ArrayList< TViewNotificationItem >();
-        myListView =  findViewById(R.id.viewNotification);
+        myListView =  findViewById(R.id.tViewNotification);
+        floatingActionButton=findViewById(R.id.tSend2);
         //TViewNotificationCusAdapter adapter = new TViewNotificationCusAdapter(this, rowItems);
        // myListView.setAdapter(adapter);
         loadData();
         myListView.setOnItemClickListener(this);
+        floatingActionButton.setOnClickListener(this);
 
     }
 
@@ -147,4 +150,12 @@ public class TViewNotification extends AppCompatActivity implements OnItemClickL
 
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v==floatingActionButton)
+        {
+            Intent intent= new Intent(TViewNotification.this, QueryStudentDetails.class);
+            startActivity(intent);
+        }
+    }
 }

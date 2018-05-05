@@ -4,7 +4,6 @@ package com.example.sarvesh.i_turnout;
  * Created by sarvesh on 31/3/18.
  */
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,11 +30,11 @@ import java.util.List;
 import java.util.Map;
 
 public class CheckAttendance extends AppCompatActivity implements OnItemClickListener {
-    private ProgressDialog progressDialog;
-    SharedPrefManager sharedPrefManager;
+
+    private SharedPrefManager sharedPrefManager;
     private static String userId="";
-    List<CheckAttRowItem> rowItem;
-    ListView mylistview;
+    private List<CheckAttRowItem> rowItem;
+    private ListView myListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +49,9 @@ public class CheckAttendance extends AppCompatActivity implements OnItemClickLis
             rowItem.add(new CheckAttRowItem("Database Management System"));
         }*/
 
-        mylistview =  findViewById(R.id.list1);
+        myListView =  findViewById(R.id.list1);
         loadListViewData();
+       // mylistview.setOnItemClickListener(this);
     }
     public void loadListViewData()
     {
@@ -83,7 +83,7 @@ public class CheckAttendance extends AppCompatActivity implements OnItemClickLis
                                 rowItem.add(item);
                             }
                             SubjectCheckAdapter adapter=new SubjectCheckAdapter(getApplicationContext(),rowItem);
-                            mylistview.setAdapter(adapter);
+                            myListView.setAdapter(adapter);
                             //Toast.makeText(getApplicationContext(),o1.getString("d"),Toast.LENGTH_LONG).show();
                         }
                         catch (JSONException e)
@@ -109,7 +109,7 @@ public class CheckAttendance extends AppCompatActivity implements OnItemClickLis
         };
         RequestHandler.getInstance(this).addToRequestQueue(request);
 
-        mylistview.setOnItemClickListener(this);
+        myListView.setOnItemClickListener(this);
 
     }
 

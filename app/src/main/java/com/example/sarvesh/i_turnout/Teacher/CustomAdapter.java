@@ -1,4 +1,4 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Teacher;
 
 /**
  * Created by sarvesh on 31/3/18.
@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.sarvesh.i_turnout.R;
+import com.example.sarvesh.i_turnout.RowItem;
 
 import java.util.List;
 

@@ -1,13 +1,12 @@
-package com.example.sarvesh.i_turnout;
+package com.example.sarvesh.i_turnout.Teacher;
 
-public class ViewStudentDetailsRowItem {
+public class TeacherCheckItem {
     private String studentName;
     private String studentId;
     private String totalAttendance;
-
-    public ViewStudentDetailsRowItem(String studentName,String studentId,String totalAttendance) {
-
-        this.studentName= studentName;
+    public TeacherCheckItem(String studentName,String studentId,String totalAttendance)
+    {
+        this.studentName=studentName;
         this.studentId=studentId;
         this.totalAttendance=totalAttendance;
     }

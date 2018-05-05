@@ -1,11 +1,7 @@
 package com.example.sarvesh.i_turnout;
 
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
@@ -16,19 +12,11 @@ import java.util.HashMap;
 
 public class Student extends AppCompatActivity implements  View.OnClickListener {
     private TextView textCartItemCount;
-    private int curNotificationId=0;
-    private CardView getNotification, makeQuery, viewCourse, checkAttendance, changePassword,getMessage;
+    private CardView getNotification,viewCourse, checkAttendance, changePassword,getMessage;
     private String mCartItemCount = "10";
     private TextView studentName;
     private ImageButton logout;
     SharedPrefManager sharedPrefManager;
-
-
-    private Bitmap icon;
-    private String notificationTitle;
-    private String notificationText;
-    private int combineNotificationCounter;
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

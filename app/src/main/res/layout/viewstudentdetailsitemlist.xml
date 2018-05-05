@@ -13,12 +13,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:textSize="20sp"
-            android:id="@+id/viewStudentDetails1"
+            android:id="@+id/checkDetails"
             android:textColor="@color/colorPrimaryDark"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/view6"
+            android:id="@+id/checkDetails1"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="13sp"
             android:layout_marginLeft="55dp"

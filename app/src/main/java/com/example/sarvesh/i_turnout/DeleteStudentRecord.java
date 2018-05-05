@@ -180,8 +180,8 @@ public class DeleteStudentRecord extends AppCompatActivity implements View.OnCli
         {
             deleteData();
            // for(int i=0;i<deleteStudent.size();i++){
-           // Toast.makeText(getApplicationContext(), deleteStudent.get(i).toString(), Toast.LENGTH_SHORT).show();
-           // }
+          // Toast.makeText(getApplicationContext(), deleteStudent.get(i).toString(), Toast.LENGTH_SHORT).show();
+          // }
         }
     }
 }
