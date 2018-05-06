@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 		if(isset($_POST['userId']))
 			{
 			    $tid=$_POST['userId'];
-    	        $sql = "select coursename as n,courseid as c from course as co where co.ctid='$tid' ";
+    	        $sql = "select distinct(studentid),studentname from student as s,course as c,enrollment as e where c.ctid='$tid' and c.courseid=e.cid and e.sid=s.studentid";
     	        $res= mysqli_query($con,$sql);
     	         if($res)
     	         {
@@ -16,8 +16,8 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     	            {
     	                $course  = array();
     	              //  echo $row['c'];
-    	                $course['data'] = $row['n'];
-    	                $course['data1'] = $row['c'];
+    	                $course['data'] = $row['studentname'];
+    	                $course['data1'] = $row['studentid'];
     	                $flag[]=$course;
     	            }
     	           

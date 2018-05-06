@@ -5,10 +5,10 @@
         
 if($_SERVER['REQUEST_METHOD']=='POST')
 	{
-		if(isset($_POST['userId']))
+		if(isset($_POST['subjectId']))
 			{
-			    $tid=$_POST['userId'];
-    	        $sql = "select coursename as n,courseid as c from course as co where co.ctid='$tid' ";
+			    $cid=$_POST['subjectId'];
+    	        $sql = "select studentname as c,studentid as sid from student as s,enrollment as e where e.cid='$cid' and e.sid=s.studentid ";
     	        $res= mysqli_query($con,$sql);
     	         if($res)
     	         {
@@ -16,18 +16,13 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     	            {
     	                $course  = array();
     	              //  echo $row['c'];
-    	                $course['data'] = $row['n'];
-    	                $course['data1'] = $row['c'];
+    	                $course['studentName'] = $row['c'];
+    	                $course['studentId'] = $row['sid'];
     	                $flag[]=$course;
     	            }
     	           
     	         }
 			}
 	}
-	
-	      //   $flag['data']="DBMS";
-	    
-			echo json_encode(array('flag'=>$flag));
-		//	echo json_encode($flag);
-
+	echo json_encode(array('flag'=>$flag));
 ?>

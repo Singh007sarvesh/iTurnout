@@ -18,9 +18,9 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     	                $course  = array();
     	   
     	              //  echo $row['c'];
-    	               $course['data'] = $row['coursename'];
+    	               $course['subjectName'] = $row['coursename'];
     	                
-    	                $course['data1'] = $row['A'];
+    	                $course['subjectId'] = $row['A'];
     	                $flag[]=$course;
     	               
     	            }
@@ -28,11 +28,5 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     	         }
 			}
 	}
-	
-	      //   $flag['data']="DBMS";
-	    
 			echo json_encode(array('flag'=>$flag));
-			//	echo json_encode(array('flagid'=>$flagid));
-		//	echo json_encode($flag);
-
 ?>
