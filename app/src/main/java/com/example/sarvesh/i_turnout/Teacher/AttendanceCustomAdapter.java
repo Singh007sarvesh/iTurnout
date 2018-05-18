@@ -9,9 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.example.sarvesh.i_turnout.AttendanceItemRow;
 import com.example.sarvesh.i_turnout.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,13 +115,13 @@ public class AttendanceCustomAdapter extends BaseAdapter {
                 if(finalHolder.checkBox.isChecked())
                 {
                     absent.remove(finalHolder.attendanceId.getText().toString());
-                    Toast.makeText(context,"checked"+finalHolder.attendanceId.getText().toString(),Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(context,"checked"+finalHolder.attendanceId.getText().toString(),Toast.LENGTH_SHORT).show();
 
                 }
                 else {
                     absent.add(finalHolder.attendanceId.getText().toString());
 
-                    Toast.makeText(context,"unchecked"+finalHolder.attendanceId.getText().toString(),Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(context,"unchecked"+finalHolder.attendanceId.getText().toString(),Toast.LENGTH_SHORT).show();
                 }
 
             }

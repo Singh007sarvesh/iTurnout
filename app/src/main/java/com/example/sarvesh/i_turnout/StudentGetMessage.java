@@ -40,7 +40,7 @@ public class StudentGetMessage extends AppCompatActivity implements View.OnClick
         Intent in=getIntent();
         contentId=in.getStringExtra("contentId");
         teacherId=in.getStringExtra("teacherId");
-        Toast.makeText(getApplicationContext(),teacherId,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),teacherId,Toast.LENGTH_SHORT).show();
         editText=findViewById(R.id.studentSendMessage);
         textView=findViewById(R.id.studentGetMessage);
         floatingActionButton=findViewById(R.id.studentFloatingButton1);

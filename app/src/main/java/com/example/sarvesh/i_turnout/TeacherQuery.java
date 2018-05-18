@@ -60,6 +60,7 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
                             Toast.makeText(getApplicationContext(),Response,Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), TViewNotification.class);
                             startActivity(i);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         }
                         catch (JSONException e)
                         {

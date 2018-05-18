@@ -158,6 +158,7 @@ public class MakeAttendance extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), AssignedCourses.class);
                             startActivity(i);
+                           i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                        } catch (JSONException e) {
                             e.printStackTrace();

@@ -20,7 +20,9 @@
                 android:layout_marginTop="30dp"
                 android:textStyle="normal"
                 android:textSize="20sp"
-                android:id="@+id/studentGetMessage"/>
+                android:id="@+id/studentGetMessage"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"

@@ -15,12 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="70dp">
+            android:layout_marginTop="18dp">
             <EditText
                 android:id="@+id/cid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:hint="@string/enter_course_id1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -50,7 +50,7 @@
                 android:id="@+id/csubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:text="@string/submit"
                 app:layout_constraintTop_toBottomOf="@+id/editText5"
                android:layout_marginLeft="10dp"

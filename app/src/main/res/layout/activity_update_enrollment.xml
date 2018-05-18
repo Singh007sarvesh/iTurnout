@@ -20,7 +20,7 @@
             android:id="@+id/studentIdEnrollment"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="25dp"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,17 +28,17 @@
             android:id="@+id/oldEnrollment"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="25dp"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_new_enrollment"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:id="@+id/newEnrollment"/>
         <Button
-            android:layout_width="200dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:text="Update"
             android:textColor="#fff"
