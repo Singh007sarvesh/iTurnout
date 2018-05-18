@@ -48,7 +48,7 @@
             android:theme="@style/customTheme" />
         <activity
             android:name=".StudentEnrollment"
-            android:label="Course Enrollment"
+            android:label="Enrollment"
             android:parentActivityName=".Moderator.Admin"
             android:theme="@style/customTheme" />
         <activity
