@@ -78,7 +78,8 @@
         <activity
             android:name=".Teacher.TCheckAttendance"
             android:parentActivityName=".Teacher.Teacher"
-            android:theme="@style/customTheme" />
+            android:theme="@style/customTheme"
+            />
         <activity
             android:name=".ViewEnrollStudent"
             android:label="Subject Details"
@@ -180,7 +181,7 @@
             android:theme="@style/customTheme" />
         <activity android:name=".Teacher.TeacherCheckAttendance"
             android:theme="@style/customTheme"
-            android:label="Student Details"
+            android:label="Attendance Details"
             android:parentActivityName=".Teacher.TViewAttendance"/>
     </application>
 
