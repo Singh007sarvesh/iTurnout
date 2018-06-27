@@ -57,8 +57,11 @@ public class updateEnrollment extends AppCompatActivity implements View.OnClickL
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), Admin.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                    Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

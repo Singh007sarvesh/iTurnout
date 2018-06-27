@@ -37,9 +37,7 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
         editTextsid = findViewById(R.id.studentenrollid);
         editTextcid = findViewById(R.id.courseenrollid);
         esubmit = findViewById(R.id.studentenrollsubmit);
-
         progressDialog = new ProgressDialog(this);
-
         esubmit.setOnClickListener(this);
 
 
@@ -47,33 +45,38 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
 
     public void registerUser(){
 
-        final String cid = editTextcid.getText().toString().trim();
         final String sid = editTextsid.getText().toString().trim();
+        final String cid = editTextcid.getText().toString().trim();
+        if (sid.length() == 9 && (sid.charAt(0) == 'm' || sid.charAt(0)=='M' || sid.charAt(0)=='b' || sid.charAt(0)=='B' ) && sid.matches("[a-zA-Z0-9]+"))
 
-
-        if(sid.length()==9 && sid.matches("[a-zA-Z0-9]+") && (sid.charAt(0)=='m' || sid.charAt(0)=='M' || sid.charAt(0)=='b' || sid.charAt(0)=='B'))
         {
-            if(cid.length()>5  && cid.matches("[a-zA-Z0-9]+"));
+            if(cid.length()>5  && cid.matches("[a-zA-Z0-9]+"))
+            {
+
+            }
             else
             {
-                Toast.makeText(getApplicationContext(),"Plz fill course id in a proper way",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Plz fill Course id in a proper way",Toast.LENGTH_LONG).show();
                 return;
             }
             progressDialog.setMessage("Enrolling user...");
             progressDialog.show();
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                    defConstant.URL_ENROLL,
+                    defConstant.URL_ENROLLMENT,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             progressDialog.dismiss();
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
-                               Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                                 Intent in = new Intent(getApplicationContext(), Admin.class);
+                                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                        Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(in);
-                                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                finish();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -89,8 +92,8 @@ public class StudentEnrollment extends AppCompatActivity implements View.OnClick
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("cid", cid.toUpperCase());
-                    params.put("sid", sid.toUpperCase());
+                    params.put("studentId", sid.toUpperCase());
+                    params.put("courseId", cid.toUpperCase());
                     return params;
                 }
             };

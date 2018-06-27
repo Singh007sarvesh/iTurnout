@@ -85,8 +85,9 @@ public class CourseDetails extends AppCompatActivity implements View.OnClickList
                                 JSONObject jsonObject = new JSONObject(response);
                                 Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(getApplicationContext(), Admin.class);
-                                startActivity(i);
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
+                               finish();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

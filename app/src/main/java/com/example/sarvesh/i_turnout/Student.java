@@ -38,8 +38,13 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
         if(!(new SharedPrefManager(this).isLoggedIn()))
         {
             Intent intent = new Intent(this, Home.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finish();
         }
         setContentView(R.layout.activity_student);
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
@@ -47,7 +52,6 @@ public class Student extends AppCompatActivity implements  View.OnClickListener 
         userId = userDetails.get(SharedPrefManager.KEY_Id);
         studentName = findViewById(R.id.studentName);
         studentName.setText(userDetails.get(SharedPrefManager.KEY_NAME));
-
          getNotification= findViewById(R.id.getnotification);
 
         viewCourse=findViewById(R.id.viewcourses);

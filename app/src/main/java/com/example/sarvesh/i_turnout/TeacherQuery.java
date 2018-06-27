@@ -59,8 +59,11 @@ public class TeacherQuery extends AppCompatActivity implements View.OnClickListe
                             String Response=jsonObject.getString("message");
                             Toast.makeText(getApplicationContext(),Response,Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), TViewNotification.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                    Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            finish();
                         }
                         catch (JSONException e)
                         {

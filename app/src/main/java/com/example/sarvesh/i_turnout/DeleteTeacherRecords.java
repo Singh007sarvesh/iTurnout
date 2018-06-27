@@ -194,6 +194,9 @@ public class DeleteTeacherRecords extends AppCompatActivity implements View.OnCl
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getApplicationContext(), DeleteUser.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                    Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();

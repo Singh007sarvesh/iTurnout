@@ -111,7 +111,11 @@ public class StudentGetMessage extends AppCompatActivity implements View.OnClick
                             String Response=jsonObject.getString("message");
                             Toast.makeText(StudentGetMessage.this,Response,Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(),MessageForStudent.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                    Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
+                            finish();
                         }
                         catch (JSONException e)
                         {

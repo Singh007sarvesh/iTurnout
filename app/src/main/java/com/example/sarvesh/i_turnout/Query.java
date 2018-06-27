@@ -132,8 +132,11 @@ public class Query extends AppCompatActivity implements View.OnClickListener{
                             String Response= jsonObject.getString("message");
                             Toast.makeText(getApplicationContext(),Response,Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), TeacherDetail.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                    Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
+                            finish();
                         }
                         catch (JSONException e)
                         {
